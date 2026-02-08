@@ -1,0 +1,197 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Absolute File and Folder 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-08 16:00+0700\n"
+"PO-Revision-Date: 2026-02-08 16:16+0700\n"
+"Last-Translator: Chai Chaimee <chai@example.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.7\n"
+
+#: __init__.py:18
+msgid "Absolute File and Folder"
+msgstr "Archivo y Carpeta Absolutos"
+
+#: __init__.py:36
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap)"
+msgstr "Abrir Carpetas Absolutas (un toque) o Archivos Absolutos (doble toque)"
+
+#: AbsoluteFile.py:20 AbsoluteFolder.py:22
+msgid "Absolute Files"
+msgstr "Archivos Absolutos"
+
+#: AbsoluteFolder.py:23
+msgid "Absolute Folders"
+msgstr "Carpetas Absolutas"
+
+#: AbsoluteFile.py:137 AbsoluteFolder.py:210
+msgid "Filter Type:"
+msgstr "Tipo de filtro:"
+
+#: AbsoluteFile.py:139
+msgid "All"
+msgstr "Todos"
+
+#: AbsoluteFile.py:139
+msgid "Audio"
+msgstr "Audio"
+
+#: AbsoluteFile.py:139
+msgid "Video"
+msgstr "Video"
+
+#: AbsoluteFile.py:139
+msgid "Document"
+msgstr "Documento"
+
+#: AbsoluteFile.py:139
+msgid "Code"
+msgstr "Código"
+
+#: AbsoluteFile.py:139
+msgid "Exe"
+msgstr "Exe"
+
+#: AbsoluteFile.py:147 AbsoluteFolder.py:218
+msgid "Saved Files"
+msgstr "Archivos guardados"
+
+#: AbsoluteFile.py:148 AbsoluteFolder.py:219
+msgid "Recent Files"
+msgstr "Archivos recientes"
+
+#: AbsoluteFile.py:154 AbsoluteFolder.py:226
+msgid "Name"
+msgstr "Nombre"
+
+#: AbsoluteFile.py:155 AbsoluteFolder.py:227
+msgid "Path"
+msgstr "Ruta"
+
+#: AbsoluteFile.py:166 AbsoluteFolder.py:236
+msgid "&Add"
+msgstr "&Añadir"
+
+#: AbsoluteFile.py:167 AbsoluteFolder.py:237
+msgid "&Edit"
+msgstr "&Editar"
+
+#: AbsoluteFile.py:168 AbsoluteFolder.py:238
+msgid "&Remove"
+msgstr "&Eliminar"
+
+#: AbsoluteFile.py:177 AbsoluteFolder.py:249
+msgid "File Name"
+msgstr "Nombre de archivo"
+
+#: AbsoluteFile.py:186 AbsoluteFolder.py:259
+msgid "Clear History"
+msgstr "Borrar historial"
+
+#: AbsoluteFile.py:193 AbsoluteFolder.py:265
+msgid "Custom order"
+msgstr "Orden personalizado"
+
+#: AbsoluteFile.py:193 AbsoluteFolder.py:265
+msgid "Ascending, a-z"
+msgstr "Ascendente, a-z"
+
+#: AbsoluteFile.py:193 AbsoluteFolder.py:265
+msgid "Descending z-a"
+msgstr "Descendente, z-a"
+
+#: AbsoluteFile.py:222 AbsoluteFolder.py:294
+msgid "&Open"
+msgstr "&Abrir"
+
+#: AbsoluteFile.py:290 AbsoluteFolder.py:367
+msgid "No file selected in Explorer to add."
+msgstr "No hay archivo seleccionado en el Explorador para añadir."
+
+#: AbsoluteFolder.py:367
+msgid "No folder selected in Explorer to add."
+msgstr "No hay carpeta seleccionada en el Explorador para añadir."
+
+#: AbsoluteFile.py:295 AbsoluteFolder.py:372
+msgid "Enter display name"
+msgstr "Ingrese nombre para mostrar"
+
+#: AbsoluteFile.py:302 AbsoluteFolder.py:379
+msgid "This name already exists."
+msgstr "Este nombre ya existe."
+
+#: AbsoluteFile.py:321 AbsoluteFolder.py:398
+msgid "Rename"
+msgstr "Renombrar"
+
+#: AbsoluteFile.py:338 AbsoluteFolder.py:415
+msgid "Remove {}?"
+msgstr "¿Eliminar {}?"
+
+#: AbsoluteFile.py:353 AbsoluteFolder.py:430
+msgid "Clear history?"
+msgstr "¿Borrar historial?"
+
+#: AbsoluteFile.py:371
+msgid "Run as Administrator"
+msgstr "Ejecutar como administrador"
+
+#: AbsoluteFile.py:377 AbsoluteFolder.py:448
+msgid "Unpin"
+msgstr "Desanclar"
+
+#: AbsoluteFile.py:377 AbsoluteFolder.py:448
+msgid "Pin to top"
+msgstr "Anclar arriba"
+
+#: AbsoluteFile.py:381 AbsoluteFolder.py:452
+msgid "Edit"
+msgstr "Editar"
+
+#: AbsoluteFile.py:382 AbsoluteFolder.py:453
+msgid "Delete"
+msgstr "Eliminar"
+
+#: AbsoluteFile.py:386 AbsoluteFolder.py:457
+msgid "Move Up"
+msgstr "Mover arriba"
+
+#: AbsoluteFile.py:387 AbsoluteFolder.py:458
+msgid "Move Down"
+msgstr "Mover abajo"
+
+#: AbsoluteFile.py:398
+msgid "Remove from Recent"
+msgstr "Eliminar de recientes"
+
+#: AbsoluteFile.py:440
+msgid "Remove {} from recent list?"
+msgstr "¿Eliminar {} de la lista de recientes?"
+
+#: AbsoluteFolder.py:302
+msgid "Saved Folders"
+msgstr "Carpetas guardadas"
+
+#: AbsoluteFolder.py:303
+msgid "Recent Folders"
+msgstr "Carpetas recientes"
+
+#: AbsoluteFolder.py:311
+msgid "Folder Name"
+msgstr "Nombre de carpeta"
+
+#: AbsoluteFolder.py:329
+msgid "&Show paths"
+msgstr "&Mostrar rutas"
+
+#: AbsoluteFolder.py:340
+msgid "Remember and open folders automatically on restart"
+msgstr "Recordar y abrir carpetas automáticamente al reiniciar"
+
+#: AbsoluteFolder.py:401
+msgid "Remove {} from auto-open list?"
+msgstr "¿Eliminar {} de la lista de apertura automática?"
