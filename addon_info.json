@@ -1,0 +1,10 @@
+﻿{
+  "addon_name": "AbsoluteFileAndFolder",
+  "addon_description": "The ultimate organizer for instant access to files and folders with smart filtering, recent history, and run-as-admin capabilities.",
+  "addon_version": "2026.2",
+  "addon_author": "chaichaimee",
+  "addon_url": "https://github.com/chaichaimee/AbsoluteFileAndFolder",
+  "addon_download_url": "https://github.com/chaichaimee/AbsoluteFileAndFolder/releases/download/v2026.2/AbsoluteFileAndFolder-v2026.2.nvda-addon",
+  "addon_min_nvda_version": "2022.4"
+}
+
