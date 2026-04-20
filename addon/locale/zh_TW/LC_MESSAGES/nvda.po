@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: zh_TW\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Chinese (Traditional)\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "新增 (&A)"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "編輯 (&E)"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "開啟 (&O)"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "移除 (&R)"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "顯示路徑 (&S)"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "清除歷史紀錄"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "要清除歷史紀錄嗎？"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "刪除"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "輸入顯示名稱"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "檔案名稱"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "過濾器類型："
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "資料夾名稱"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "下移"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "上移"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "名稱"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "置頂"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "重新命名"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "以管理員身份執行"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "此名稱已存在。"
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "取消置頂"

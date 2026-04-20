@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: te\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Telugu\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "జోడించు (&A)"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "సవరించు (&E)"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "తెరువు (&O)"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "తొలగించు (&R)"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "మార్గాలను చూపించు (&S)"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "చరిత్రను క్లియర్ చేయి"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "చరిత్రను క్లియర్ చేయాలా?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "తొలగించు"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "ప్రదర్శన పేరును నమోదు చేయండి"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "ఫైల్ పేరు"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "వడపోత రకం:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "ఫోల్డర్ పేరు"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "క్రిందికి జరుపు"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "పైకి జరుపు"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "పేరు"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "పైన పిన్ చేయి"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "పేరు మార్చు"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "అడ్మినిస్ట్రేటర్‌గా రన్ చేయి"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "ఈ పేరు ఇప్పటికే ఉంది."
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "అన్ పిన్ చేయి"

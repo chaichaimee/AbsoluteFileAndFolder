@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: vi\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Vietnamese\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "Thê&m"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "&Sửa"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "&Mở"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "&Xóa bỏ"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "&Hiện đường dẫn"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "Xóa lịch sử"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "Xóa lịch sử?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "Xóa"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "Nhập tên hiển thị"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "Tên tệp"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "Loại bộ lọc:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "Tên thư mục"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "Di chuyển xuống"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "Di chuyển lên"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "Tên"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "Ghim lên đầu"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "Đổi tên"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "Chạy với quyền Administrator"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "Tên này đã tồn tại."
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "Bỏ ghim"

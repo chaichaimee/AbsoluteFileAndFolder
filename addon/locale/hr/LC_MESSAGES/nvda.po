@@ -1,0 +1,202 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-20 15:16+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Croatian\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: AbsoluteFile.py:210
+#: AbsoluteFolder.py:262
+msgid "&Add"
+msgstr "&Dodaj"
+
+#: AbsoluteFile.py:211
+#: AbsoluteFolder.py:264
+msgid "&Edit"
+msgstr "&Uredi"
+
+#: AbsoluteFile.py:241
+#: AbsoluteFolder.py:263
+msgid "&Open"
+msgstr "&Otvori"
+
+#: AbsoluteFile.py:212
+#: AbsoluteFolder.py:265
+msgid "&Remove"
+msgstr "&Ukloni"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "&Prikaži putanje"
+
+#: __init__.py:53
+#: __init__.py:90
+msgid "Absolute File and Folder"
+msgstr "Absolute File and Folder"
+
+#: AbsoluteFile.py:18
+msgid "Absolute Files"
+msgstr "Absolute Files"
+
+#: AbsoluteFolder.py:19
+msgid "Absolute Folders"
+msgstr "Absolute Folders"
+
+#: AbsoluteFile.py:232
+#: AbsoluteFolder.py:277
+msgid "Ascending, a-z"
+msgstr "Uzlazno, a-z"
+
+#: AbsoluteFile.py:227
+#: AbsoluteFolder.py:256
+msgid "Clear History"
+msgstr "Očisti povijest"
+
+#: AbsoluteFile.py:390
+#: AbsoluteFolder.py:580
+msgid "Clear history?"
+msgstr "Očistiti povijest?"
+
+#: AbsoluteFile.py:232
+#: AbsoluteFolder.py:277
+msgid "Custom order"
+msgstr "Prilagođeni redoslijed"
+
+#: AbsoluteFile.py:428
+#: AbsoluteFolder.py:364
+#: AbsoluteFolder.py:539
+msgid "Delete"
+msgstr "Obriši"
+
+#: AbsoluteFile.py:232
+#: AbsoluteFolder.py:277
+msgid "Descending z-a"
+msgstr "Silazno z-a"
+
+#: AbsoluteFile.py:427
+#: AbsoluteFolder.py:538
+msgid "Edit"
+msgstr "Uredi"
+
+#: AbsoluteFile.py:333
+#: AbsoluteFolder.py:436
+msgid "Enter display name"
+msgstr "Unesite naziv za prikaz"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "Naziv datoteke"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "Vrsta filtra:"
+
+#: AbsoluteFolder.py:253
+#: AbsoluteFolder.py:296
+msgid "Folder Name"
+msgstr "Naziv mape"
+
+#: AbsoluteFile.py:433
+#: AbsoluteFolder.py:543
+msgid "Move Down"
+msgstr "Premjesti dolje"
+
+#: AbsoluteFile.py:432
+#: AbsoluteFolder.py:542
+msgid "Move Up"
+msgstr "Premjesti gore"
+
+#: AbsoluteFile.py:204
+#: AbsoluteFolder.py:246
+msgid "Name"
+msgstr "Ime"
+
+#: AbsoluteFile.py:330
+msgid "No file selected in Explorer to add."
+msgstr "Nije odabrana nijedna datoteka u Exploreru za dodavanje."
+
+#: AbsoluteFolder.py:433
+msgid "No folder selected in Explorer to add."
+msgstr "Nije odabrana nijedna mapa u Exploreru za dodavanje."
+
+#: __init__.py:89
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap)"
+msgstr "Otvori Absolute Folders (jedan dodir) ili Absolute Files (dvostruki dodir)"
+
+#: AbsoluteFile.py:205
+#: AbsoluteFile.py:224
+#: AbsoluteFolder.py:247
+#: AbsoluteFolder.py:254
+#: AbsoluteFolder.py:297
+msgid "Path"
+msgstr "Putanja"
+
+#: AbsoluteFile.py:422
+#: AbsoluteFolder.py:535
+msgid "Pin to top"
+msgstr "Prikvači na vrh"
+
+#: AbsoluteFile.py:198
+msgid "Recent Files"
+msgstr "Nedavne datoteke"
+
+#: AbsoluteFolder.py:241
+msgid "Recent Folders"
+msgstr "Nedavne mape"
+
+#: AbsoluteFolder.py:286
+msgid "Remember and open folders automatically on restart"
+msgstr "Zapamti i automatski otvori mape pri ponovnom pokretanju"
+
+#: AbsoluteFile.py:440
+msgid "Remove from Recent"
+msgstr "Ukloni iz nedavnih"
+
+#: AbsoluteFolder.py:384
+msgid "Remove {} from auto-open list?"
+msgstr "Ukloniti {} s popisa za automatsko otvaranje?"
+
+#: AbsoluteFile.py:455
+msgid "Remove {} from recent list?"
+msgstr "Ukloniti {} s popisa nedavnih?"
+
+#: AbsoluteFile.py:380
+#: AbsoluteFolder.py:513
+msgid "Remove {}?"
+msgstr "Ukloniti {}?"
+
+#: AbsoluteFile.py:355
+#: AbsoluteFolder.py:488
+msgid "Rename"
+msgstr "Preimenuj"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "Pokreni kao administrator"
+
+#: AbsoluteFile.py:197
+msgid "Saved Files"
+msgstr "Spremljene datoteke"
+
+#: AbsoluteFolder.py:240
+msgid "Saved Folders"
+msgstr "Spremljene mape"
+
+#: AbsoluteFile.py:338
+#: AbsoluteFile.py:360
+#: AbsoluteFolder.py:441
+#: AbsoluteFolder.py:493
+msgid "This name already exists."
+msgstr "Ovo ime već postoji."
+
+#: AbsoluteFile.py:422
+#: AbsoluteFolder.py:535
+msgid "Unpin"
+msgstr "Odprikvači"

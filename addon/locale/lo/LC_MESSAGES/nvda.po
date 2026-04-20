@@ -1,0 +1,202 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-20 15:16+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Lao\n"
+"Language: lo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: AbsoluteFile.py:210
+#: AbsoluteFolder.py:262
+msgid "&Add"
+msgstr "ເພີ່ມ (&A)"
+
+#: AbsoluteFile.py:211
+#: AbsoluteFolder.py:264
+msgid "&Edit"
+msgstr "ແກ້ໄຂ (&E)"
+
+#: AbsoluteFile.py:241
+#: AbsoluteFolder.py:263
+msgid "&Open"
+msgstr "ເປີດ (&O)"
+
+#: AbsoluteFile.py:212
+#: AbsoluteFolder.py:265
+msgid "&Remove"
+msgstr "ລົບອອກ (&R)"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "ສະແດງເສັ້ນທາງ (&S)"
+
+#: __init__.py:53
+#: __init__.py:90
+msgid "Absolute File and Folder"
+msgstr "Absolute File and Folder"
+
+#: AbsoluteFile.py:18
+msgid "Absolute Files"
+msgstr "Absolute Files"
+
+#: AbsoluteFolder.py:19
+msgid "Absolute Folders"
+msgstr "Absolute Folders"
+
+#: AbsoluteFile.py:232
+#: AbsoluteFolder.py:277
+msgid "Ascending, a-z"
+msgstr "ລຽງລໍາດັບຂຶ້ນ, a-z"
+
+#: AbsoluteFile.py:227
+#: AbsoluteFolder.py:256
+msgid "Clear History"
+msgstr "ລ້າງປະຫວັດ"
+
+#: AbsoluteFile.py:390
+#: AbsoluteFolder.py:580
+msgid "Clear history?"
+msgstr "ລ້າງປະຫວັດບໍ?"
+
+#: AbsoluteFile.py:232
+#: AbsoluteFolder.py:277
+msgid "Custom order"
+msgstr "ລຽງຕາມກຳນົດເອງ"
+
+#: AbsoluteFile.py:428
+#: AbsoluteFolder.py:364
+#: AbsoluteFolder.py:539
+msgid "Delete"
+msgstr "ລຶບ"
+
+#: AbsoluteFile.py:232
+#: AbsoluteFolder.py:277
+msgid "Descending z-a"
+msgstr "ລຽງລໍາດັບລົງ, z-a"
+
+#: AbsoluteFile.py:427
+#: AbsoluteFolder.py:538
+msgid "Edit"
+msgstr "ແກ້ໄຂ"
+
+#: AbsoluteFile.py:333
+#: AbsoluteFolder.py:436
+msgid "Enter display name"
+msgstr "ປ້ອນຊື່ທີ່ຕ້ອງການສະແດງ"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "ຊື່ໄຟລ໌"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "ປະເພດຕົວຕອງ:"
+
+#: AbsoluteFolder.py:253
+#: AbsoluteFolder.py:296
+msgid "Folder Name"
+msgstr "ຊື່ໂຟນເດີ"
+
+#: AbsoluteFile.py:433
+#: AbsoluteFolder.py:543
+msgid "Move Down"
+msgstr "ຍ້າຍລົງ"
+
+#: AbsoluteFile.py:432
+#: AbsoluteFolder.py:542
+msgid "Move Up"
+msgstr "ຍ້ายຂຶ້ນ"
+
+#: AbsoluteFile.py:204
+#: AbsoluteFolder.py:246
+msgid "Name"
+msgstr "ຊື່"
+
+#: AbsoluteFile.py:330
+msgid "No file selected in Explorer to add."
+msgstr "ບໍ່ມີໄຟລ໌ຖືກເລືອກໃນ Explorer ເພື່ອເພີ່ມ."
+
+#: AbsoluteFolder.py:433
+msgid "No folder selected in Explorer to add."
+msgstr "ບໍ່ມີໂຟນເດີຖືກເລືອກໃນ Explorer ເພື່ອເພີ່ມ."
+
+#: __init__.py:89
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap)"
+msgstr "ເປີດ Absolute Folders (ແຕະເທື່ອດຽວ) ຫຼື Absolute Files (ແຕະສອງເທື່ອ)"
+
+#: AbsoluteFile.py:205
+#: AbsoluteFile.py:224
+#: AbsoluteFolder.py:247
+#: AbsoluteFolder.py:254
+#: AbsoluteFolder.py:297
+msgid "Path"
+msgstr "ເສັ້ນທາງ"
+
+#: AbsoluteFile.py:422
+#: AbsoluteFolder.py:535
+msgid "Pin to top"
+msgstr "ປັກໝຸດໄວ້ເທິງສຸດ"
+
+#: AbsoluteFile.py:198
+msgid "Recent Files"
+msgstr "ໄຟລ໌ຫຼ້າສຸດ"
+
+#: AbsoluteFolder.py:241
+msgid "Recent Folders"
+msgstr "ໂຟນເດີຫຼ້າສຸດ"
+
+#: AbsoluteFolder.py:286
+msgid "Remember and open folders automatically on restart"
+msgstr "ຈື່ຈຳ ແລະ ເປີດໂຟນເດີອັດຕະໂນມັດເມື່ອເລີ່ມລະບົບໃໝ່"
+
+#: AbsoluteFile.py:440
+msgid "Remove from Recent"
+msgstr "ລົບອອກຈາກລາຍການຫຼ້າສຸດ"
+
+#: AbsoluteFolder.py:384
+msgid "Remove {} from auto-open list?"
+msgstr "ລົບ {} ອອກຈາກລາຍການເປີດອັດຕະໂນມັດບໍ?"
+
+#: AbsoluteFile.py:455
+msgid "Remove {} from recent list?"
+msgstr "ລົບ {} ອອກຈາກລາຍການຫຼ້າສຸດບໍ?"
+
+#: AbsoluteFile.py:380
+#: AbsoluteFolder.py:513
+msgid "Remove {}?"
+msgstr "ລົບ {} ອອກບໍ?"
+
+#: AbsoluteFile.py:355
+#: AbsoluteFolder.py:488
+msgid "Rename"
+msgstr "ປ່ຽນຊື່"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "ເລີ່ມລະບົບໃນຖານະຜູ້ດູແລ"
+
+#: AbsoluteFile.py:197
+msgid "Saved Files"
+msgstr "ໄຟລ໌ທີ່ບັນທຶກໄວ້"
+
+#: AbsoluteFolder.py:240
+msgid "Saved Folders"
+msgstr "ໂຟນເດີທີ່ບັນທຶກໄວ້"
+
+#: AbsoluteFile.py:338
+#: AbsoluteFile.py:360
+#: AbsoluteFolder.py:441
+#: AbsoluteFolder.py:493
+msgid "This name already exists."
+msgstr "ຊື່ນີ້ມີຢູ່ແລ້ວ."
+
+#: AbsoluteFile.py:422
+#: AbsoluteFolder.py:535
+msgid "Unpin"
+msgstr "ຖອນການປັກໝຸດ"

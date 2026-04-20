@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: tl\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Tagalog\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "Id&agdag"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "I-&edit"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "I-&bukas"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "Al&isin"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "Ipakita ang mga path (&S)"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "Burahin ang Nakaraan"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "Burahin ang nakaraan?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "Burahin"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "Ilagay ang pangalan na ipapakita"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "Pangalan ng File"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "Uri ng Filter:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "Pangalan ng Folder"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "Ibababa"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "Iatass"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "Pangalan"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "I-pin sa itaas"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "Palitan ang pangalan"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "I-run bilang Administrator"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "Ang pangalang ito ay mayroon na."
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "I-unpin"

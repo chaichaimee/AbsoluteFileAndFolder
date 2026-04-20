@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: pt_BR\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Portuguese (Brazil)\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "&Adicionar"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "&Editar"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "&Abrir"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "&Remover"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "&Mostrar caminhos"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "Limpar Histórico"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "Limpar histórico?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "Excluir"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "Digite o nome de exibição"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "Nome do Arquivo"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "Tipo de Filtro:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "Nome da Pasta"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "Mover para Baixo"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "Mover para Cima"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "Nome"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "Fixar no topo"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "Renomear"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "Executar como Administrador"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "Este nome já existe."
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "Desafixar"

@@ -1,0 +1,202 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-20 15:16+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Hungarian\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: AbsoluteFile.py:210
+#: AbsoluteFolder.py:262
+msgid "&Add"
+msgstr "Hozzá&adás"
+
+#: AbsoluteFile.py:211
+#: AbsoluteFolder.py:264
+msgid "&Edit"
+msgstr "S&zerkesztés"
+
+#: AbsoluteFile.py:241
+#: AbsoluteFolder.py:263
+msgid "&Open"
+msgstr "&Megnyitás"
+
+#: AbsoluteFile.py:212
+#: AbsoluteFolder.py:265
+msgid "&Remove"
+msgstr "&Eltávolítás"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "Útvonalak &megjelenítése"
+
+#: __init__.py:53
+#: __init__.py:90
+msgid "Absolute File and Folder"
+msgstr "Absolute File and Folder"
+
+#: AbsoluteFile.py:18
+msgid "Absolute Files"
+msgstr "Absolute Files"
+
+#: AbsoluteFolder.py:19
+msgid "Absolute Folders"
+msgstr "Absolute Folders"
+
+#: AbsoluteFile.py:232
+#: AbsoluteFolder.py:277
+msgid "Ascending, a-z"
+msgstr "Növekvő, a-z"
+
+#: AbsoluteFile.py:227
+#: AbsoluteFolder.py:256
+msgid "Clear History"
+msgstr "Előzmények törlése"
+
+#: AbsoluteFile.py:390
+#: AbsoluteFolder.py:580
+msgid "Clear history?"
+msgstr "Törli az előzményeket?"
+
+#: AbsoluteFile.py:232
+#: AbsoluteFolder.py:277
+msgid "Custom order"
+msgstr "Egyéni sorrend"
+
+#: AbsoluteFile.py:428
+#: AbsoluteFolder.py:364
+#: AbsoluteFolder.py:539
+msgid "Delete"
+msgstr "Törlés"
+
+#: AbsoluteFile.py:232
+#: AbsoluteFolder.py:277
+msgid "Descending z-a"
+msgstr "Csökkenő z-a"
+
+#: AbsoluteFile.py:427
+#: AbsoluteFolder.py:538
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: AbsoluteFile.py:333
+#: AbsoluteFolder.py:436
+msgid "Enter display name"
+msgstr "Adja meg a megjelenített nevet"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "Fájlnév"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "Szűrőtípus:"
+
+#: AbsoluteFolder.py:253
+#: AbsoluteFolder.py:296
+msgid "Folder Name"
+msgstr "Mappanév"
+
+#: AbsoluteFile.py:433
+#: AbsoluteFolder.py:543
+msgid "Move Down"
+msgstr "Mozgatás lefelé"
+
+#: AbsoluteFile.py:432
+#: AbsoluteFolder.py:542
+msgid "Move Up"
+msgstr "Mozgatás felfelé"
+
+#: AbsoluteFile.py:204
+#: AbsoluteFolder.py:246
+msgid "Name"
+msgstr "Név"
+
+#: AbsoluteFile.py:330
+msgid "No file selected in Explorer to add."
+msgstr "Nincs kiválasztva fájl az Intézőben a hozzáadáshoz."
+
+#: AbsoluteFolder.py:433
+msgid "No folder selected in Explorer to add."
+msgstr "Nincs kiválasztva mappa az Intézőben a hozzáadáshoz."
+
+#: __init__.py:89
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap)"
+msgstr "Absolute Folders megnyitása (egy kattintás) vagy Absolute Files (dupla kattintás)"
+
+#: AbsoluteFile.py:205
+#: AbsoluteFile.py:224
+#: AbsoluteFolder.py:247
+#: AbsoluteFolder.py:254
+#: AbsoluteFolder.py:297
+msgid "Path"
+msgstr "Útvonal"
+
+#: AbsoluteFile.py:422
+#: AbsoluteFolder.py:535
+msgid "Pin to top"
+msgstr "Rögzítés felülre"
+
+#: AbsoluteFile.py:198
+msgid "Recent Files"
+msgstr "Legutóbbi fájlok"
+
+#: AbsoluteFolder.py:241
+msgid "Recent Folders"
+msgstr "Legutóbbi mappák"
+
+#: AbsoluteFolder.py:286
+msgid "Remember and open folders automatically on restart"
+msgstr "Mappák megjegyzése és automatikus megnyitása újraindításkor"
+
+#: AbsoluteFile.py:440
+msgid "Remove from Recent"
+msgstr "Eltávolítás a legutóbbiak közül"
+
+#: AbsoluteFolder.py:384
+msgid "Remove {} from auto-open list?"
+msgstr "Eltávolítja a(z) {} elemet az automatikus megnyitási listáról?"
+
+#: AbsoluteFile.py:455
+msgid "Remove {} from recent list?"
+msgstr "Eltávolítja a(z) {} elemet a legutóbbiak listájáról?"
+
+#: AbsoluteFile.py:380
+#: AbsoluteFolder.py:513
+msgid "Remove {}?"
+msgstr "Eltávolítja a(z) {} elemet?"
+
+#: AbsoluteFile.py:355
+#: AbsoluteFolder.py:488
+msgid "Rename"
+msgstr "Átnevezés"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "Futtatás rendszergazdaként"
+
+#: AbsoluteFile.py:197
+msgid "Saved Files"
+msgstr "Mentett fájlok"
+
+#: AbsoluteFolder.py:240
+msgid "Saved Folders"
+msgstr "Mentett mappák"
+
+#: AbsoluteFile.py:338
+#: AbsoluteFile.py:360
+#: AbsoluteFolder.py:441
+#: AbsoluteFolder.py:493
+msgid "This name already exists."
+msgstr "Ez a név már létezik."
+
+#: AbsoluteFile.py:422
+#: AbsoluteFolder.py:535
+msgid "Unpin"
+msgstr "Rögzítés feloldása"

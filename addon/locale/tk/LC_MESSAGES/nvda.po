@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: tk\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Turkmen\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "&Goş"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "&Düzet"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "&Aç"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "A&ýyr"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "Ýollary &görkez"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "Taryhy arassala"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "Taryhy arassalamalymy?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "Poz"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "Görkeziljek ady giriziň"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "Faýl ady"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "Süzgüç görnüşi:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "Bukja ady"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "Aşak süýşür"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "Ýokary süýşür"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "Ady"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "Ýokary berkit"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "Adyny üýtget"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "Administrator hökmünde işlet"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "Bu at eýýäm bar."
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "Berkidilmegini aýyr"

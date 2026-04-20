@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: th\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Thai\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "เพิ่ม (&A)"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "แก้ไข (&E)"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "เปิด (&O)"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "ลบออก (&R)"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "แสดงเส้นทาง (&S)"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "ล้างประวัติ"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "ล้างประวัติหรือไม่?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "ลบ"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "ป้อนชื่อที่ต้องการให้แสดง"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "ชื่อไฟล์"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "ประเภทตัวกรอง:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "ชื่อโฟลเดอร์"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "ย้ายลง"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "ย้ายขึ้น"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "ชื่อ"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "ปักหมุดไว้ด้านบน"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "เปลี่ยนชื่อ"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "รันในฐานะผู้ดูแลระบบ"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "ชื่อนี้มีอยู่แล้ว"
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "ถอนการปักหมุด"

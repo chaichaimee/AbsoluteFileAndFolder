@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: uk\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Ukrainian\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "&Додати"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "&Редагувати"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "&Відкрити"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "Вилу&чити"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "&Показати шляхи"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "Очистити історію"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "Очистити історію?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "Видалити"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "Введіть відображуване ім'я"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "Ім'я файлу"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "Тип фільтра:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "Назва папки"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "Перемістити вниз"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "Перемістити вгору"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "Ім'я"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "Закріпити зверху"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "Перейменувати"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "Запустити від імені адміністратора"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "Це ім'я вже існує."
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "Відкріпити"

@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ur\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Urdu\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "شامل کریں (&A)"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "ترمیم کریں (&E)"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "کھولیں (&O)"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "ہٹائیں (&R)"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "راستے دکھائیں (&S)"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "تاریخ صاف کریں"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "تاریخ صاف کریں؟"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "حذف کریں"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "ظاہری نام درج کریں"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "فائل کا نام"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "فلٹر کی قسم:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "فولڈر کا نام"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "نیچے لے جائیں"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "اوپر لے جائیں"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "نام"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "اوپر پن کریں"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "نام تبدیل کریں"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "بطور ایڈمنسٹریٹر چلائیں"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "یہ نام پہلے سے موجود ہے۔"
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "پن ختم کریں"

@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ta\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Tamil\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "&சேர்"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "&திருத்து"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "&திற"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "&நீக்கு"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "&பாதைகளைக் காட்டு"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "வரலாற்றை அழி"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "வரலாற்றை அழிக்கவா?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "நீக்கு"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "காட்சிப் பெயரை உள்ளிடவும்"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "கோப்பு பெயர்"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "வடிகட்டி வகை:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "கோப்புறை பெயர்"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "கீழே நகர்த்து"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "மேலே நகர்த்து"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "பெயர்"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "மேலே பொருத்து"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "பெயர் மாற்று"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "நிர்வாகியாக இயக்கு"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "இந்த பெயர் ஏற்கனவே உள்ளது."
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "கழற்று"

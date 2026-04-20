@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: tr\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Turkish\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "&Ekle"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "&Düzenle"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "&Aç"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "Kal&dır"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "Yolları &göster"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "Geçmişi Temizle"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "Geçmiş temizlensin mi?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "Sil"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "Görünen adı girin"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "Dosya Adı"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "Filtre Türü:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "Klasör Adı"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "Aşağı Taşı"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "Yukarı Taşı"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "Ad"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "Üste sabitle"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "Yeniden Adlandır"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "Yönetici olarak çalıştır"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "Bu ad zaten mevcut."
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "Sabitlemeyi kaldır"

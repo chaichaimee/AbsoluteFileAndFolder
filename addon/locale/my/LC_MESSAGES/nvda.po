@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: my\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Burmese\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "ပေါင်းထည့်ရန် (&A)"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "ပြင်ဆင်ရန် (&E)"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "ဖွင့်ရန် (&O)"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "ဖယ်ရှားရန် (&R)"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "လမ်းကြောင်းများပြရန် (&S)"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "မှတ်တမ်းဖျက်ရန်"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "မှတ်တမ်းဖျက်မလား?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "ဖျက်ပစ်ရန်"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "ပြသလိုသည့်အမည်ကို ရိုက်ထည့်ပါ"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "ဖိုင်အမည်"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "စစ်ထုတ်မှုအမျိုးအစား:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "ဖိုလ်ဒါအမည်"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "အောက်သို့ရွှေ့ရန်"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "အထက်သို့ရွှေ့ရန်"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "အမည်"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "ထိပ်ဆုံးတွင်ကပ်ထားရန်"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "အမည်ပြောင်းရန်"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "Administrator အဖြစ်လုပ်ဆောင်ရန်"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "ဤအမည်ရှိနှင့်ပြီးသားဖြစ်သည်။"
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "ပြန်ဖြုတ်ရန်"

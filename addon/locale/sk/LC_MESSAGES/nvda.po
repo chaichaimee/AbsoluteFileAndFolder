@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: sk\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"Language-Team: Slovak\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+
+#: AbsoluteFile.py:210
+msgid "&Add"
+msgstr "&Pridať"
+
+#: AbsoluteFile.py:211
+msgid "&Edit"
+msgstr "&Upraviť"
+
+#: AbsoluteFile.py:241
+msgid "&Open"
+msgstr "&Otvoriť"
+
+#: AbsoluteFile.py:212
+msgid "&Remove"
+msgstr "&Odstrániť"
+
+#: AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "&Zobraziť cesty"
+
+#: AbsoluteFile.py:227
+msgid "Clear History"
+msgstr "Vymazať históriu"
+
+#: AbsoluteFile.py:390
+msgid "Clear history?"
+msgstr "Vymazať históriu?"
+
+#: AbsoluteFile.py:428
+msgid "Delete"
+msgstr "Odstrániť"
+
+#: AbsoluteFile.py:333
+msgid "Enter display name"
+msgstr "Zadajte zobrazované meno"
+
+#: AbsoluteFile.py:223
+msgid "File Name"
+msgstr "Názov súboru"
+
+#: AbsoluteFile.py:188
+msgid "Filter Type:"
+msgstr "Typ filtra:"
+
+#: AbsoluteFolder.py:253
+msgid "Folder Name"
+msgstr "Názov priečinka"
+
+#: AbsoluteFile.py:433
+msgid "Move Down"
+msgstr "Posunúť nadol"
+
+#: AbsoluteFile.py:432
+msgid "Move Up"
+msgstr "Posunúť nahor"
+
+#: AbsoluteFile.py:204
+msgid "Name"
+msgstr "Meno"
+
+#: AbsoluteFile.py:422
+msgid "Pin to top"
+msgstr "Pripnúť hore"
+
+#: AbsoluteFile.py:355
+msgid "Rename"
+msgstr "Premenovať"
+
+#: AbsoluteFile.py:417
+msgid "Run as Administrator"
+msgstr "Spustiť ako správca"
+
+#: AbsoluteFile.py:338
+msgid "This name already exists."
+msgstr "Tento názov už existuje."
+
+#: AbsoluteFile.py:422
+msgid "Unpin"
+msgstr "Odpripnúť"
