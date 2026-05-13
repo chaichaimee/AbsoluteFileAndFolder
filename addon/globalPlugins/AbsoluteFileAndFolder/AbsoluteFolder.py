@@ -13,19 +13,20 @@ import urllib.parse
 from comtypes.client import CreateObject as COMCreate
 import addonHandler
 import core
+import logHandler
 
 addonHandler.initTranslation()
 
 TITLE = _("Absolute Folders")
 
-# Get system uptime in milliseconds
 def get_system_uptime():
 	try:
 		kernel32 = ctypes.windll.kernel32
 		kernel32.GetTickCount64.argtypes = []
 		kernel32.GetTickCount64.restype = ctypes.c_ulonglong
 		return kernel32.GetTickCount64()
-	except Exception:
+	except Exception as e:
+		logHandler.log.warning(f"Failed to get system uptime: {e}", exc_info=True)
 		return 0
 
 class AbsoluteFolderManager:
@@ -44,12 +45,10 @@ class AbsoluteFolderManager:
 		self.dialog = None
 
 	def _get_config_path(self):
-		"""Return the full path to the JSON configuration file."""
 		folder = os.path.join(globalVars.appArgs.configPath, "ChaiChaimee", "AbsoluteFileAndFloder")
 		return os.path.join(folder, "AbsoluteFolders.json")
 
 	def _getCurrentPathFromExplorer(self):
-		"""Get current opened folder path from Windows Explorer address bar using multiple reliable methods"""
 		try:
 			fg = api.getForegroundObject()
 			if not fg or not fg.appModule or fg.appModule.appName != "explorer":
@@ -64,7 +63,6 @@ class AbsoluteFolderManager:
 					if not window or window.hwnd != fg.windowHandle:
 						continue
 
-					# Method 1: Primary - Document.Folder.Self.Path
 					if hasattr(window, "Document") and window.Document:
 						folder = window.Document.Folder
 						if folder and hasattr(folder, "Self"):
@@ -72,17 +70,14 @@ class AbsoluteFolderManager:
 							if path and os.path.isdir(path):
 								return os.path.normpath(path)
 
-					# Method 2: Fallback - LocationURL (file:/// protocol)
 					if hasattr(window, "LocationURL") and window.LocationURL:
 						url = window.LocationURL
 						if url.startswith("file:///"):
-							# Convert file:///C:/Users/... to C:\Users\...
-							path = urllib.parse.unquote(url[8:])  # remove file:///
+							path = urllib.parse.unquote(url[8:])
 							path = path.replace("/", "\\")
 							if os.path.isdir(path):
 								return os.path.normpath(path)
 
-					# Method 3: Very last resort - LocationName if it's a full path
 					if hasattr(window, "LocationName") and window.LocationName:
 						possible_path = window.LocationName
 						if os.path.isabs(possible_path) and os.path.isdir(possible_path):
@@ -91,7 +86,6 @@ class AbsoluteFolderManager:
 				except Exception:
 					continue
 
-			# Fallback using focus object instead of foreground
 			focus = api.getFocusObject()
 			if focus and focus.appModule and focus.appModule.appName == "explorer":
 				for window in shell.Windows():
@@ -107,9 +101,8 @@ class AbsoluteFolderManager:
 					except Exception:
 						continue
 
-		except Exception:
-			pass
-
+		except Exception as e:
+			logHandler.log.warning(f"Failed to get Explorer folder path: {e}", exc_info=True)
 		return None
 
 	def loadConfig(self):
@@ -127,8 +120,8 @@ class AbsoluteFolderManager:
 				self._lastOpenedFolders = data.get("lastOpenedFolders", [])
 				self._recentFolders = data.get("recentFolders", [])
 				self._lastSystemUptime = data.get("lastSystemUptime", 0)
-			except Exception:
-				pass
+			except Exception as e:
+				logHandler.log.warning(f"Failed to load folder config: {e}", exc_info=True)
 
 	def saveConfig(self):
 		data = {
@@ -144,63 +137,50 @@ class AbsoluteFolderManager:
 		}
 		config_path = self._get_config_path()
 		try:
-			# Ensure the directory exists
 			os.makedirs(os.path.dirname(config_path), exist_ok=True)
 			with open(config_path, 'w', encoding='utf-8') as f:
 				json.dump(data, f, ensure_ascii=False, indent=2)
-		except Exception:
-			pass
+		except Exception as e:
+			logHandler.log.error(f"Failed to save folder config: {e}", exc_info=True)
 
 	def shouldAutoOpenOnStartup(self):
-		"""Check if folders should be opened based on Windows restart only."""
 		if not self._autoLoadLastFolder or not self._lastOpenedFolders:
 			return False
-		
 		current_uptime = get_system_uptime()
-		
-		# If we have no previous uptime recorded (first run), don't open folders
 		if self._lastSystemUptime == 0:
 			self._lastSystemUptime = current_uptime
 			self.saveConfig()
 			return False
-		
-		# Detect Windows restart: current uptime is less than previous uptime
-		# This means the system was rebooted
 		if current_uptime < self._lastSystemUptime:
 			self._lastSystemUptime = current_uptime
 			self.saveConfig()
 			return True
-		
-		# If current uptime is very small (less than 30 seconds) and we haven't recorded it yet
-		# This could be a fresh Windows boot
 		if current_uptime < 30000 and self._lastSystemUptime > 30000:
 			self._lastSystemUptime = current_uptime
 			self.saveConfig()
 			return True
-		
-		# Update uptime but don't open folders for NVDA restarts
 		self._lastSystemUptime = current_uptime
 		self.saveConfig()
 		return False
 
 	def addToRecent(self, path):
 		if path and os.path.isdir(path):
-			if path in self._recentFolders:
-				self._recentFolders.remove(path)
-			self._recentFolders.insert(0, path)
-			self._recentFolders = self._recentFolders[:20]
-			self.saveConfig()
+			try:
+				if path in self._recentFolders:
+					self._recentFolders.remove(path)
+				self._recentFolders.insert(0, path)
+				self._recentFolders = self._recentFolders[:20]
+				self.saveConfig()
+			except Exception as e:
+				logHandler.log.warning(f"Failed to add to recent folders: {e}", exc_info=True)
 
 	def show(self):
-		"""Show the dialog. Can be called from anywhere. If in Explorer, Add button will be enabled."""
 		self.loadConfig()
 		path = self._getCurrentPathFromExplorer()
-
 		if path and os.path.isdir(path):
 			self._newFolder = path
 		else:
 			self._newFolder = ""
-
 		self.dialog = AbsoluteFoldersDialog(gui.mainFrame, self)
 		gui.mainFrame.prePopup()
 		self.dialog.Show()
@@ -215,21 +195,16 @@ class AbsoluteFoldersDialog(wx.Dialog):
 		self._bindEvents()
 		self.updateFiles()
 		self.updateAutoOpenList()
-		
-		# Auto-close timer
 		self.timer = wx.Timer(self)
 		self.Bind(wx.EVT_TIMER, self.on_timeout, self.timer)
 		self.timer.Start(15000)
-		
 		wx.CallAfter(self.listSaved.SetFocus)
 
 	def _reset_timer(self):
-		"""Reset the auto-close timer to 15 seconds."""
 		if self.timer:
 			self.timer.Start(15000)
 
 	def on_timeout(self, event):
-		"""Close dialog automatically after 15 seconds of inactivity."""
 		self.Close()
 
 	def _initUI(self):
@@ -257,7 +232,6 @@ class AbsoluteFoldersDialog(wx.Dialog):
 		recentSizer.Add(self.btnClearRecent, 0, wx.ALIGN_RIGHT | wx.ALL, 5)
 		self.panelRecent.SetSizer(recentSizer)
 
-		# Button sizer for Saved Folders tab - placed at top
 		btnSizer = wx.BoxSizer(wx.HORIZONTAL)
 		self.btnAdd = wx.Button(self, label=_("&Add"))
 		self.btnOpen = wx.Button(self, label=_("&Open"))
@@ -281,32 +255,24 @@ class AbsoluteFoldersDialog(wx.Dialog):
 		optionsSizer.Add(self.sortCombo, 1, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
 		mainSizer.Add(optionsSizer, 0, wx.EXPAND | wx.ALL, 5)
 
-		# Auto-open section
 		autoOpenSizer = wx.BoxSizer(wx.VERTICAL)
 		self.chkAutoLoad = wx.CheckBox(self, label=_("Remember and open folders automatically on restart"))
 		self.chkAutoLoad.SetValue(self.manager._autoLoadLastFolder)
 		self.chkAutoLoad.Bind(wx.EVT_CHECKBOX, self.onAutoLoadChanged)
 		autoOpenSizer.Add(self.chkAutoLoad, 0, wx.ALL, 5)
 
-		# Auto-open folders list (hidden by default)
 		self.autoOpenPanel = wx.Panel(self)
 		autoOpenListSizer = wx.BoxSizer(wx.VERTICAL)
-		
 		self.listAutoOpen = wx.ListCtrl(self.autoOpenPanel, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.BORDER_SUNKEN)
 		self.listAutoOpen.InsertColumn(0, _("Folder Name"), width=250)
 		self.listAutoOpen.InsertColumn(1, _("Path"), width=400)
 		autoOpenListSizer.Add(self.listAutoOpen, 1, wx.EXPAND | wx.ALL, 5)
-		
 		self.autoOpenPanel.SetSizer(autoOpenListSizer)
 		autoOpenSizer.Add(self.autoOpenPanel, 0, wx.EXPAND | wx.ALL, 5)
-		
-		# Show/hide the auto-open panel based on initial state
 		if not self.manager._autoLoadLastFolder:
 			self.autoOpenPanel.Hide()
-		
 		mainSizer.Add(autoOpenSizer, 0, wx.EXPAND | wx.ALL, 5)
 
-		# Close button at the bottom
 		closeBtnSizer = wx.BoxSizer(wx.HORIZONTAL)
 		self.btnClose = wx.Button(self, wx.ID_CLOSE)
 		closeBtnSizer.AddStretchSpacer()
@@ -338,7 +304,6 @@ class AbsoluteFoldersDialog(wx.Dialog):
 		self.Bind(wx.EVT_CLOSE, self.on_close)
 
 	def on_close(self, event):
-		"""Stop timer when dialog is closed."""
 		if self.timer:
 			self.timer.Stop()
 		event.Skip()
@@ -359,7 +324,6 @@ class AbsoluteFoldersDialog(wx.Dialog):
 		idx = self.listAutoOpen.GetFirstSelected()
 		if idx == -1:
 			return
-		
 		menu = wx.Menu()
 		itemDelete = menu.Append(wx.ID_ANY, _("Delete"))
 		self.Bind(wx.EVT_MENU, self.onAutoOpenDelete, itemDelete)
@@ -378,7 +342,6 @@ class AbsoluteFoldersDialog(wx.Dialog):
 		idx = self.listAutoOpen.GetFirstSelected()
 		if idx == -1:
 			return
-		
 		if idx < len(self.manager._lastOpenedFolders):
 			folder_path = self.manager._lastOpenedFolders[idx]
 			if gui.messageBox(_("Remove {} from auto-open list?").format(folder_path), TITLE, wx.YES_NO) == wx.YES:
@@ -388,7 +351,6 @@ class AbsoluteFoldersDialog(wx.Dialog):
 
 	def onTabChanged(self, evt):
 		self.updateFiles()
-		# Enable/disable buttons based on selected tab
 		is_saved_tab = self.tabs.GetSelection() == 0
 		self.btnAdd.Enable(is_saved_tab and bool(self.manager._newFolder))
 		self.btnEdit.Enable(is_saved_tab)
@@ -409,7 +371,7 @@ class AbsoluteFoldersDialog(wx.Dialog):
 	def onKeyDown(self, evt):
 		self._reset_timer()
 		if evt.GetKeyCode() == wx.WXK_DELETE:
-			if self.tabs.GetSelection() == 0:  # Saved Folders tab
+			if self.tabs.GetSelection() == 0:
 				self.onRemove(None)
 		else:
 			evt.Skip()
@@ -443,7 +405,6 @@ class AbsoluteFoldersDialog(wx.Dialog):
 					self.manager._files[name] = self.manager._newFolder
 					if name not in self.manager._order:
 						self.manager._order.append(name)
-					# Add to auto-open list if checkbox is checked
 					if self.manager._autoLoadLastFolder and self.manager._newFolder not in self.manager._lastOpenedFolders:
 						self.manager._lastOpenedFolders.append(self.manager._newFolder)
 					self.manager.saveConfig()
@@ -453,24 +414,22 @@ class AbsoluteFoldersDialog(wx.Dialog):
 
 	def onOpen(self, evt):
 		self._reset_timer()
-		if self.tabs.GetSelection() == 0:  # Saved Folders tab
+		if self.tabs.GetSelection() == 0:
 			lst = self.listSaved
 			idx = lst.GetFirstSelected()
 			if idx == -1:
 				return
 			name = lst.GetItemText(idx, 0)
 			path = self.manager._files.get(name)
-		else:  # Recent Folders tab
+		else:
 			lst = self.listRecent
 			idx = lst.GetFirstSelected()
 			if idx == -1:
 				return
 			path = self.manager._recentFolders[idx]
-		
 		if path and os.path.isdir(path):
 			os.startfile(path)
 			self.manager.addToRecent(path)
-			# Add to auto-open list if checkbox is checked
 			if self.manager._autoLoadLastFolder and path not in self.manager._lastOpenedFolders:
 				self.manager._lastOpenedFolders.append(path)
 				self.manager.saveConfig()
@@ -516,7 +475,6 @@ class AbsoluteFoldersDialog(wx.Dialog):
 			if name in self.manager._order:
 				self.manager._order.remove(name)
 			self.manager._pinned.discard(name)
-			# Remove from auto-open list if present
 			if path and path in self.manager._lastOpenedFolders:
 				self.manager._lastOpenedFolders.remove(path)
 			self.manager.saveConfig()
@@ -600,7 +558,6 @@ class AbsoluteFoldersDialog(wx.Dialog):
 			if self.listSaved.GetItemCount() > 0:
 				self.listSaved.Select(selectIdx)
 				self.listSaved.Focus(selectIdx)
-			# Update button states
 			has_selection = self.listSaved.GetFirstSelected() != -1
 			self.btnEdit.Enable(has_selection)
 			self.btnRemove.Enable(has_selection)

@@ -12,6 +12,7 @@ import ctypes
 from ctypes import wintypes
 from comtypes.client import CreateObject as COMCreate
 import urllib.parse
+import logHandler
 
 addonHandler.initTranslation()
 
@@ -29,12 +30,10 @@ class AbsoluteFileManager:
 		self.loadConfig()
 
 	def _get_config_path(self):
-		"""Return the full path to the JSON configuration file."""
 		folder = os.path.join(globalVars.appArgs.configPath, "ChaiChaimee", "AbsoluteFileAndFloder")
 		return os.path.join(folder, "AbsoluteFiles.json")
 
 	def _getCurrentPathFromExplorer(self):
-		"""Get current file path from Windows Explorer if a file is selected"""
 		try:
 			fg = api.getForegroundObject()
 			if not fg or not fg.appModule or fg.appModule.appName != "explorer":
@@ -49,7 +48,6 @@ class AbsoluteFileManager:
 					if not window or window.hwnd != fg.windowHandle:
 						continue
 
-					# Method 1: Try to get focused item
 					if hasattr(window, "Document") and window.Document:
 						try:
 							item = window.Document.FocusedItem
@@ -60,12 +58,10 @@ class AbsoluteFileManager:
 						except Exception:
 							pass
 
-					# Method 2: Try LocationURL
 					if hasattr(window, "LocationURL") and window.LocationURL:
 						url = window.LocationURL
 						if url.startswith("file:///"):
-							# Convert file:///C:/Users/... to C:\Users\...
-							path = urllib.parse.unquote(url[8:])  # remove file:///
+							path = urllib.parse.unquote(url[8:])
 							path = path.replace("/", "\\")
 							if os.path.isfile(path):
 								return os.path.normpath(path)
@@ -73,7 +69,6 @@ class AbsoluteFileManager:
 				except Exception:
 					continue
 
-			# Fallback using focus object
 			focus = api.getFocusObject()
 			if focus and focus.appModule and focus.appModule.appName == "explorer":
 				for window in shell.Windows():
@@ -92,9 +87,8 @@ class AbsoluteFileManager:
 					except Exception:
 						continue
 
-		except Exception:
-			pass
-
+		except Exception as e:
+			logHandler.log.warning(f"Failed to get Explorer file path: {e}", exc_info=True)
 		return None
 
 	def loadConfig(self):
@@ -109,8 +103,8 @@ class AbsoluteFileManager:
 				self._recentFiles = data.get("recentFiles", [])
 				self._showPath = data.get("showPath", False)
 				self._sortMode = data.get("sortMode", "UPPERCASE")
-			except Exception:
-				pass
+			except Exception as e:
+				logHandler.log.warning(f"Failed to load file config: {e}", exc_info=True)
 
 	def saveConfig(self):
 		data = {
@@ -123,34 +117,32 @@ class AbsoluteFileManager:
 		}
 		config_path = self._get_config_path()
 		try:
-			# Ensure the directory exists
 			os.makedirs(os.path.dirname(config_path), exist_ok=True)
 			with open(config_path, 'w', encoding='utf-8') as f:
 				json.dump(data, f, ensure_ascii=False, indent=2)
-		except Exception:
-			pass
+		except Exception as e:
+			logHandler.log.error(f"Failed to save file config: {e}", exc_info=True)
 
 	def addToRecent(self, path):
 		if path and os.path.isfile(path):
-			if path in self._recentFiles:
-				self._recentFiles.remove(path)
-			self._recentFiles.insert(0, path)
-			self._recentFiles = self._recentFiles[:20]
-			self.saveConfig()
+			try:
+				if path in self._recentFiles:
+					self._recentFiles.remove(path)
+				self._recentFiles.insert(0, path)
+				self._recentFiles = self._recentFiles[:20]
+				self.saveConfig()
+			except Exception as e:
+				logHandler.log.warning(f"Failed to add to recent files: {e}", exc_info=True)
 
 	def show(self):
-		"""Show the dialog. Can be called from anywhere. If in Explorer with file selected, Add button will be enabled."""
 		self.loadConfig()
 		path = self._getCurrentPathFromExplorer()
-		
 		if path and os.path.isfile(path):
 			self._newFile = path
 		elif path and os.path.isdir(path):
-			# Don't show message, just disable add button
 			self._newFile = ""
 		else:
 			self._newFile = ""
-			
 		self.dialog = AbsoluteFilesDialog(gui.mainFrame, self)
 		gui.mainFrame.prePopup()
 		self.dialog.Show()
@@ -161,29 +153,24 @@ class AbsoluteFilesDialog(wx.Dialog):
 	def __init__(self, parent, manager):
 		super().__init__(parent, title=TITLE, style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER | wx.MAXIMIZE_BOX)
 		self.manager = manager
+		self._displayedRecentPaths = []
 		self._initUI()
 		self._bindEvents()
 		self.updateFiles()
-		
-		# Auto-close timer
 		self.timer = wx.Timer(self)
 		self.Bind(wx.EVT_TIMER, self.on_timeout, self.timer)
 		self.timer.Start(15000)
-		
 		wx.CallAfter(self.listSaved.SetFocus)
 
 	def _reset_timer(self):
-		"""Reset the auto-close timer to 15 seconds."""
 		if self.timer:
 			self.timer.Start(15000)
 
 	def on_timeout(self, event):
-		"""Close dialog automatically after 15 seconds of inactivity."""
 		self.Close()
 
 	def _initUI(self):
 		mainSizer = wx.BoxSizer(wx.VERTICAL)
-		
 		filterSizer = wx.BoxSizer(wx.HORIZONTAL)
 		filterSizer.Add(wx.StaticText(self, label=_("Filter Type:")), 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
 		self.filterCombo = wx.ComboBox(self, choices=["All", "Audio", "Video", "Document", "Code", "Exe"], style=wx.CB_READONLY)
@@ -198,14 +185,12 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self.tabs.AddPage(self.panelRecent, _("Recent Files"))
 		mainSizer.Add(self.tabs, 1, wx.EXPAND | wx.ALL, 5)
 
-		# Saved Files panel
 		savedSizer = wx.BoxSizer(wx.VERTICAL)
 		self.listSaved = wx.ListCtrl(self.panelSaved, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.BORDER_SUNKEN)
 		self.listSaved.InsertColumn(0, _("Name"), width=250)
 		self.listSaved.InsertColumn(1, _("Path"), width=400)
 		savedSizer.Add(self.listSaved, 1, wx.EXPAND | wx.ALL, 5)
-		
-		# Button sizer for Saved Files tab
+
 		savedBtnSizer = wx.BoxSizer(wx.HORIZONTAL)
 		self.btnAdd = wx.Button(self.panelSaved, label=_("&Add"))
 		self.btnEdit = wx.Button(self.panelSaved, label=_("&Edit"))
@@ -214,16 +199,13 @@ class AbsoluteFilesDialog(wx.Dialog):
 		savedBtnSizer.Add(self.btnEdit, 0, wx.RIGHT, 5)
 		savedBtnSizer.Add(self.btnRemove, 0)
 		savedSizer.Add(savedBtnSizer, 0, wx.ALIGN_RIGHT | wx.ALL, 5)
-		
 		self.panelSaved.SetSizer(savedSizer)
 
-		# Recent Files panel
 		recentSizer = wx.BoxSizer(wx.VERTICAL)
 		self.listRecent = wx.ListCtrl(self.panelRecent, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.BORDER_SUNKEN)
 		self.listRecent.InsertColumn(0, _("File Name"), width=250)
 		self.listRecent.InsertColumn(1, _("Path"), width=400)
 		recentSizer.Add(self.listRecent, 1, wx.EXPAND | wx.ALL, 5)
-		
 		self.btnClearRecent = wx.Button(self.panelRecent, label=_("Clear History"))
 		recentSizer.Add(self.btnClearRecent, 0, wx.ALIGN_RIGHT | wx.ALL, 5)
 		self.panelRecent.SetSizer(recentSizer)
@@ -236,7 +218,6 @@ class AbsoluteFilesDialog(wx.Dialog):
 		optionsSizer.Add(self.sortCombo, 1, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
 		mainSizer.Add(optionsSizer, 0, wx.EXPAND | wx.ALL, 5)
 
-		# Main dialog buttons
 		btnSizer = wx.BoxSizer(wx.HORIZONTAL)
 		self.btnOpen = wx.Button(self, label=_("&Open"))
 		self.btnClose = wx.Button(self, wx.ID_CLOSE)
@@ -268,7 +249,6 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self.Bind(wx.EVT_CLOSE, self.on_close)
 
 	def on_close(self, event):
-		"""Stop timer when dialog is closed."""
 		if self.timer:
 			self.timer.Stop()
 		event.Skip()
@@ -317,8 +297,9 @@ class AbsoluteFilesDialog(wx.Dialog):
 			idx = lst.GetFirstSelected()
 			if idx == -1:
 				return
-			path = self.manager._recentFiles[idx]
-			
+			if idx >= len(self._displayedRecentPaths):
+				return
+			path = self._displayedRecentPaths[idx]
 		if path and os.path.isfile(path):
 			os.startfile(path)
 			self.manager.addToRecent(path)
@@ -406,54 +387,42 @@ class AbsoluteFilesDialog(wx.Dialog):
 			idx = lst.GetFirstSelected()
 			if idx == -1:
 				return
-			path = self.manager._recentFiles[idx]
-			
+			if idx >= len(self._displayedRecentPaths):
+				return
+			path = self._displayedRecentPaths[idx]
 		menu = wx.Menu()
-		
-		# Add "Run as Administrator" for executable files
 		if path and os.path.isfile(path):
 			ext = os.path.splitext(path)[1].lower()
 			if ext in ('.exe', '.bat', '.cmd', '.msi'):
 				itemAdmin = menu.Append(wx.ID_ANY, _("Run as Administrator"))
 				self.Bind(wx.EVT_MENU, lambda e: self.runAsAdmin(path), itemAdmin)
 				menu.AppendSeparator()
-		
 		if self.tabs.GetSelection() == 0:
 			pin_label = _("Unpin") if name in self.manager._pinned else _("Pin to top")
 			itemPin = menu.Append(wx.ID_ANY, pin_label)
 			self.Bind(wx.EVT_MENU, lambda e: self.onTogglePin(name), itemPin)
 			menu.AppendSeparator()
-			
 			itemEdit = menu.Append(wx.ID_ANY, _("Edit"))
 			itemDelete = menu.Append(wx.ID_ANY, _("Delete"))
-			
 			if self.manager._sortMode == "CUSTOM":
 				menu.AppendSeparator()
 				itemUp = menu.Append(wx.ID_ANY, _("Move Up"))
 				itemDown = menu.Append(wx.ID_ANY, _("Move Down"))
 				self.Bind(wx.EVT_MENU, lambda e: self.moveItem(-1), itemUp)
 				self.Bind(wx.EVT_MENU, lambda e: self.moveItem(1), itemDown)
-				
 			self.Bind(wx.EVT_MENU, self.onEdit, itemEdit)
 			self.Bind(wx.EVT_MENU, self.onRemove, itemDelete)
 		else:
 			itemDelete = menu.Append(wx.ID_ANY, _("Remove from Recent"))
-			self.Bind(wx.EVT_MENU, self.onRemoveRecent, itemDelete)
-			
+			self.Bind(wx.EVT_MENU, lambda e, p=path: self.onRemoveRecentByPath(p), itemDelete)
 		lst.PopupMenu(menu)
 		menu.Destroy()
 
-	def onRemoveRecent(self, evt):
+	def onRemoveRecentByPath(self, path):
 		self._reset_timer()
-		if self.tabs.GetSelection() != 1:
-			return
-		idx = self.listRecent.GetFirstSelected()
-		if idx == -1:
-			return
-		if idx < len(self.manager._recentFiles):
-			path = self.manager._recentFiles[idx]
+		if path in self.manager._recentFiles:
 			if gui.messageBox(_("Remove {} from recent list?").format(os.path.basename(path)), TITLE, wx.YES_NO) == wx.YES:
-				self.manager._recentFiles.pop(idx)
+				self.manager._recentFiles.remove(path)
 				self.manager.saveConfig()
 				self.updateFiles()
 
@@ -488,7 +457,6 @@ class AbsoluteFilesDialog(wx.Dialog):
 	def runAsAdmin(self, path):
 		self._reset_timer()
 		try:
-			# Set argtypes and restype for ShellExecuteW to support 64-bit
 			shell32 = ctypes.windll.shell32
 			shell32.ShellExecuteW.argtypes = [
 				wintypes.HWND,
@@ -502,12 +470,13 @@ class AbsoluteFilesDialog(wx.Dialog):
 			shell32.ShellExecuteW(None, "runas", path, None, None, 1)
 			self.manager.addToRecent(path)
 			self.Close()
-		except Exception:
-			pass
+		except Exception as e:
+			logHandler.log.warning(f"Failed to run as admin: {e}", exc_info=True)
 
 	def updateFiles(self, selectIdx=0):
 		self.listSaved.DeleteAllItems()
 		self.listRecent.DeleteAllItems()
+		self._displayedRecentPaths = []
 		f_type = self.filterCombo.GetValue().lower()
 		exts = {
 			"audio": ('.mp3', '.wav', '.flac', '.m4a', '.ogg'),
@@ -516,7 +485,6 @@ class AbsoluteFilesDialog(wx.Dialog):
 			"code": ('.py', '.cpp', '.java', '.js', '.html', '.css'),
 			"exe": ('.exe', '.bat', '.cmd', '.msi')
 		}
-		
 		if self.tabs.GetSelection() == 0:
 			pinned = sorted([x for x in self.manager._order if x in self.manager._pinned], key=lambda x: x.upper())
 			unpinned = [x for x in self.manager._order if x not in self.manager._pinned and x in self.manager._files]
@@ -536,8 +504,6 @@ class AbsoluteFilesDialog(wx.Dialog):
 			if self.listSaved.GetItemCount() > 0:
 				self.listSaved.Select(selectIdx)
 				self.listSaved.Focus(selectIdx)
-			
-			# Update button states for Saved Files tab
 			has_selection = self.listSaved.GetFirstSelected() != -1
 			self.btnEdit.Enable(has_selection)
 			self.btnRemove.Enable(has_selection)
@@ -548,4 +514,5 @@ class AbsoluteFilesDialog(wx.Dialog):
 				if f_type == "all" or p.lower().endswith(exts.get(f_type, ())):
 					idx = self.listRecent.InsertItem(count, os.path.basename(p))
 					self.listRecent.SetItem(idx, 1, p)
+					self._displayedRecentPaths.append(p)
 					count += 1
