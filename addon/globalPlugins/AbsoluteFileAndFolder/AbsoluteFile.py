@@ -167,7 +167,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 	def _play_close_beep(self):
 		try:
 			import winsound
-			winsound.Beep(400, 200)
+			winsound.Beep(100, 100)
 		except Exception:
 			pass
 
