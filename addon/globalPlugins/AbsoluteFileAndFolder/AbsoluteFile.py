@@ -154,20 +154,42 @@ class AbsoluteFilesDialog(wx.Dialog):
 		super().__init__(parent, title=TITLE, style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER | wx.MAXIMIZE_BOX)
 		self.manager = manager
 		self._displayedRecentPaths = []
+		self._contextMenuOpen = False
 		self._initUI()
 		self._bindEvents()
 		self.updateFiles()
 		self.timer = wx.Timer(self)
 		self.Bind(wx.EVT_TIMER, self.on_timeout, self.timer)
+		self.Bind(wx.EVT_ACTIVATE, self.on_activate)
 		self.timer.Start(15000)
 		wx.CallAfter(self.listSaved.SetFocus)
 
+	def _play_close_beep(self):
+		try:
+			import winsound
+			winsound.Beep(400, 200)
+		except Exception:
+			pass
+
 	def _reset_timer(self):
-		if self.timer:
+		if self.timer and not self._contextMenuOpen:
+			self.timer.Stop()
 			self.timer.Start(15000)
 
+	def _stop_timer(self):
+		if self.timer:
+			self.timer.Stop()
+
+	def on_activate(self, event):
+		if event.GetActive():
+			self._contextMenuOpen = False
+			self._reset_timer()
+		event.Skip()
+
 	def on_timeout(self, event):
-		self.Close()
+		if not self._contextMenuOpen:
+			self._play_close_beep()
+			self.Close()
 
 	def _initUI(self):
 		mainSizer = wx.BoxSizer(wx.VERTICAL)
@@ -249,8 +271,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self.Bind(wx.EVT_CLOSE, self.on_close)
 
 	def on_close(self, event):
-		if self.timer:
-			self.timer.Stop()
+		self._stop_timer()
 		event.Skip()
 
 	def onTabChanged(self, evt):
@@ -374,11 +395,15 @@ class AbsoluteFilesDialog(wx.Dialog):
 			self.updateFiles()
 
 	def onContextMenu(self, evt):
-		self._reset_timer()
+		self._stop_timer()
+		self._contextMenuOpen = True
+		
 		if self.tabs.GetSelection() == 0:
 			lst = self.listSaved
 			idx = lst.GetFirstSelected()
 			if idx == -1:
+				self._contextMenuOpen = False
+				self._reset_timer()
 				return
 			name = lst.GetItemText(idx, 0)
 			path = self.manager._files.get(name)
@@ -386,17 +411,24 @@ class AbsoluteFilesDialog(wx.Dialog):
 			lst = self.listRecent
 			idx = lst.GetFirstSelected()
 			if idx == -1:
+				self._contextMenuOpen = False
+				self._reset_timer()
 				return
 			if idx >= len(self._displayedRecentPaths):
+				self._contextMenuOpen = False
+				self._reset_timer()
 				return
 			path = self._displayedRecentPaths[idx]
+		
 		menu = wx.Menu()
+		
 		if path and os.path.isfile(path):
 			ext = os.path.splitext(path)[1].lower()
 			if ext in ('.exe', '.bat', '.cmd', '.msi'):
 				itemAdmin = menu.Append(wx.ID_ANY, _("Run as Administrator"))
 				self.Bind(wx.EVT_MENU, lambda e: self.runAsAdmin(path), itemAdmin)
 				menu.AppendSeparator()
+		
 		if self.tabs.GetSelection() == 0:
 			pin_label = _("Unpin") if name in self.manager._pinned else _("Pin to top")
 			itemPin = menu.Append(wx.ID_ANY, pin_label)
@@ -404,17 +436,26 @@ class AbsoluteFilesDialog(wx.Dialog):
 			menu.AppendSeparator()
 			itemEdit = menu.Append(wx.ID_ANY, _("Edit"))
 			itemDelete = menu.Append(wx.ID_ANY, _("Delete"))
+			
 			if self.manager._sortMode == "CUSTOM":
 				menu.AppendSeparator()
 				itemUp = menu.Append(wx.ID_ANY, _("Move Up"))
 				itemDown = menu.Append(wx.ID_ANY, _("Move Down"))
-				self.Bind(wx.EVT_MENU, lambda e: self.moveItem(-1), itemUp)
-				self.Bind(wx.EVT_MENU, lambda e: self.moveItem(1), itemDown)
+				self.Bind(wx.EVT_MENU, lambda e: self.moveItem(name, -1), itemUp)
+				self.Bind(wx.EVT_MENU, lambda e: self.moveItem(name, 1), itemDown)
+			
 			self.Bind(wx.EVT_MENU, self.onEdit, itemEdit)
 			self.Bind(wx.EVT_MENU, self.onRemove, itemDelete)
 		else:
 			itemDelete = menu.Append(wx.ID_ANY, _("Remove from Recent"))
 			self.Bind(wx.EVT_MENU, lambda e, p=path: self.onRemoveRecentByPath(p), itemDelete)
+		
+		def on_menu_close(event):
+			self._contextMenuOpen = False
+			self._reset_timer()
+			event.Skip()
+		
+		menu.Bind(wx.EVT_MENU_CLOSE, on_menu_close)
 		lst.PopupMenu(menu)
 		menu.Destroy()
 
@@ -435,24 +476,30 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self.manager.saveConfig()
 		self.updateFiles()
 
-	def moveItem(self, direction):
+	def moveItem(self, targetName, direction):
 		self._reset_timer()
 		if self.tabs.GetSelection() != 0:
 			return
-		idx = self.listSaved.GetFirstSelected()
-		if idx == -1:
-			return
-		name = self.listSaved.GetItemText(idx, 0)
-		if name in self.manager._pinned:
-			return
-		unpinned = [x for x in self.manager._order if x not in self.manager._pinned]
-		cur_idx = unpinned.index(name)
-		new_idx = cur_idx + direction
-		if 0 <= new_idx < len(unpinned):
-			unpinned[cur_idx], unpinned[new_idx] = unpinned[new_idx], unpinned[cur_idx]
-			self.manager._order = sorted([x for x in self.manager._order if x in self.manager._pinned]) + unpinned
-			self.manager.saveConfig()
-			self.updateFiles(new_idx + len(self.manager._pinned))
+		
+		pinnedList = [x for x in self.manager._order if x in self.manager._pinned]
+		unpinnedList = [x for x in self.manager._order if x not in self.manager._pinned and x in self.manager._files]
+		
+		if targetName in pinnedList:
+			currentIndex = pinnedList.index(targetName)
+			newIndex = currentIndex + direction
+			if 0 <= newIndex < len(pinnedList):
+				pinnedList[currentIndex], pinnedList[newIndex] = pinnedList[newIndex], pinnedList[currentIndex]
+				self.manager._order = pinnedList + unpinnedList
+				self.manager.saveConfig()
+				self.updateFiles(newIndex)
+		else:
+			currentIndex = unpinnedList.index(targetName)
+			newIndex = currentIndex + direction
+			if 0 <= newIndex < len(unpinnedList):
+				unpinnedList[currentIndex], unpinnedList[newIndex] = unpinnedList[newIndex], unpinnedList[currentIndex]
+				self.manager._order = pinnedList + unpinnedList
+				self.manager.saveConfig()
+				self.updateFiles(len(pinnedList) + newIndex)
 
 	def runAsAdmin(self, path):
 		self._reset_timer()
@@ -486,7 +533,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 			"exe": ('.exe', '.bat', '.cmd', '.msi')
 		}
 		if self.tabs.GetSelection() == 0:
-			pinned = sorted([x for x in self.manager._order if x in self.manager._pinned], key=lambda x: x.upper())
+			pinned = [x for x in self.manager._order if x in self.manager._pinned]
 			unpinned = [x for x in self.manager._order if x not in self.manager._pinned and x in self.manager._files]
 			if self.manager._sortMode == "UPPERCASE":
 				unpinned.sort(key=lambda x: x.upper())
@@ -501,7 +548,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 					if self.manager._showPath:
 						self.listSaved.SetItem(idx, 1, path)
 					count += 1
-			if self.listSaved.GetItemCount() > 0:
+			if self.listSaved.GetItemCount() > 0 and selectIdx < self.listSaved.GetItemCount():
 				self.listSaved.Select(selectIdx)
 				self.listSaved.Focus(selectIdx)
 			has_selection = self.listSaved.GetFirstSelected() != -1
