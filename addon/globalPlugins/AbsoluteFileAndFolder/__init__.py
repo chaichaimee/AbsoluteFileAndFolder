@@ -1,5 +1,5 @@
 # __init__.py
-# Copyright (C) 2026 'Chai Chaimee'
+# Copyright (C) 2026 Chai Chaimee
 # Licensed under GNU General Public License. See COPYING.txt for details.
 
 import time
@@ -17,13 +17,14 @@ from . import AbsoluteFolder
 
 addonHandler.initTranslation()
 
+
 def _migrate_config_files():
 	config_path = globalVars.appArgs.configPath
 	new_folder = os.path.join(config_path, "ChaiChaimee", "AbsoluteFileAndFloder")
 	if not os.path.isdir(new_folder):
 		try:
 			os.makedirs(new_folder)
-		except Exception as e:
+		except OSError as e:
 			logHandler.log.warning(f"Failed to create config folder: {e}", exc_info=True)
 			return
 	old_files = [
@@ -36,8 +37,9 @@ def _migrate_config_files():
 		if os.path.isfile(old_path):
 			try:
 				shutil.move(old_path, new_path)
-			except Exception as e:
+			except OSError as e:
 				logHandler.log.warning(f"Failed to migrate {old_name}: {e}", exc_info=True)
+
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	scriptCategory = _("Absolute File and Folder")
@@ -66,11 +68,19 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		try:
 			if folder_path and os.path.isdir(folder_path):
 				os.startfile(folder_path)
-		except Exception as e:
+		except OSError as e:
 			logHandler.log.warning(f"Failed to open folder on startup: {e}", exc_info=True)
 
+	def _closeAnyOpenDialogs(self):
+		folderDlg = AbsoluteFolder.AbsoluteFoldersDialog._activeInstance
+		fileDlg = AbsoluteFile.AbsoluteFilesDialog._activeInstance
+		if folderDlg and folderDlg.IsShown():
+			folderDlg._silentClose()
+		if fileDlg and fileDlg.IsShown():
+			fileDlg._silentClose()
+
 	@scriptHandler.script(
-		description=_("Open Absolute Folders (single tap) or Absolute Files (double tap)"),
+		description=_("Open Absolute Folders (single tap) or Absolute Files (double tap). If the target dialog is already open, brings it to the front instead of reopening it."),
 		category=_("Absolute File and Folder"),
 		gesture="kb:windows+backspace"
 	)
@@ -82,22 +92,34 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self._last_tap_time = current_time
 
 		if self._pending_call_id is not None:
-			self._pending_call_id.cancel()
+			self._pending_call_id.Cancel()
 			self._pending_call_id = None
 
 		def execute_action():
+			self._pending_call_id = None
 			if self._tap_count == 1:
+				# Single tap targets the Folders dialog. If it is already
+				# open, pull it to the foreground instead of closing and
+				# recreating it.
+				if AbsoluteFolder.AbsoluteFoldersDialog.bringToFront():
+					self._tap_count = 0
+					return
+				self._closeAnyOpenDialogs()
 				manager = AbsoluteFolder.AbsoluteFolderManager()
 				manager.show()
 			elif self._tap_count >= 2:
+				# Double tap targets the Files dialog, same rule applies.
+				if AbsoluteFile.AbsoluteFilesDialog.bringToFront():
+					self._tap_count = 0
+					return
+				self._closeAnyOpenDialogs()
 				manager = AbsoluteFile.AbsoluteFileManager()
 				manager.show()
 			self._tap_count = 0
-			self._pending_call_id = None
 
 		self._pending_call_id = core.callLater(int(self._tap_threshold * 1000), execute_action)
 
 	def terminate(self):
 		if self._pending_call_id is not None:
-			self._pending_call_id.cancel()
+			self._pending_call_id.Cancel()
 		super().terminate()

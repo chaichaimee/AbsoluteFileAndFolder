@@ -6,10 +6,13 @@ import api
 import gui
 import globalVars
 import json
+import threading
 import addonHandler
 import core
 import ctypes
 from ctypes import wintypes
+import comtypes
+from comtypes import COMError as ComTypesCOMError
 from comtypes.client import CreateObject as COMCreate
 import urllib.parse
 import logHandler
@@ -17,6 +20,20 @@ import logHandler
 addonHandler.initTranslation()
 
 TITLE = _("Absolute Files")
+
+_HWND_TOPMOST = -1
+_SWP_NOMOVE = 0x0002
+_SWP_NOSIZE = 0x0001
+_SWP_SHOWWINDOW = 0x0040
+
+
+def _openFilePath(path):
+	try:
+		if path and os.path.isfile(path):
+			os.startfile(path)
+	except OSError as e:
+		logHandler.log.warning(f"Failed to open file from Absolute Files: {e}", exc_info=True)
+
 
 class AbsoluteFileManager:
 	def __init__(self):
@@ -27,68 +44,67 @@ class AbsoluteFileManager:
 		self._showPath = False
 		self._sortMode = "UPPERCASE"
 		self._newFile = ""
+		self.dialog = None
 		self.loadConfig()
 
 	def _get_config_path(self):
 		folder = os.path.join(globalVars.appArgs.configPath, "ChaiChaimee", "AbsoluteFileAndFloder")
 		return os.path.join(folder, "AbsoluteFiles.json")
 
-	def _getCurrentPathFromExplorer(self):
-		try:
-			fg = api.getForegroundObject()
-			if not fg or not fg.appModule or fg.appModule.appName != "explorer":
-				return None
+	@staticmethod
+	def _findFilePathInShellWindows(shell, windowHandle):
+		for window in shell.Windows():
+			try:
+				if not window or window.hwnd != windowHandle:
+					continue
+				if hasattr(window, "Document") and window.Document:
+					try:
+						item = window.Document.FocusedItem
+						if item:
+							path = item.Path
+							if path and os.path.isfile(path):
+								return os.path.normpath(path)
+					except (ComTypesCOMError, AttributeError):
+						pass
+				if hasattr(window, "LocationURL") and window.LocationURL:
+					url = window.LocationURL
+					if url.startswith("file:///"):
+						path = urllib.parse.unquote(url[8:])
+						path = path.replace("/", "\\")
+						if os.path.isfile(path):
+							return os.path.normpath(path)
+			except (ComTypesCOMError, AttributeError, RuntimeError):
+				continue
+		return None
 
+	def _getCurrentPathFromExplorer(self, fgAppName, fgHandle, focusAppName, focusHandle):
+		comInitialized = False
+		try:
+			comtypes.CoInitialize()
+			comInitialized = True
+		except OSError:
+			pass
+		try:
+			if fgAppName != "explorer" or not fgHandle:
+				return None
 			shell = COMCreate("Shell.Application")
 			if not shell:
 				return None
-
-			for window in shell.Windows():
-				try:
-					if not window or window.hwnd != fg.windowHandle:
-						continue
-
-					if hasattr(window, "Document") and window.Document:
-						try:
-							item = window.Document.FocusedItem
-							if item:
-								path = item.Path
-								if path and os.path.isfile(path):
-									return os.path.normpath(path)
-						except Exception:
-							pass
-
-					if hasattr(window, "LocationURL") and window.LocationURL:
-						url = window.LocationURL
-						if url.startswith("file:///"):
-							path = urllib.parse.unquote(url[8:])
-							path = path.replace("/", "\\")
-							if os.path.isfile(path):
-								return os.path.normpath(path)
-
-				except Exception:
-					continue
-
-			focus = api.getFocusObject()
-			if focus and focus.appModule and focus.appModule.appName == "explorer":
-				for window in shell.Windows():
-					try:
-						if not window or window.hwnd != focus.windowHandle:
-							continue
-						if hasattr(window, "Document") and window.Document:
-							try:
-								item = window.Document.FocusedItem
-								if item:
-									path = item.Path
-									if path and os.path.isfile(path):
-										return os.path.normpath(path)
-							except Exception:
-								pass
-					except Exception:
-						continue
-
-		except Exception as e:
+			path = self._findFilePathInShellWindows(shell, fgHandle)
+			if path:
+				return path
+			if focusAppName == "explorer" and focusHandle:
+				path = self._findFilePathInShellWindows(shell, focusHandle)
+				if path:
+					return path
+		except (ComTypesCOMError, AttributeError, RuntimeError) as e:
 			logHandler.log.warning(f"Failed to get Explorer file path: {e}", exc_info=True)
+		finally:
+			if comInitialized:
+				try:
+					comtypes.CoUninitialize()
+				except OSError:
+					pass
 		return None
 
 	def loadConfig(self):
@@ -136,25 +152,46 @@ class AbsoluteFileManager:
 
 	def show(self):
 		self.loadConfig()
-		path = self._getCurrentPathFromExplorer()
+		fg = api.getForegroundObject()
+		fgAppName = fg.appModule.appName if fg and fg.appModule else None
+		fgHandle = fg.windowHandle if fg else None
+		focus = api.getFocusObject()
+		focusAppName = focus.appModule.appName if focus and focus.appModule else None
+		focusHandle = focus.windowHandle if focus else None
+
+		def worker():
+			path = self._getCurrentPathFromExplorer(fgAppName, fgHandle, focusAppName, focusHandle)
+			wx.CallAfter(self._onPathResolved, path)
+
+		threading.Thread(target=worker, daemon=True).start()
+
+	def _onPathResolved(self, path):
 		if path and os.path.isfile(path):
 			self._newFile = path
-		elif path and os.path.isdir(path):
-			self._newFile = ""
 		else:
 			self._newFile = ""
 		self.dialog = AbsoluteFilesDialog(gui.mainFrame, self)
 		gui.mainFrame.prePopup()
-		self.dialog.Show()
 		self.dialog.CentreOnScreen()
-		gui.mainFrame.postPopup()
+		self.dialog.Show()
+		self.dialog.Raise()
+		self.dialog._applyTopMost()
+		wx.CallAfter(self.dialog.listSaved.SetFocus)
+
 
 class AbsoluteFilesDialog(wx.Dialog):
+	_activeInstance = None
+
 	def __init__(self, parent, manager):
-		super().__init__(parent, title=TITLE, style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER | wx.MAXIMIZE_BOX)
+		style = wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER | wx.MAXIMIZE_BOX | wx.STAY_ON_TOP
+		super().__init__(parent, title=TITLE, style=style)
+		if AbsoluteFilesDialog._activeInstance:
+			AbsoluteFilesDialog._activeInstance._silentClose()
+		AbsoluteFilesDialog._activeInstance = self
 		self.manager = manager
 		self._displayedRecentPaths = []
 		self._contextMenuOpen = False
+		self._pendingOpenPath = None
 		self._initUI()
 		self._bindEvents()
 		self.updateFiles()
@@ -164,12 +201,57 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self.timer.Start(15000)
 		wx.CallAfter(self.listSaved.SetFocus)
 
+	@classmethod
+	def bringToFront(cls):
+		inst = cls._activeInstance
+		if inst is None:
+			return False
+		try:
+			if not inst.IsShown():
+				return False
+		except RuntimeError:
+			cls._activeInstance = None
+			return False
+		wx.CallAfter(inst._raiseToForeground)
+		return True
+
+	def _raiseToForeground(self):
+		try:
+			if self.IsIconized():
+				self.Iconize(False)
+			self.Raise()
+			self._applyTopMost()
+			self._reset_timer()
+			if self.tabs.GetSelection() == 0:
+				self.listSaved.SetFocus()
+			else:
+				self.listRecent.SetFocus()
+		except RuntimeError as e:
+			logHandler.log.warning(f"Failed to raise existing Files dialog: {e}", exc_info=True)
+
+	def _applyTopMost(self):
+		try:
+			hwnd = self.GetHandle()
+			if hwnd:
+				ctypes.windll.user32.SetWindowPos(
+					hwnd, _HWND_TOPMOST, 0, 0, 0, 0,
+					_SWP_NOMOVE | _SWP_NOSIZE | _SWP_SHOWWINDOW
+				)
+		except (OSError, RuntimeError) as e:
+			logHandler.log.warning(f"Failed to force Files dialog topmost: {e}", exc_info=True)
+
 	def _play_close_beep(self):
 		try:
 			import winsound
 			winsound.Beep(100, 100)
 		except Exception:
 			pass
+
+	def _silentClose(self):
+		self._stop_timer()
+		self._pendingOpenPath = None
+		gui.mainFrame.postPopup()
+		wx.CallAfter(self.Close)
 
 	def _reset_timer(self):
 		if self.timer and not self._contextMenuOpen:
@@ -184,6 +266,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 		if event.GetActive():
 			self._contextMenuOpen = False
 			self._reset_timer()
+			self._applyTopMost()
 		event.Skip()
 
 	def on_timeout(self, event):
@@ -272,7 +355,13 @@ class AbsoluteFilesDialog(wx.Dialog):
 
 	def on_close(self, event):
 		self._stop_timer()
+		if AbsoluteFilesDialog._activeInstance == self:
+			AbsoluteFilesDialog._activeInstance = None
+		pendingPath = self._pendingOpenPath
+		self._pendingOpenPath = None
 		event.Skip()
+		if pendingPath and os.path.isfile(pendingPath):
+			core.callLater(300, lambda p=pendingPath: _openFilePath(p))
 
 	def onTabChanged(self, evt):
 		self.updateFiles()
@@ -291,7 +380,9 @@ class AbsoluteFilesDialog(wx.Dialog):
 
 	def onCharHook(self, evt):
 		if evt.GetKeyCode() == wx.WXK_ESCAPE:
+			self._stop_timer()
 			self.Close()
+			return
 		else:
 			evt.Skip()
 		self._reset_timer()
@@ -321,10 +412,15 @@ class AbsoluteFilesDialog(wx.Dialog):
 			if idx >= len(self._displayedRecentPaths):
 				return
 			path = self._displayedRecentPaths[idx]
-		if path and os.path.isfile(path):
-			os.startfile(path)
-			self.manager.addToRecent(path)
-			self.Close()
+
+		if not path or not os.path.isfile(path):
+			return
+
+		self.manager.addToRecent(path)
+		self._stop_timer()
+		self._pendingOpenPath = path
+		gui.mainFrame.postPopup()
+		self.Close()
 
 	def onAdd(self, evt):
 		self._reset_timer()
@@ -397,7 +493,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 	def onContextMenu(self, evt):
 		self._stop_timer()
 		self._contextMenuOpen = True
-		
+
 		if self.tabs.GetSelection() == 0:
 			lst = self.listSaved
 			idx = lst.GetFirstSelected()
@@ -419,16 +515,16 @@ class AbsoluteFilesDialog(wx.Dialog):
 				self._reset_timer()
 				return
 			path = self._displayedRecentPaths[idx]
-		
+
 		menu = wx.Menu()
-		
+
 		if path and os.path.isfile(path):
 			ext = os.path.splitext(path)[1].lower()
 			if ext in ('.exe', '.bat', '.cmd', '.msi'):
 				itemAdmin = menu.Append(wx.ID_ANY, _("Run as Administrator"))
 				self.Bind(wx.EVT_MENU, lambda e: self.runAsAdmin(path), itemAdmin)
 				menu.AppendSeparator()
-		
+
 		if self.tabs.GetSelection() == 0:
 			pin_label = _("Unpin") if name in self.manager._pinned else _("Pin to top")
 			itemPin = menu.Append(wx.ID_ANY, pin_label)
@@ -436,25 +532,25 @@ class AbsoluteFilesDialog(wx.Dialog):
 			menu.AppendSeparator()
 			itemEdit = menu.Append(wx.ID_ANY, _("Edit"))
 			itemDelete = menu.Append(wx.ID_ANY, _("Delete"))
-			
+
 			if self.manager._sortMode == "CUSTOM":
 				menu.AppendSeparator()
 				itemUp = menu.Append(wx.ID_ANY, _("Move Up"))
 				itemDown = menu.Append(wx.ID_ANY, _("Move Down"))
 				self.Bind(wx.EVT_MENU, lambda e: self.moveItem(name, -1), itemUp)
 				self.Bind(wx.EVT_MENU, lambda e: self.moveItem(name, 1), itemDown)
-			
+
 			self.Bind(wx.EVT_MENU, self.onEdit, itemEdit)
 			self.Bind(wx.EVT_MENU, self.onRemove, itemDelete)
 		else:
 			itemDelete = menu.Append(wx.ID_ANY, _("Remove from Recent"))
 			self.Bind(wx.EVT_MENU, lambda e, p=path: self.onRemoveRecentByPath(p), itemDelete)
-		
+
 		def on_menu_close(event):
 			self._contextMenuOpen = False
 			self._reset_timer()
 			event.Skip()
-		
+
 		menu.Bind(wx.EVT_MENU_CLOSE, on_menu_close)
 		lst.PopupMenu(menu)
 		menu.Destroy()
@@ -480,10 +576,10 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self._reset_timer()
 		if self.tabs.GetSelection() != 0:
 			return
-		
+
 		pinnedList = [x for x in self.manager._order if x in self.manager._pinned]
 		unpinnedList = [x for x in self.manager._order if x not in self.manager._pinned and x in self.manager._files]
-		
+
 		if targetName in pinnedList:
 			currentIndex = pinnedList.index(targetName)
 			newIndex = currentIndex + direction
@@ -517,7 +613,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 			shell32.ShellExecuteW(None, "runas", path, None, None, 1)
 			self.manager.addToRecent(path)
 			self.Close()
-		except Exception as e:
+		except OSError as e:
 			logHandler.log.warning(f"Failed to run as admin: {e}", exc_info=True)
 
 	def updateFiles(self, selectIdx=0):
