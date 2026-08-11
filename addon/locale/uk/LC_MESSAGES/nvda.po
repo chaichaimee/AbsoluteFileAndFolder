@@ -1,91 +1,206 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: uk\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"Language-Team: Ukrainian\n"
-"MIME-Version: 1.0\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: DevOn Addon\n"
+"POT-Creation-Date: 2026-04-21 15:45+0300\n"
+"PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-Basepath: ../../../globalPlugins\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: AbsoluteFile.py:210
-msgid "&Add"
-msgstr "&Додати"
+#: AbsoluteFileAndFolder/AbsoluteFile.py:18
+msgid "Absolute Files"
+msgstr "Абсолютні файли"
 
-#: AbsoluteFile.py:211
-msgid "&Edit"
-msgstr "&Редагувати"
-
-#: AbsoluteFile.py:241
-msgid "&Open"
-msgstr "&Відкрити"
-
-#: AbsoluteFile.py:212
-msgid "&Remove"
-msgstr "Вилу&чити"
-
-#: AbsoluteFolder.py:273
-msgid "&Show paths"
-msgstr "&Показати шляхи"
-
-#: AbsoluteFile.py:227
-msgid "Clear History"
-msgstr "Очистити історію"
-
-#: AbsoluteFile.py:390
-msgid "Clear history?"
-msgstr "Очистити історію?"
-
-#: AbsoluteFile.py:428
-msgid "Delete"
-msgstr "Видалити"
-
-#: AbsoluteFile.py:333
-msgid "Enter display name"
-msgstr "Введіть відображуване ім'я"
-
-#: AbsoluteFile.py:223
-msgid "File Name"
-msgstr "Ім'я файлу"
-
-#: AbsoluteFile.py:188
+#: AbsoluteFileAndFolder/AbsoluteFile.py:188
 msgid "Filter Type:"
 msgstr "Тип фільтра:"
 
-#: AbsoluteFolder.py:253
-msgid "Folder Name"
-msgstr "Назва папки"
+#: AbsoluteFileAndFolder/AbsoluteFile.py:197
+msgid "Saved Files"
+msgstr "Збережені файли"
 
-#: AbsoluteFile.py:433
-msgid "Move Down"
-msgstr "Перемістити вниз"
+#: AbsoluteFileAndFolder/AbsoluteFile.py:198
+msgid "Recent Files"
+msgstr "Останні файли"
 
-#: AbsoluteFile.py:432
-msgid "Move Up"
-msgstr "Перемістити вгору"
-
-#: AbsoluteFile.py:204
+#: AbsoluteFileAndFolder/AbsoluteFile.py:204
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:246
 msgid "Name"
-msgstr "Ім'я"
+msgstr "Назва"
 
-#: AbsoluteFile.py:422
-msgid "Pin to top"
-msgstr "Закріпити зверху"
+#: AbsoluteFileAndFolder/AbsoluteFile.py:205
+#: AbsoluteFileAndFolder/AbsoluteFile.py:224
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:247
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:254
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:297
+msgid "Path"
+msgstr "шлях"
 
-#: AbsoluteFile.py:355
+#: AbsoluteFileAndFolder/AbsoluteFile.py:210
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:262
+msgid "&Add"
+msgstr "&Додати"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:211
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:264
+msgid "&Edit"
+msgstr "&Редагувати"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:212
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:265
+msgid "&Remove"
+msgstr "&Видалити"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:223
+msgid "File Name"
+msgstr "Назва файлу"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:227
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:256
+msgid "Clear History"
+msgstr "Очистити історію"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:232
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:277
+msgid "Custom order"
+msgstr "Користувацький порядок"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:232
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:277
+msgid "Ascending, a-z"
+msgstr "За зростанням"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:232
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:277
+msgid "Descending z-a"
+msgstr "За спаданням"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:241
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:263
+msgid "&Open"
+msgstr "&Відкрити"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:330
+msgid "No file selected in Explorer to add."
+msgstr "У провіднику не вибрано жодного файлу для додавання."
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:333
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:436
+msgid "Enter display name"
+msgstr "Введіть назву для показу"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:338
+#: AbsoluteFileAndFolder/AbsoluteFile.py:360
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:441
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:493
+msgid "This name already exists."
+msgstr "Ця назва вже існує."
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:355
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:488
 msgid "Rename"
 msgstr "Перейменувати"
 
-#: AbsoluteFile.py:417
+#: AbsoluteFileAndFolder/AbsoluteFile.py:380
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:513
+#, python-brace-format
+msgid "Remove {}?"
+msgstr "Видалити {}?"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:390
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:580
+msgid "Clear history?"
+msgstr "Очистити історію?"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:417
 msgid "Run as Administrator"
 msgstr "Запустити від імені адміністратора"
 
-#: AbsoluteFile.py:338
-msgid "This name already exists."
-msgstr "Це ім'я вже існує."
-
-#: AbsoluteFile.py:422
+#: AbsoluteFileAndFolder/AbsoluteFile.py:422
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:535
 msgid "Unpin"
 msgstr "Відкріпити"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:422
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:535
+msgid "Pin to top"
+msgstr "Закріпити зверху"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:427
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:538
+msgid "Edit"
+msgstr "Редагувати"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:428
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:364
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:539
+msgid "Delete"
+msgstr "Видалити"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:432
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:542
+msgid "Move Up"
+msgstr "Перемістити вгору"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:433
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:543
+msgid "Move Down"
+msgstr "Перемістити вниз"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:440
+msgid "Remove from Recent"
+msgstr "Видалити з останніх"
+
+#: AbsoluteFileAndFolder/AbsoluteFile.py:455
+#, python-brace-format
+msgid "Remove {} from recent list?"
+msgstr "Видалити {} зі списку останніх?"
+
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:19
+msgid "Absolute Folders"
+msgstr "Абсолютні папки"
+
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:240
+msgid "Saved Folders"
+msgstr "Збережені папки"
+
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:241
+msgid "Recent Folders"
+msgstr "Останні папки"
+
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:253
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:296
+msgid "Folder Name"
+msgstr "Назва папки"
+
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:273
+msgid "&Show paths"
+msgstr "&Показати шляхи"
+
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:286
+msgid "Remember and open folders automatically on restart"
+msgstr "Запам'ятовувати та автоматично відкривати папки після перезавантаження"
+
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:384
+#, python-brace-format
+msgid "Remove {} from auto-open list?"
+msgstr "Видалити {} зі списку автоматичного відкриття?"
+
+#: AbsoluteFileAndFolder/AbsoluteFolder.py:433
+msgid "No folder selected in Explorer to add."
+msgstr "У провіднику не вибрано жодної папки для додавання."
+
+#: AbsoluteFileAndFolder/__init__.py:53 AbsoluteFileAndFolder/__init__.py:90
+msgid "Absolute File and Folder"
+msgstr "Абсолютні файли та папки"
+
+#: AbsoluteFileAndFolder/__init__.py:89
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap)"
+msgstr "Відкрити абсолютні папки (одне натискання) або абсолютні файли (подвійне натискання)"
