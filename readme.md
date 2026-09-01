@@ -1,65 +1,99 @@
-<p align="center">
-  <img src="https://www.nvaccess.org/files/nvda/documentation/userGuide/images/nvda.ico" alt="NVDA Logo" width="120">
-</p>
+<div align="center">
 
-<h1 align="center">AbsoluteFileAndFolder</h1>
+<img src="https://www.nvaccess.org/files/nvda/documentation/userGuide/images/nvda.ico" alt="NVDA Logo" width="120">
 
-<p align="center">
-  The ultimate productivity companion for NVDA users, transforming how you interact with your digital workspace.
-</p>
+# Absolute File and Folder
 
-<p align="center">
-  <strong>Author:</strong> chai chaimee<br>
-  <strong>URL:</strong> <a href="https://github.com/chaichaimee/AbsoluteFileAndFolder">https://github.com/chaichaimee/AbsoluteFileAndFolder</a>
-</p>
+Instant shortcut management, intelligent path detection, and automatic restart restoration for your essential files and folders in NVDA.
 
-<hr>
+**author:** chai chaimee  
+**url:** https://github.com/chaichaimee/AbsoluteFileAndFolder
 
-**Description**
+</div>
 
-Stop wasting time navigating through endless directories. **AbsoluteFileAndFolder** is a high-performance management tool designed to give you instant, organized access to your most important assets. Whether it is deep-nested project folders or critical system files, this add-on brings them all to your fingertips with a sophisticated yet simple interface.
+## Introduction
 
-**How to Use**
+**Absolute File and Folder** is a powerful productivity add-on for the NVDA screen reader designed to simplify access to your frequently used files and directories. By integrating directly with Windows Explorer, the add-on enables screen reader users to instantly capture selected file or folder paths, organize shortcuts, search history, launch executables with administrator privileges, and automatically restore active folders after a computer reboot.
 
-Adding your favorite items is incredibly simple and intuitive:
+### Hot Keys
 
-1. In Windows Explorer, **Select** the file or folder you want to save.
-2. Press the **Hot Key** (Single tap for folders, Double tap for files).
-3. Click the **Add** button in the manager dialog.
-4. A window will appear allowing you to set a **Display Name** or keep the original name.
-5. Your item is now securely stored in your dialog list for instant access!
+> **Windows+Backspace**  
+> Single Tap : Open Absolute Folders  
+> Double Tap : Open Absolute Files
 
-**Hot Keys**
+> **Smart Tap & Foreground Logic:**  
+> • A single press within 400ms triggers the Folders manager, while pressing twice within 400ms triggers the Files manager.  
+> • If the requested manager is already open on screen, pressing the hotkey brings the active window directly to the foreground and focuses the saved item list without recreating the window.  
+> • Switching between Folders and Files automatically closes the active dialog before opening the selected one.
 
-> **Windows + Backspace (Single Tap):** Open the Absolute Folder Manager.  
-> **Windows + Backspace (Double Tap):** Open the Absolute File Manager.  
-> **Escape (Inside Dialog):** Instantly close the manager and return to your work.
+## Features
 
-**Features**
+### 1. Intelligent Windows Explorer Context Capture
 
-### 1. Absolute Folder Management
+When you trigger the add-on while browsing in Windows Explorer, it automatically inspects the active shell window via COM automation to retrieve the path of the currently selected file or directory.
 
-Experience seamless folder control with tools designed for speed:
+**How it works step-by-step:**
 
-- **Auto-Persistence:** Set your favorite folders to open automatically when Windows starts, picking up exactly where you left off.
-- **Total Context Control:** Right-click on any folder to Pin to Top, Edit names, or Remove them instantly.
-- **Smart Navigation:** Focus lands directly on your folder list every time you open the dialog, ensuring zero-latency interaction.
+1. Navigate to any file or folder in Windows Explorer.
+2. Press **Windows+Backspace** (Single Tap for Folders, Double Tap for Files).
+3. Press the **Add** button in the dialog. The add-on pre-fills the prompt with the filename or folder name from Explorer, allowing you to save it instantly with custom display names.
 
-### 2. Absolute File Management
+### 2. Absolute Folders Management
 
-Precision handling for every file type in your library:
+Efficiently organize and access your primary folder directories with dedicated control options:
 
-- **Intelligent Filtering:** Instantly toggle between Audio, Video, Document, Code, and **Exe** categories to find what you need in seconds.
-- **Power User Tools:** Right-click any executable (Exe) to **Run as Administrator** directly from the manager—no more hunting through sub-menus.
-- **Recent History:** Never lose track of your work; the add-on automatically remembers your most recently accessed files across two dedicated tabs.
+* **Saved Folders Tab:** Bookmark essential directories. Options include Add, Edit (rename), Remove, Pin/Unpin to top, and custom item reordering (Move Up / Move Down).
+* **Recent Folders Tab:** Tracks up to 20 recently accessed folders for quick navigation. History can be cleared at any time.
+* **Flexible Sorting & View Options:** Sort folders by Custom order, Ascending (a-z), or Descending (z-a). Check the *Show paths* option to view full directory paths alongside folder names.
 
-### 3. Universal Management Logic
+### 3. Automatic Folder Restoration on System Restart
 
-Both managers share a robust set of professional features:
+Never lose your working context after restarting your PC.
 
-- **Custom Ordering:** Switch to "Custom Order" mode and use **Move Up** or **Move Down** to arrange your list exactly how you like it.
-- **Lightning-Fast Deletion:** Manage your list with confidence using the **Delete key** on your keyboard for immediate removal.
-- **Title Case Sorting:** Professional sorting options including Case-Sensitive Ascending (a-z) and Descending (z-a) modes.
-- **Pinning System:** Keep your absolute essentials at the very top of your list, regardless of the sort order.
+**Step-by-step logic:**
 
-> **Idea Highlight:** Efficiency isn't just about speed; it's about focus. With AbsoluteFileAndFolder, your computer adapts to your workflow, not the other way around.
+1. Enable the checkbox **Remember and open folders automatically on restart** in the Absolute Folders dialog.
+2. When you open folders through the add-on, they are registered in the auto-open list.
+3. The add-on monitors system uptime via Windows API (`GetTickCount64`). Upon detecting a system reboot, NVDA automatically reopens all remembered folders in Windows Explorer sequentially (staggered with a 1000ms initial delay + 500ms spacing) once NVDA starts up.
+4. Manage or delete folders from the auto-open startup list directly via the list context menu or the **Delete** key.
+
+### 4. Absolute Files Management & Category Filtering
+
+Organize, search, and launch individual files with built-in category filters:
+
+* **Filter Type Dropdown:** Quickly filter your saved or recent file lists by file type:
+  * **All:** Display all saved files.
+  * **Audio:** .mp3, .wav, .flac, .m4a, .ogg
+  * **Video:** .mp4, .mkv, .avi, .mov
+  * **Document:** .pdf, .docx, .txt, .xlsx, .pptx
+  * **Code:** .py, .cpp, .java, .js, .html, .css
+  * **Exe:** .exe, .bat, .cmd, .msi
+* **Run as Administrator:** Right-click (or press Application key) on any executable or script file (.exe, .bat, .cmd, .msi) in the list and select *Run as Administrator* to launch it with elevated administrative privileges.
+
+### 5. Accessible Search with Real-Time Audio Feedback
+
+Type into the search field on either the Saved or Recent tabs to instantly filter results. The screen reader automatically announces matching results (e.g., *"3 matches found"* or *"12 files found"*) after a 500ms typing pause.
+
+### 6. Auto-Dismiss Inactivity Timer
+
+Dialogs stay on top for quick interaction but automatically close after 15 seconds of inactivity to keep your screen unburdened.
+
+> **Note:** A gentle low beep plays when the dialog automatically times out. Any key press, mouse movement, or context menu interaction resets the 15-second timer.
+
+### 7. Automatic Configuration Migration
+
+Upgrading from previous versions is seamless. On startup, configuration files (`AbsoluteFiles.json` and `AbsoluteFolders.json`) are automatically migrated into a dedicated user folder (`%NVDA_CONFIG%/ChaiChaimee/AbsoluteFileAndFloder/`).
+
+<div align="center">
+
+## Support Me
+
+If this tool has made your life easier, consider fueling the next update with a small donation.
+
+[![Support me](https://img.shields.io/badge/Donate-Support%20Me-blue?style=for-the-badge&logo=stripe)](https://buy.stripe.com/dRm9AU1xQ3Ds22N6VK1VK01)
+
+Your support means the world. Let's build something great together
+
+&copy; 2026 Chai Chaimee NVDA Add-on Released under GNU GPL
+
+</div>
