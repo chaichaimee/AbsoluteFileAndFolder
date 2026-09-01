@@ -1,91 +1,225 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: th\n"
+"Project-Id-Version: AbsoluteFileAndFolder 2026.9.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-08-22 09:01+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Thai\n"
+"Language: th\n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
-"Last-Translator: chaiBot and Malee Yamazaki\n"
 
-#: AbsoluteFile.py:210
+#: AbsoluteFile.py:322
+#: AbsoluteFolder.py:370
 msgid "&Add"
-msgstr "เพิ่ม (&A)"
+msgstr "&เพิ่ม"
 
-#: AbsoluteFile.py:211
+#: AbsoluteFile.py:323
+#: AbsoluteFolder.py:372
 msgid "&Edit"
-msgstr "แก้ไข (&E)"
+msgstr "&แก้ไข"
 
-#: AbsoluteFile.py:241
+#: AbsoluteFile.py:354
+#: AbsoluteFolder.py:371
 msgid "&Open"
-msgstr "เปิด (&O)"
+msgstr "&เปิด"
 
-#: AbsoluteFile.py:212
+#: AbsoluteFile.py:324
+#: AbsoluteFolder.py:373
 msgid "&Remove"
-msgstr "ลบออก (&R)"
+msgstr "&ลบ"
 
-#: AbsoluteFolder.py:273
+#: AbsoluteFolder.py:381
 msgid "&Show paths"
-msgstr "แสดงเส้นทาง (&S)"
+msgstr "&แสดงเส้นทาง"
 
-#: AbsoluteFile.py:227
+#: AbsoluteFolder.py:832
+#: AbsoluteFolder.py:873
+#: __init__.py:46
+#: __init__.py:87
+msgid "Absolute File and Folder"
+msgstr "Absolute File and Folder"
+
+#: AbsoluteFile.py:23
+msgid "Absolute Files"
+msgstr "ไฟล์แบบสัมบูรณ์"
+
+#: AbsoluteFolder.py:22
+msgid "Absolute Folders"
+msgstr "โฟลเดอร์แบบสัมบูรณ์"
+
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
+msgid "Ascending, a-z"
+msgstr "จากน้อยไปมาก, a-z"
+
+#: AbsoluteFile.py:341
+#: AbsoluteFolder.py:365
 msgid "Clear History"
 msgstr "ล้างประวัติ"
 
-#: AbsoluteFile.py:390
+#: AbsoluteFile.py:542
+#: AbsoluteFolder.py:737
 msgid "Clear history?"
 msgstr "ล้างประวัติหรือไม่?"
 
-#: AbsoluteFile.py:428
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
+msgid "Custom order"
+msgstr "กำหนดลำดับเอง"
+
+#: AbsoluteFile.py:588
+#: AbsoluteFolder.py:469
+#: AbsoluteFolder.py:681
 msgid "Delete"
 msgstr "ลบ"
 
-#: AbsoluteFile.py:333
-msgid "Enter display name"
-msgstr "ป้อนชื่อที่ต้องการให้แสดง"
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
+msgid "Descending z-a"
+msgstr "จากมากไปน้อย, z-a"
 
-#: AbsoluteFile.py:223
+#: AbsoluteFile.py:587
+#: AbsoluteFolder.py:680
+msgid "Edit"
+msgstr "แก้ไข"
+
+#: AbsoluteFile.py:485
+#: AbsoluteFolder.py:566
+msgid "Enter display name"
+msgstr "ป้อนชื่อที่แสดง"
+
+#: AbsoluteFile.py:338
 msgid "File Name"
 msgstr "ชื่อไฟล์"
 
-#: AbsoluteFile.py:188
+#: AbsoluteFile.py:297
 msgid "Filter Type:"
 msgstr "ประเภทตัวกรอง:"
 
-#: AbsoluteFolder.py:253
+#: AbsoluteFolder.py:362
+#: AbsoluteFolder.py:401
 msgid "Folder Name"
 msgstr "ชื่อโฟลเดอร์"
 
-#: AbsoluteFile.py:433
+#: AbsoluteFile.py:593
+#: AbsoluteFolder.py:686
 msgid "Move Down"
 msgstr "ย้ายลง"
 
-#: AbsoluteFile.py:432
+#: AbsoluteFile.py:592
+#: AbsoluteFolder.py:685
 msgid "Move Up"
 msgstr "ย้ายขึ้น"
 
-#: AbsoluteFile.py:204
+#: AbsoluteFile.py:317
+#: AbsoluteFolder.py:350
 msgid "Name"
 msgstr "ชื่อ"
 
-#: AbsoluteFile.py:422
+#: AbsoluteFile.py:482
+msgid "No file selected in Explorer to add."
+msgstr "ไม่มีไฟล์ที่เลือกใน Explorer เพื่อเพิ่ม"
+
+#: AbsoluteFolder.py:563
+msgid "No folder selected in Explorer to add."
+msgstr "ไม่มีโฟลเดอร์ที่เลือกใน Explorer เพื่อเพิ่ม"
+
+#: AbsoluteFolder.py:872
+#: __init__.py:86
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap). If the target dialog is already open, brings it to the front instead of reopening it."
+msgstr "เปิดโฟลเดอร์แบบสัมบูรณ์ (แตะครั้งเดียว) หรือไฟล์แบบสัมบูรณ์ (แตะสองครั้ง) หากหน้าต่างเป้าหมายเปิดอยู่แล้ว จะนำมาไว้ด้านหน้าแทนการเปิดใหม่"
+
+#: AbsoluteFile.py:318
+#: AbsoluteFile.py:339
+#: AbsoluteFolder.py:351
+#: AbsoluteFolder.py:363
+#: AbsoluteFolder.py:402
+msgid "Path"
+msgstr "เส้นทาง"
+
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Pin to top"
 msgstr "ปักหมุดไว้ด้านบน"
 
-#: AbsoluteFile.py:355
+#: AbsoluteFile.py:307
+msgid "Recent Files"
+msgstr "ไฟล์ล่าสุด"
+
+#: AbsoluteFolder.py:340
+msgid "Recent Folders"
+msgstr "โฟลเดอร์ล่าสุด"
+
+#: AbsoluteFolder.py:393
+msgid "Remember and open folders automatically on restart"
+msgstr "จำและเปิดโฟลเดอร์โดยอัตโนมัติเมื่อรีสตาร์ท"
+
+#: AbsoluteFile.py:600
+msgid "Remove from Recent"
+msgstr "ลบออกจากรายการล่าสุด"
+
+#: AbsoluteFolder.py:488
+msgid "Remove {} from auto-open list?"
+msgstr "ลบ {} ออกจากรายการเปิดอัตโนมัติหรือไม่?"
+
+#: AbsoluteFile.py:615
+msgid "Remove {} from recent list?"
+msgstr "ลบ {} ออกจากรายการล่าสุดหรือไม่?"
+
+#: AbsoluteFile.py:532
+#: AbsoluteFolder.py:647
+msgid "Remove {}?"
+msgstr "ลบ {} หรือไม่?"
+
+#: AbsoluteFile.py:507
+#: AbsoluteFolder.py:622
 msgid "Rename"
 msgstr "เปลี่ยนชื่อ"
 
-#: AbsoluteFile.py:417
+#: AbsoluteFile.py:578
 msgid "Run as Administrator"
-msgstr "รันในฐานะผู้ดูแลระบบ"
+msgstr "เรียกใช้ในฐานะผู้ดูแลระบบ"
 
-#: AbsoluteFile.py:338
+#: AbsoluteFile.py:306
+msgid "Saved Files"
+msgstr "ไฟล์ที่บันทึก"
+
+#: AbsoluteFolder.py:339
+msgid "Saved Folders"
+msgstr "โฟลเดอร์ที่บันทึก"
+
+#: AbsoluteFile.py:312
+#: AbsoluteFile.py:333
+#: AbsoluteFolder.py:345
+#: AbsoluteFolder.py:357
+msgid "Search:"
+msgstr "ค้นหา:"
+
+#: AbsoluteFile.py:490
+#: AbsoluteFile.py:512
+#: AbsoluteFolder.py:571
+#: AbsoluteFolder.py:627
 msgid "This name already exists."
 msgstr "ชื่อนี้มีอยู่แล้ว"
 
-#: AbsoluteFile.py:422
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Unpin"
-msgstr "ถอนการปักหมุด"
+msgstr "ยกเลิกการปักหมุด"
+
+#: AbsoluteFile.py:440
+msgid "{0} files found"
+msgstr "พบ {0} ไฟล์"
+
+#: AbsoluteFolder.py:535
+msgid "{0} folders found"
+msgstr "พบ {0} โฟลเดอร์"
+
+#: AbsoluteFile.py:438
+#: AbsoluteFolder.py:533
+msgid "{0} matches found"
+msgstr "พบ {0} รายการที่ตรงกัน"

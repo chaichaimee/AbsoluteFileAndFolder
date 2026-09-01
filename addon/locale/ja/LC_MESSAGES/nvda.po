@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Project-Id-Version: AbsoluteFileAndFolder 2026.9.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-04-20 15:16+0700\n"
+"POT-Creation-Date: 2026-08-22 09:01+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Japanese\n"
@@ -12,191 +12,214 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
 
-#: AbsoluteFile.py:210
-#: AbsoluteFolder.py:262
+#: AbsoluteFile.py:322
+#: AbsoluteFolder.py:370
 msgid "&Add"
-msgstr "追加(&A)"
+msgstr "&追加"
 
-#: AbsoluteFile.py:211
-#: AbsoluteFolder.py:264
+#: AbsoluteFile.py:323
+#: AbsoluteFolder.py:372
 msgid "&Edit"
-msgstr "編集(&E)"
+msgstr "&編集"
 
-#: AbsoluteFile.py:241
-#: AbsoluteFolder.py:263
+#: AbsoluteFile.py:354
+#: AbsoluteFolder.py:371
 msgid "&Open"
-msgstr "開く(&O)"
+msgstr "&開く"
 
-#: AbsoluteFile.py:212
-#: AbsoluteFolder.py:265
+#: AbsoluteFile.py:324
+#: AbsoluteFolder.py:373
 msgid "&Remove"
-msgstr "削除(&R)"
+msgstr "&削除"
 
-#: AbsoluteFolder.py:273
+#: AbsoluteFolder.py:381
 msgid "&Show paths"
-msgstr "パスを表示(&S)"
+msgstr "パスを&表示"
 
-#: __init__.py:53
-#: __init__.py:90
+#: AbsoluteFolder.py:832
+#: AbsoluteFolder.py:873
+#: __init__.py:46
+#: __init__.py:87
 msgid "Absolute File and Folder"
 msgstr "Absolute File and Folder"
 
-#: AbsoluteFile.py:18
+#: AbsoluteFile.py:23
 msgid "Absolute Files"
-msgstr "Absolute Files"
+msgstr "絶対ファイル"
 
-#: AbsoluteFolder.py:19
+#: AbsoluteFolder.py:22
 msgid "Absolute Folders"
-msgstr "Absolute Folders"
+msgstr "絶対フォルダー"
 
-#: AbsoluteFile.py:232
-#: AbsoluteFolder.py:277
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
 msgid "Ascending, a-z"
-msgstr "昇順 (a-z)"
+msgstr "昇順 (A-Z)"
 
-#: AbsoluteFile.py:227
-#: AbsoluteFolder.py:256
+#: AbsoluteFile.py:341
+#: AbsoluteFolder.py:365
 msgid "Clear History"
-msgstr "履歴を消去"
+msgstr "履歴のクリア"
 
-#: AbsoluteFile.py:390
-#: AbsoluteFolder.py:580
+#: AbsoluteFile.py:542
+#: AbsoluteFolder.py:737
 msgid "Clear history?"
-msgstr "履歴を消去しますか？"
+msgstr "履歴をクリアしますか？"
 
-#: AbsoluteFile.py:232
-#: AbsoluteFolder.py:277
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
 msgid "Custom order"
 msgstr "カスタム順"
 
-#: AbsoluteFile.py:428
-#: AbsoluteFolder.py:364
-#: AbsoluteFolder.py:539
+#: AbsoluteFile.py:588
+#: AbsoluteFolder.py:469
+#: AbsoluteFolder.py:681
 msgid "Delete"
 msgstr "削除"
 
-#: AbsoluteFile.py:232
-#: AbsoluteFolder.py:277
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
 msgid "Descending z-a"
-msgstr "降順 (z-a)"
+msgstr "降順 (Z-A)"
 
-#: AbsoluteFile.py:427
-#: AbsoluteFolder.py:538
+#: AbsoluteFile.py:587
+#: AbsoluteFolder.py:680
 msgid "Edit"
 msgstr "編集"
 
-#: AbsoluteFile.py:333
-#: AbsoluteFolder.py:436
+#: AbsoluteFile.py:485
+#: AbsoluteFolder.py:566
 msgid "Enter display name"
 msgstr "表示名を入力"
 
-#: AbsoluteFile.py:223
+#: AbsoluteFile.py:338
 msgid "File Name"
 msgstr "ファイル名"
 
-#: AbsoluteFile.py:188
+#: AbsoluteFile.py:297
 msgid "Filter Type:"
 msgstr "フィルターの種類:"
 
-#: AbsoluteFolder.py:253
-#: AbsoluteFolder.py:296
+#: AbsoluteFolder.py:362
+#: AbsoluteFolder.py:401
 msgid "Folder Name"
-msgstr "フォルダ名"
+msgstr "フォルダー名"
 
-#: AbsoluteFile.py:433
-#: AbsoluteFolder.py:543
+#: AbsoluteFile.py:593
+#: AbsoluteFolder.py:686
 msgid "Move Down"
-msgstr "下へ移動"
+msgstr "下に移動"
 
-#: AbsoluteFile.py:432
-#: AbsoluteFolder.py:542
+#: AbsoluteFile.py:592
+#: AbsoluteFolder.py:685
 msgid "Move Up"
-msgstr "上へ移動"
+msgstr "上に移動"
 
-#: AbsoluteFile.py:204
-#: AbsoluteFolder.py:246
+#: AbsoluteFile.py:317
+#: AbsoluteFolder.py:350
 msgid "Name"
 msgstr "名前"
 
-#: AbsoluteFile.py:330
+#: AbsoluteFile.py:482
 msgid "No file selected in Explorer to add."
 msgstr "追加するファイルがエクスプローラーで選択されていません。"
 
-#: AbsoluteFolder.py:433
+#: AbsoluteFolder.py:563
 msgid "No folder selected in Explorer to add."
-msgstr "追加するフォルダがエクスプローラーで選択されていません。"
+msgstr "追加するフォルダーがエクスプローラーで選択されていません。"
 
-#: __init__.py:89
-msgid "Open Absolute Folders (single tap) or Absolute Files (double tap)"
-msgstr "Absolute Folders を開く (シングルタップ) または Absolute Files を開く (ダブルタップ)"
+#: AbsoluteFolder.py:872
+#: __init__.py:86
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap). If the target dialog is already open, brings it to the front instead of reopening it."
+msgstr "絶対フォルダーを開く (シングルタップ) または絶対ファイル (ダブルタップ)。ターゲットのダイアログが既に開いている場合は、開き直す代わりに前面に表示します。"
 
-#: AbsoluteFile.py:205
-#: AbsoluteFile.py:224
-#: AbsoluteFolder.py:247
-#: AbsoluteFolder.py:254
-#: AbsoluteFolder.py:297
+#: AbsoluteFile.py:318
+#: AbsoluteFile.py:339
+#: AbsoluteFolder.py:351
+#: AbsoluteFolder.py:363
+#: AbsoluteFolder.py:402
 msgid "Path"
 msgstr "パス"
 
-#: AbsoluteFile.py:422
-#: AbsoluteFolder.py:535
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Pin to top"
-msgstr "トップに固定"
+msgstr "上部に固定"
 
-#: AbsoluteFile.py:198
+#: AbsoluteFile.py:307
 msgid "Recent Files"
 msgstr "最近使ったファイル"
 
-#: AbsoluteFolder.py:241
+#: AbsoluteFolder.py:340
 msgid "Recent Folders"
-msgstr "最近使ったフォルダ"
+msgstr "最近使ったフォルダー"
 
-#: AbsoluteFolder.py:286
+#: AbsoluteFolder.py:393
 msgid "Remember and open folders automatically on restart"
-msgstr "再起動時にフォルダを記憶して自動的に開く"
+msgstr "再起動時にフォルダーを自動的に記憶して開く"
 
-#: AbsoluteFile.py:440
+#: AbsoluteFile.py:600
 msgid "Remove from Recent"
-msgstr "履歴から削除"
+msgstr "最近の履歴から削除"
 
-#: AbsoluteFolder.py:384
+#: AbsoluteFolder.py:488
 msgid "Remove {} from auto-open list?"
-msgstr "{} を自動起動リストから削除しますか？"
+msgstr "自動オープンリストから {} を削除しますか？"
 
-#: AbsoluteFile.py:455
+#: AbsoluteFile.py:615
 msgid "Remove {} from recent list?"
-msgstr "{} を履歴リストから削除しますか？"
+msgstr "最近のリストから {} を削除しますか？"
 
-#: AbsoluteFile.py:380
-#: AbsoluteFolder.py:513
+#: AbsoluteFile.py:532
+#: AbsoluteFolder.py:647
 msgid "Remove {}?"
 msgstr "{} を削除しますか？"
 
-#: AbsoluteFile.py:355
-#: AbsoluteFolder.py:488
+#: AbsoluteFile.py:507
+#: AbsoluteFolder.py:622
 msgid "Rename"
-msgstr "名前を変更"
+msgstr "名前の変更"
 
-#: AbsoluteFile.py:417
+#: AbsoluteFile.py:578
 msgid "Run as Administrator"
 msgstr "管理者として実行"
 
-#: AbsoluteFile.py:197
+#: AbsoluteFile.py:306
 msgid "Saved Files"
-msgstr "保存済みファイル"
+msgstr "保存されたファイル"
 
-#: AbsoluteFolder.py:240
+#: AbsoluteFolder.py:339
 msgid "Saved Folders"
-msgstr "保存済みフォルダ"
+msgstr "保存されたフォルダー"
 
-#: AbsoluteFile.py:338
-#: AbsoluteFile.py:360
-#: AbsoluteFolder.py:441
-#: AbsoluteFolder.py:493
+#: AbsoluteFile.py:312
+#: AbsoluteFile.py:333
+#: AbsoluteFolder.py:345
+#: AbsoluteFolder.py:357
+msgid "Search:"
+msgstr "検索:"
+
+#: AbsoluteFile.py:490
+#: AbsoluteFile.py:512
+#: AbsoluteFolder.py:571
+#: AbsoluteFolder.py:627
 msgid "This name already exists."
-msgstr "この名前は既に存在します。"
+msgstr "この名前はすでに存在します。"
 
-#: AbsoluteFile.py:422
-#: AbsoluteFolder.py:535
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Unpin"
-msgstr "固定を解除"
+msgstr "固定解除"
+
+#: AbsoluteFile.py:440
+msgid "{0} files found"
+msgstr "{0} 件のファイルが見つかりました"
+
+#: AbsoluteFolder.py:535
+msgid "{0} folders found"
+msgstr "{0} 件のフォルダーが見つかりました"
+
+#: AbsoluteFile.py:438
+#: AbsoluteFolder.py:533
+msgid "{0} matches found"
+msgstr "{0} 件の一致が見つかりました"

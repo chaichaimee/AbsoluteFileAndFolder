@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Project-Id-Version: AbsoluteFileAndFolder 2026.9.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-04-20 15:16+0700\n"
+"POT-Creation-Date: 2026-08-22 09:01+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Hindi\n"
@@ -12,191 +12,214 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
 
-#: AbsoluteFile.py:210
-#: AbsoluteFolder.py:262
+#: AbsoluteFile.py:322
+#: AbsoluteFolder.py:370
 msgid "&Add"
-msgstr "जोड़ें (&A)"
+msgstr "&जोड़ें"
 
-#: AbsoluteFile.py:211
-#: AbsoluteFolder.py:264
+#: AbsoluteFile.py:323
+#: AbsoluteFolder.py:372
 msgid "&Edit"
-msgstr "संपादित करें (&E)"
+msgstr "&संपादित करें"
 
-#: AbsoluteFile.py:241
-#: AbsoluteFolder.py:263
+#: AbsoluteFile.py:354
+#: AbsoluteFolder.py:371
 msgid "&Open"
-msgstr "खोलें (&O)"
+msgstr "&खोलें"
 
-#: AbsoluteFile.py:212
-#: AbsoluteFolder.py:265
+#: AbsoluteFile.py:324
+#: AbsoluteFolder.py:373
 msgid "&Remove"
-msgstr "हटाएं (&R)"
+msgstr "&हटाएं"
 
-#: AbsoluteFolder.py:273
+#: AbsoluteFolder.py:381
 msgid "&Show paths"
-msgstr "पथ दिखाएं (&S)"
+msgstr "&पथ दिखाएं"
 
-#: __init__.py:53
-#: __init__.py:90
+#: AbsoluteFolder.py:832
+#: AbsoluteFolder.py:873
+#: __init__.py:46
+#: __init__.py:87
 msgid "Absolute File and Folder"
 msgstr "Absolute File and Folder"
 
-#: AbsoluteFile.py:18
+#: AbsoluteFile.py:23
 msgid "Absolute Files"
-msgstr "Absolute Files"
+msgstr "पूर्ण फ़ाइलें"
 
-#: AbsoluteFolder.py:19
+#: AbsoluteFolder.py:22
 msgid "Absolute Folders"
-msgstr "Absolute Folders"
+msgstr "पूर्ण फ़ोल्डर"
 
-#: AbsoluteFile.py:232
-#: AbsoluteFolder.py:277
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
 msgid "Ascending, a-z"
-msgstr "बढ़ते क्रम में, a-z"
+msgstr "आरोही, a-z"
 
-#: AbsoluteFile.py:227
-#: AbsoluteFolder.py:256
+#: AbsoluteFile.py:341
+#: AbsoluteFolder.py:365
 msgid "Clear History"
 msgstr "इतिहास साफ़ करें"
 
-#: AbsoluteFile.py:390
-#: AbsoluteFolder.py:580
+#: AbsoluteFile.py:542
+#: AbsoluteFolder.py:737
 msgid "Clear history?"
 msgstr "इतिहास साफ़ करें?"
 
-#: AbsoluteFile.py:232
-#: AbsoluteFolder.py:277
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
 msgid "Custom order"
 msgstr "कस्टम क्रम"
 
-#: AbsoluteFile.py:428
-#: AbsoluteFolder.py:364
-#: AbsoluteFolder.py:539
+#: AbsoluteFile.py:588
+#: AbsoluteFolder.py:469
+#: AbsoluteFolder.py:681
 msgid "Delete"
-msgstr "मिटाएं"
+msgstr "हटाएं"
 
-#: AbsoluteFile.py:232
-#: AbsoluteFolder.py:277
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
 msgid "Descending z-a"
-msgstr "घटते क्रम में, z-a"
+msgstr "अवरोही, z-a"
 
-#: AbsoluteFile.py:427
-#: AbsoluteFolder.py:538
+#: AbsoluteFile.py:587
+#: AbsoluteFolder.py:680
 msgid "Edit"
 msgstr "संपादित करें"
 
-#: AbsoluteFile.py:333
-#: AbsoluteFolder.py:436
+#: AbsoluteFile.py:485
+#: AbsoluteFolder.py:566
 msgid "Enter display name"
-msgstr "प्रदर्शित नाम दर्ज करें"
+msgstr "प्रदर्शन नाम दर्ज करें"
 
-#: AbsoluteFile.py:223
+#: AbsoluteFile.py:338
 msgid "File Name"
 msgstr "फ़ाइल का नाम"
 
-#: AbsoluteFile.py:188
+#: AbsoluteFile.py:297
 msgid "Filter Type:"
 msgstr "फ़िल्टर प्रकार:"
 
-#: AbsoluteFolder.py:253
-#: AbsoluteFolder.py:296
+#: AbsoluteFolder.py:362
+#: AbsoluteFolder.py:401
 msgid "Folder Name"
 msgstr "फ़ोल्डर का नाम"
 
-#: AbsoluteFile.py:433
-#: AbsoluteFolder.py:543
+#: AbsoluteFile.py:593
+#: AbsoluteFolder.py:686
 msgid "Move Down"
 msgstr "नीचे ले जाएं"
 
-#: AbsoluteFile.py:432
-#: AbsoluteFolder.py:542
+#: AbsoluteFile.py:592
+#: AbsoluteFolder.py:685
 msgid "Move Up"
 msgstr "ऊपर ले जाएं"
 
-#: AbsoluteFile.py:204
-#: AbsoluteFolder.py:246
+#: AbsoluteFile.py:317
+#: AbsoluteFolder.py:350
 msgid "Name"
 msgstr "नाम"
 
-#: AbsoluteFile.py:330
+#: AbsoluteFile.py:482
 msgid "No file selected in Explorer to add."
-msgstr "जोड़ने के लिए एक्सप्लोरर में कोई फ़ाइल नहीं चुनी गई।"
+msgstr "जोड़ने के लिए एक्सप्लोरर में कोई फ़ाइल चयनित नहीं है।"
 
-#: AbsoluteFolder.py:433
+#: AbsoluteFolder.py:563
 msgid "No folder selected in Explorer to add."
-msgstr "जोड़ने के लिए एक्सप्लोरर में कोई फ़ोल्डर नहीं चुना गया।"
+msgstr "जोड़ने के लिए एक्सप्लोरर में कोई फ़ोल्डर चयनित नहीं है।"
 
-#: __init__.py:89
-msgid "Open Absolute Folders (single tap) or Absolute Files (double tap)"
-msgstr "Absolute Folders खोलें (एक बार टैप करें) या Absolute Files (दो बार टैप करें)"
+#: AbsoluteFolder.py:872
+#: __init__.py:86
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap). If the target dialog is already open, brings it to the front instead of reopening it."
+msgstr "पूर्ण फ़ोल्डर (एक बार टैप करें) या पूर्ण फ़ाइलें (दो बार टैप करें) खोलें। यदि लक्ष्य संवाद पहले से खुला है, तो इसे दोबारा खोलने के बजाय सामने लाएं।"
 
-#: AbsoluteFile.py:205
-#: AbsoluteFile.py:224
-#: AbsoluteFolder.py:247
-#: AbsoluteFolder.py:254
-#: AbsoluteFolder.py:297
+#: AbsoluteFile.py:318
+#: AbsoluteFile.py:339
+#: AbsoluteFolder.py:351
+#: AbsoluteFolder.py:363
+#: AbsoluteFolder.py:402
 msgid "Path"
 msgstr "पथ"
 
-#: AbsoluteFile.py:422
-#: AbsoluteFolder.py:535
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Pin to top"
-msgstr "ऊपर पिन करें"
+msgstr "शीर्ष पर पिन करें"
 
-#: AbsoluteFile.py:198
+#: AbsoluteFile.py:307
 msgid "Recent Files"
 msgstr "हाल की फ़ाइलें"
 
-#: AbsoluteFolder.py:241
+#: AbsoluteFolder.py:340
 msgid "Recent Folders"
 msgstr "हाल के फ़ोल्डर"
 
-#: AbsoluteFolder.py:286
+#: AbsoluteFolder.py:393
 msgid "Remember and open folders automatically on restart"
-msgstr "पुनः आरंभ करने पर फ़ोल्डर्स याद रखें और स्वचालित रूप से खोलें"
+msgstr "पुनः आरंभ करने पर फ़ोल्डर स्वचालित रूप से याद रखें और खोलें"
 
-#: AbsoluteFile.py:440
+#: AbsoluteFile.py:600
 msgid "Remove from Recent"
-msgstr "हाल की सूची से हटाएं"
+msgstr "हाल के से हटाएं"
 
-#: AbsoluteFolder.py:384
+#: AbsoluteFolder.py:488
 msgid "Remove {} from auto-open list?"
-msgstr "क्या {} को ऑटो-ओपन सूची से हटाएं?"
+msgstr "स्वचालित-खोलने की सूची से {} हटाएं?"
 
-#: AbsoluteFile.py:455
+#: AbsoluteFile.py:615
 msgid "Remove {} from recent list?"
-msgstr "क्या {} को हाल की सूची से हटाएं?"
+msgstr "हाल की सूची से {} हटाएं?"
 
-#: AbsoluteFile.py:380
-#: AbsoluteFolder.py:513
+#: AbsoluteFile.py:532
+#: AbsoluteFolder.py:647
 msgid "Remove {}?"
 msgstr "{} हटाएं?"
 
-#: AbsoluteFile.py:355
-#: AbsoluteFolder.py:488
+#: AbsoluteFile.py:507
+#: AbsoluteFolder.py:622
 msgid "Rename"
 msgstr "नाम बदलें"
 
-#: AbsoluteFile.py:417
+#: AbsoluteFile.py:578
 msgid "Run as Administrator"
-msgstr "प्रशासक के रूप में चलाएं"
+msgstr "प्रशासक के रूप में चलाएँ"
 
-#: AbsoluteFile.py:197
+#: AbsoluteFile.py:306
 msgid "Saved Files"
 msgstr "सहेजी गई फ़ाइलें"
 
-#: AbsoluteFolder.py:240
+#: AbsoluteFolder.py:339
 msgid "Saved Folders"
 msgstr "सहेजे गए फ़ोल्डर"
 
-#: AbsoluteFile.py:338
-#: AbsoluteFile.py:360
-#: AbsoluteFolder.py:441
-#: AbsoluteFolder.py:493
+#: AbsoluteFile.py:312
+#: AbsoluteFile.py:333
+#: AbsoluteFolder.py:345
+#: AbsoluteFolder.py:357
+msgid "Search:"
+msgstr "खोज:"
+
+#: AbsoluteFile.py:490
+#: AbsoluteFile.py:512
+#: AbsoluteFolder.py:571
+#: AbsoluteFolder.py:627
 msgid "This name already exists."
 msgstr "यह नाम पहले से मौजूद है।"
 
-#: AbsoluteFile.py:422
-#: AbsoluteFolder.py:535
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Unpin"
-msgstr "अनपिन करें"
+msgstr "पिन हटाएं"
+
+#: AbsoluteFile.py:440
+msgid "{0} files found"
+msgstr "{0} फ़ाइलें मिलीं"
+
+#: AbsoluteFolder.py:535
+msgid "{0} folders found"
+msgstr "{0} फ़ोल्डर मिले"
+
+#: AbsoluteFile.py:438
+#: AbsoluteFolder.py:533
+msgid "{0} matches found"
+msgstr "{0} मिलान मिले"

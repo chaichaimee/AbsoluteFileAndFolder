@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
+"Project-Id-Version: AbsoluteFileAndFolder 2026.9.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-04-20 15:16+0700\n"
+"POT-Creation-Date: 2026-08-22 09:01+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Korean\n"
@@ -12,191 +12,214 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
 
-#: AbsoluteFile.py:210
-#: AbsoluteFolder.py:262
+#: AbsoluteFile.py:322
+#: AbsoluteFolder.py:370
 msgid "&Add"
-msgstr "추가(&A)"
+msgstr "&추가"
 
-#: AbsoluteFile.py:211
-#: AbsoluteFolder.py:264
+#: AbsoluteFile.py:323
+#: AbsoluteFolder.py:372
 msgid "&Edit"
-msgstr "편집(&E)"
+msgstr "&편집"
 
-#: AbsoluteFile.py:241
-#: AbsoluteFolder.py:263
+#: AbsoluteFile.py:354
+#: AbsoluteFolder.py:371
 msgid "&Open"
-msgstr "열기(&O)"
+msgstr "&열기"
 
-#: AbsoluteFile.py:212
-#: AbsoluteFolder.py:265
+#: AbsoluteFile.py:324
+#: AbsoluteFolder.py:373
 msgid "&Remove"
-msgstr "제거(&R)"
+msgstr "&제거"
 
-#: AbsoluteFolder.py:273
+#: AbsoluteFolder.py:381
 msgid "&Show paths"
-msgstr "경로 표시(&S)"
+msgstr "&경로 표시"
 
-#: __init__.py:53
-#: __init__.py:90
+#: AbsoluteFolder.py:832
+#: AbsoluteFolder.py:873
+#: __init__.py:46
+#: __init__.py:87
 msgid "Absolute File and Folder"
 msgstr "Absolute File and Folder"
 
-#: AbsoluteFile.py:18
+#: AbsoluteFile.py:23
 msgid "Absolute Files"
-msgstr "Absolute Files"
+msgstr "절대 파일"
 
-#: AbsoluteFolder.py:19
+#: AbsoluteFolder.py:22
 msgid "Absolute Folders"
-msgstr "Absolute Folders"
+msgstr "절대 폴더"
 
-#: AbsoluteFile.py:232
-#: AbsoluteFolder.py:277
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
 msgid "Ascending, a-z"
-msgstr "오름차순, a-z"
+msgstr "오름차순 (a-z)"
 
-#: AbsoluteFile.py:227
-#: AbsoluteFolder.py:256
+#: AbsoluteFile.py:341
+#: AbsoluteFolder.py:365
 msgid "Clear History"
 msgstr "기록 지우기"
 
-#: AbsoluteFile.py:390
-#: AbsoluteFolder.py:580
+#: AbsoluteFile.py:542
+#: AbsoluteFolder.py:737
 msgid "Clear history?"
 msgstr "기록을 지우시겠습니까?"
 
-#: AbsoluteFile.py:232
-#: AbsoluteFolder.py:277
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
 msgid "Custom order"
-msgstr "사용자 지정 순서"
+msgstr "사용자 지정 정렬"
 
-#: AbsoluteFile.py:428
-#: AbsoluteFolder.py:364
-#: AbsoluteFolder.py:539
+#: AbsoluteFile.py:588
+#: AbsoluteFolder.py:469
+#: AbsoluteFolder.py:681
 msgid "Delete"
 msgstr "삭제"
 
-#: AbsoluteFile.py:232
-#: AbsoluteFolder.py:277
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
 msgid "Descending z-a"
-msgstr "내림차순, z-a"
+msgstr "내림차순 (z-a)"
 
-#: AbsoluteFile.py:427
-#: AbsoluteFolder.py:538
+#: AbsoluteFile.py:587
+#: AbsoluteFolder.py:680
 msgid "Edit"
 msgstr "편집"
 
-#: AbsoluteFile.py:333
-#: AbsoluteFolder.py:436
+#: AbsoluteFile.py:485
+#: AbsoluteFolder.py:566
 msgid "Enter display name"
 msgstr "표시 이름 입력"
 
-#: AbsoluteFile.py:223
+#: AbsoluteFile.py:338
 msgid "File Name"
 msgstr "파일 이름"
 
-#: AbsoluteFile.py:188
+#: AbsoluteFile.py:297
 msgid "Filter Type:"
 msgstr "필터 유형:"
 
-#: AbsoluteFolder.py:253
-#: AbsoluteFolder.py:296
+#: AbsoluteFolder.py:362
+#: AbsoluteFolder.py:401
 msgid "Folder Name"
 msgstr "폴더 이름"
 
-#: AbsoluteFile.py:433
-#: AbsoluteFolder.py:543
+#: AbsoluteFile.py:593
+#: AbsoluteFolder.py:686
 msgid "Move Down"
 msgstr "아래로 이동"
 
-#: AbsoluteFile.py:432
-#: AbsoluteFolder.py:542
+#: AbsoluteFile.py:592
+#: AbsoluteFolder.py:685
 msgid "Move Up"
 msgstr "위로 이동"
 
-#: AbsoluteFile.py:204
-#: AbsoluteFolder.py:246
+#: AbsoluteFile.py:317
+#: AbsoluteFolder.py:350
 msgid "Name"
 msgstr "이름"
 
-#: AbsoluteFile.py:330
+#: AbsoluteFile.py:482
 msgid "No file selected in Explorer to add."
 msgstr "추가할 파일이 탐색기에서 선택되지 않았습니다."
 
-#: AbsoluteFolder.py:433
+#: AbsoluteFolder.py:563
 msgid "No folder selected in Explorer to add."
 msgstr "추가할 폴더가 탐색기에서 선택되지 않았습니다."
 
-#: __init__.py:89
-msgid "Open Absolute Folders (single tap) or Absolute Files (double tap)"
-msgstr "Absolute Folders 열기(한 번 탭) 또는 Absolute Files 열기(두 번 탭)"
+#: AbsoluteFolder.py:872
+#: __init__.py:86
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap). If the target dialog is already open, brings it to the front instead of reopening it."
+msgstr "절대 폴더(한 번 탭) 또는 절대 파일(두 번 탭)을 엽니다. 대상 대화 상자가 이미 열려 있는 경우, 다시 여는 대신 맨 앞으로 가져옵니다."
 
-#: AbsoluteFile.py:205
-#: AbsoluteFile.py:224
-#: AbsoluteFolder.py:247
-#: AbsoluteFolder.py:254
-#: AbsoluteFolder.py:297
+#: AbsoluteFile.py:318
+#: AbsoluteFile.py:339
+#: AbsoluteFolder.py:351
+#: AbsoluteFolder.py:363
+#: AbsoluteFolder.py:402
 msgid "Path"
 msgstr "경로"
 
-#: AbsoluteFile.py:422
-#: AbsoluteFolder.py:535
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Pin to top"
-msgstr "상단에 고정"
+msgstr "맨 위에 고정"
 
-#: AbsoluteFile.py:198
+#: AbsoluteFile.py:307
 msgid "Recent Files"
 msgstr "최근 파일"
 
-#: AbsoluteFolder.py:241
+#: AbsoluteFolder.py:340
 msgid "Recent Folders"
 msgstr "최근 폴더"
 
-#: AbsoluteFolder.py:286
+#: AbsoluteFolder.py:393
 msgid "Remember and open folders automatically on restart"
-msgstr "재시작 시 폴더를 기억하고 자동으로 열기"
+msgstr "다시 시작할 때 폴더를 자동으로 기억하고 열기"
 
-#: AbsoluteFile.py:440
+#: AbsoluteFile.py:600
 msgid "Remove from Recent"
 msgstr "최근 항목에서 제거"
 
-#: AbsoluteFolder.py:384
+#: AbsoluteFolder.py:488
 msgid "Remove {} from auto-open list?"
 msgstr "자동 열기 목록에서 {}을(를) 제거하시겠습니까?"
 
-#: AbsoluteFile.py:455
+#: AbsoluteFile.py:615
 msgid "Remove {} from recent list?"
 msgstr "최근 목록에서 {}을(를) 제거하시겠습니까?"
 
-#: AbsoluteFile.py:380
-#: AbsoluteFolder.py:513
+#: AbsoluteFile.py:532
+#: AbsoluteFolder.py:647
 msgid "Remove {}?"
 msgstr "{}을(를) 제거하시겠습니까?"
 
-#: AbsoluteFile.py:355
-#: AbsoluteFolder.py:488
+#: AbsoluteFile.py:507
+#: AbsoluteFolder.py:622
 msgid "Rename"
-msgstr "이름 바꾸기"
+msgstr "이름 변경"
 
-#: AbsoluteFile.py:417
+#: AbsoluteFile.py:578
 msgid "Run as Administrator"
 msgstr "관리자 권한으로 실행"
 
-#: AbsoluteFile.py:197
+#: AbsoluteFile.py:306
 msgid "Saved Files"
 msgstr "저장된 파일"
 
-#: AbsoluteFolder.py:240
+#: AbsoluteFolder.py:339
 msgid "Saved Folders"
 msgstr "저장된 폴더"
 
-#: AbsoluteFile.py:338
-#: AbsoluteFile.py:360
-#: AbsoluteFolder.py:441
-#: AbsoluteFolder.py:493
-msgid "This name already exists."
-msgstr "이 이름은 이미 존재합니다."
+#: AbsoluteFile.py:312
+#: AbsoluteFile.py:333
+#: AbsoluteFolder.py:345
+#: AbsoluteFolder.py:357
+msgid "Search:"
+msgstr "검색:"
 
-#: AbsoluteFile.py:422
-#: AbsoluteFolder.py:535
+#: AbsoluteFile.py:490
+#: AbsoluteFile.py:512
+#: AbsoluteFolder.py:571
+#: AbsoluteFolder.py:627
+msgid "This name already exists."
+msgstr "이 이름이 이미 존재합니다."
+
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Unpin"
 msgstr "고정 해제"
+
+#: AbsoluteFile.py:440
+msgid "{0} files found"
+msgstr "{0}개의 파일을 찾았습니다"
+
+#: AbsoluteFolder.py:535
+msgid "{0} folders found"
+msgstr "{0}개의 폴더를 찾았습니다"
+
+#: AbsoluteFile.py:438
+#: AbsoluteFolder.py:533
+msgid "{0} matches found"
+msgstr "{0}개의 일치 항목을 찾았습니다"

@@ -1,91 +1,225 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: zh_CN\n"
+"Project-Id-Version: AbsoluteFileAndFolder 2026.9.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-08-22 09:01+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Chinese (Simplified)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
-"Last-Translator: chaiBot and Malee Yamazaki\n"
 
-#: AbsoluteFile.py:210
+#: AbsoluteFile.py:322
+#: AbsoluteFolder.py:370
 msgid "&Add"
-msgstr "添加 (&A)"
+msgstr "&添加"
 
-#: AbsoluteFile.py:211
+#: AbsoluteFile.py:323
+#: AbsoluteFolder.py:372
 msgid "&Edit"
-msgstr "编辑 (&E)"
+msgstr "&编辑"
 
-#: AbsoluteFile.py:241
+#: AbsoluteFile.py:354
+#: AbsoluteFolder.py:371
 msgid "&Open"
-msgstr "打开 (&O)"
+msgstr "&打开"
 
-#: AbsoluteFile.py:212
+#: AbsoluteFile.py:324
+#: AbsoluteFolder.py:373
 msgid "&Remove"
-msgstr "移除 (&R)"
+msgstr "&移除"
 
-#: AbsoluteFolder.py:273
+#: AbsoluteFolder.py:381
 msgid "&Show paths"
-msgstr "显示路径 (&S)"
+msgstr "&显示路径"
 
-#: AbsoluteFile.py:227
+#: AbsoluteFolder.py:832
+#: AbsoluteFolder.py:873
+#: __init__.py:46
+#: __init__.py:87
+msgid "Absolute File and Folder"
+msgstr "Absolute File and Folder"
+
+#: AbsoluteFile.py:23
+msgid "Absolute Files"
+msgstr "绝对文件"
+
+#: AbsoluteFolder.py:22
+msgid "Absolute Folders"
+msgstr "绝对文件夹"
+
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
+msgid "Ascending, a-z"
+msgstr "升序 (a-z)"
+
+#: AbsoluteFile.py:341
+#: AbsoluteFolder.py:365
 msgid "Clear History"
 msgstr "清除历史记录"
 
-#: AbsoluteFile.py:390
+#: AbsoluteFile.py:542
+#: AbsoluteFolder.py:737
 msgid "Clear history?"
-msgstr "清除历史记录吗？"
+msgstr "清除历史记录？"
 
-#: AbsoluteFile.py:428
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
+msgid "Custom order"
+msgstr "自定义排序"
+
+#: AbsoluteFile.py:588
+#: AbsoluteFolder.py:469
+#: AbsoluteFolder.py:681
 msgid "Delete"
 msgstr "删除"
 
-#: AbsoluteFile.py:333
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
+msgid "Descending z-a"
+msgstr "降序 (z-a)"
+
+#: AbsoluteFile.py:587
+#: AbsoluteFolder.py:680
+msgid "Edit"
+msgstr "编辑"
+
+#: AbsoluteFile.py:485
+#: AbsoluteFolder.py:566
 msgid "Enter display name"
 msgstr "输入显示名称"
 
-#: AbsoluteFile.py:223
+#: AbsoluteFile.py:338
 msgid "File Name"
 msgstr "文件名"
 
-#: AbsoluteFile.py:188
+#: AbsoluteFile.py:297
 msgid "Filter Type:"
-msgstr "过滤器类型："
+msgstr "筛选类型："
 
-#: AbsoluteFolder.py:253
+#: AbsoluteFolder.py:362
+#: AbsoluteFolder.py:401
 msgid "Folder Name"
-msgstr "文件夹名称"
+msgstr "文件夹名"
 
-#: AbsoluteFile.py:433
+#: AbsoluteFile.py:593
+#: AbsoluteFolder.py:686
 msgid "Move Down"
 msgstr "下移"
 
-#: AbsoluteFile.py:432
+#: AbsoluteFile.py:592
+#: AbsoluteFolder.py:685
 msgid "Move Up"
 msgstr "上移"
 
-#: AbsoluteFile.py:204
+#: AbsoluteFile.py:317
+#: AbsoluteFolder.py:350
 msgid "Name"
 msgstr "名称"
 
-#: AbsoluteFile.py:422
+#: AbsoluteFile.py:482
+msgid "No file selected in Explorer to add."
+msgstr "未在资源管理器中选择要添加的文件。"
+
+#: AbsoluteFolder.py:563
+msgid "No folder selected in Explorer to add."
+msgstr "未在资源管理器中选择要添加的文件夹。"
+
+#: AbsoluteFolder.py:872
+#: __init__.py:86
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap). If the target dialog is already open, brings it to the front instead of reopening it."
+msgstr "打开绝对文件夹（单击）或绝对文件（双击）。如果目标对话框已经打开，则将其置于前台而不是重新打开。"
+
+#: AbsoluteFile.py:318
+#: AbsoluteFile.py:339
+#: AbsoluteFolder.py:351
+#: AbsoluteFolder.py:363
+#: AbsoluteFolder.py:402
+msgid "Path"
+msgstr "路径"
+
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Pin to top"
 msgstr "置顶"
 
-#: AbsoluteFile.py:355
+#: AbsoluteFile.py:307
+msgid "Recent Files"
+msgstr "最近的文件"
+
+#: AbsoluteFolder.py:340
+msgid "Recent Folders"
+msgstr "最近的文件夹"
+
+#: AbsoluteFolder.py:393
+msgid "Remember and open folders automatically on restart"
+msgstr "重启时自动记住并打开文件夹"
+
+#: AbsoluteFile.py:600
+msgid "Remove from Recent"
+msgstr "从最近中移除"
+
+#: AbsoluteFolder.py:488
+msgid "Remove {} from auto-open list?"
+msgstr "从自动打开列表中移除 {}？"
+
+#: AbsoluteFile.py:615
+msgid "Remove {} from recent list?"
+msgstr "从最近列表中移除 {}？"
+
+#: AbsoluteFile.py:532
+#: AbsoluteFolder.py:647
+msgid "Remove {}?"
+msgstr "移除 {}？"
+
+#: AbsoluteFile.py:507
+#: AbsoluteFolder.py:622
 msgid "Rename"
 msgstr "重命名"
 
-#: AbsoluteFile.py:417
+#: AbsoluteFile.py:578
 msgid "Run as Administrator"
 msgstr "以管理员身份运行"
 
-#: AbsoluteFile.py:338
-msgid "This name already exists."
-msgstr "该名称已存在。"
+#: AbsoluteFile.py:306
+msgid "Saved Files"
+msgstr "已保存的文件"
 
-#: AbsoluteFile.py:422
+#: AbsoluteFolder.py:339
+msgid "Saved Folders"
+msgstr "已保存的文件夹"
+
+#: AbsoluteFile.py:312
+#: AbsoluteFile.py:333
+#: AbsoluteFolder.py:345
+#: AbsoluteFolder.py:357
+msgid "Search:"
+msgstr "搜索："
+
+#: AbsoluteFile.py:490
+#: AbsoluteFile.py:512
+#: AbsoluteFolder.py:571
+#: AbsoluteFolder.py:627
+msgid "This name already exists."
+msgstr "此名称已存在。"
+
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Unpin"
 msgstr "取消置顶"
+
+#: AbsoluteFile.py:440
+msgid "{0} files found"
+msgstr "找到 {0} 个文件"
+
+#: AbsoluteFolder.py:535
+msgid "{0} folders found"
+msgstr "找到 {0} 个文件夹"
+
+#: AbsoluteFile.py:438
+#: AbsoluteFolder.py:533
+msgid "{0} matches found"
+msgstr "找到 {0} 个匹配项"

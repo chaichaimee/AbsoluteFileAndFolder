@@ -1,4 +1,5 @@
 # AbsoluteFile.py
+
 import os
 import wx
 import ui
@@ -28,11 +29,29 @@ _SWP_SHOWWINDOW = 0x0040
 
 
 def _openFilePath(path):
-	try:
-		if path and os.path.isfile(path):
-			os.startfile(path)
-	except OSError as e:
-		logHandler.log.warning(f"Failed to open file from Absolute Files: {e}", exc_info=True)
+	def worker():
+		# ShellExecute (invoked internally by os.startfile) can require an
+		# initialized COM apartment on the calling thread for some file
+		# associations/shell verbs; bracket it the same way other Shell
+		# COM access in this module is bracketed.
+		comInitialized = False
+		try:
+			comtypes.CoInitialize()
+			comInitialized = True
+		except OSError:
+			pass
+		try:
+			if path and os.path.isfile(path):
+				os.startfile(path)
+		except OSError as e:
+			logHandler.log.warning(f"Failed to open file from Absolute Files: {e}", exc_info=True)
+		finally:
+			if comInitialized:
+				try:
+					comtypes.CoUninitialize()
+				except OSError:
+					pass
+	threading.Thread(target=worker, daemon=True).start()
 
 
 class AbsoluteFileManager:
@@ -45,10 +64,12 @@ class AbsoluteFileManager:
 		self._sortMode = "UPPERCASE"
 		self._newFile = ""
 		self.dialog = None
+		self._is_resolving = False
+		self._resolverThread = None
 		self.loadConfig()
 
 	def _get_config_path(self):
-		folder = os.path.join(globalVars.appArgs.configPath, "ChaiChaimee", "AbsoluteFileAndFloder")
+		folder = os.path.join(globalVars.appArgs.configPath, "ChaiChaimee", "AbsoluteFileAndFolder")
 		return os.path.join(folder, "AbsoluteFiles.json")
 
 	@staticmethod
@@ -79,6 +100,7 @@ class AbsoluteFileManager:
 
 	def _getCurrentPathFromExplorer(self, fgAppName, fgHandle, focusAppName, focusHandle):
 		comInitialized = False
+		shell = None
 		try:
 			comtypes.CoInitialize()
 			comInitialized = True
@@ -100,6 +122,7 @@ class AbsoluteFileManager:
 		except (ComTypesCOMError, AttributeError, RuntimeError) as e:
 			logHandler.log.warning(f"Failed to get Explorer file path: {e}", exc_info=True)
 		finally:
+			shell = None
 			if comInitialized:
 				try:
 					comtypes.CoUninitialize()
@@ -151,6 +174,9 @@ class AbsoluteFileManager:
 				logHandler.log.warning(f"Failed to add to recent files: {e}", exc_info=True)
 
 	def show(self):
+		if self._is_resolving:
+			return
+		self._is_resolving = True
 		self.loadConfig()
 		fg = api.getForegroundObject()
 		fgAppName = fg.appModule.appName if fg and fg.appModule else None
@@ -160,10 +186,15 @@ class AbsoluteFileManager:
 		focusHandle = focus.windowHandle if focus else None
 
 		def worker():
-			path = self._getCurrentPathFromExplorer(fgAppName, fgHandle, focusAppName, focusHandle)
-			wx.CallAfter(self._onPathResolved, path)
+			try:
+				path = self._getCurrentPathFromExplorer(fgAppName, fgHandle, focusAppName, focusHandle)
+				wx.CallAfter(self._onPathResolved, path)
+			finally:
+				self._is_resolving = False
+				self._resolverThread = None
 
-		threading.Thread(target=worker, daemon=True).start()
+		self._resolverThread = threading.Thread(target=worker, daemon=True)
+		self._resolverThread.start()
 
 	def _onPathResolved(self, path):
 		if path and os.path.isfile(path):
@@ -185,6 +216,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 	def __init__(self, parent, manager):
 		style = wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER | wx.MAXIMIZE_BOX | wx.STAY_ON_TOP
 		super().__init__(parent, title=TITLE, style=style)
+		self.timer = None
 		if AbsoluteFilesDialog._activeInstance:
 			AbsoluteFilesDialog._activeInstance._silentClose()
 		AbsoluteFilesDialog._activeInstance = self
@@ -192,6 +224,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self._displayedRecentPaths = []
 		self._contextMenuOpen = False
 		self._pendingOpenPath = None
+		self._filterGeneration = 0
 		self._initUI()
 		self._bindEvents()
 		self.updateFiles()
@@ -219,24 +252,26 @@ class AbsoluteFilesDialog(wx.Dialog):
 		try:
 			if self.IsIconized():
 				self.Iconize(False)
+			gui.mainFrame.prePopup()
+			self.SetWindowStyleFlag(self.GetWindowStyleFlag() & ~wx.STAY_ON_TOP)
+			self.SetWindowStyleFlag(self.GetWindowStyleFlag() | wx.STAY_ON_TOP)
 			self.Raise()
+			self.SetFocus()
 			self._applyTopMost()
 			self._reset_timer()
 			if self.tabs.GetSelection() == 0:
 				self.listSaved.SetFocus()
 			else:
 				self.listRecent.SetFocus()
-		except RuntimeError as e:
+		except (OSError, RuntimeError) as e:
 			logHandler.log.warning(f"Failed to raise existing Files dialog: {e}", exc_info=True)
 
 	def _applyTopMost(self):
 		try:
-			hwnd = self.GetHandle()
-			if hwnd:
-				ctypes.windll.user32.SetWindowPos(
-					hwnd, _HWND_TOPMOST, 0, 0, 0, 0,
-					_SWP_NOMOVE | _SWP_NOSIZE | _SWP_SHOWWINDOW
-				)
+			style = self.GetWindowStyleFlag()
+			self.SetWindowStyleFlag(style & ~wx.STAY_ON_TOP)
+			self.SetWindowStyleFlag(style | wx.STAY_ON_TOP)
+			self.Raise()
 		except (OSError, RuntimeError) as e:
 			logHandler.log.warning(f"Failed to force Files dialog topmost: {e}", exc_info=True)
 
@@ -248,10 +283,26 @@ class AbsoluteFilesDialog(wx.Dialog):
 			pass
 
 	def _silentClose(self):
-		self._stop_timer()
+		self._destroyTimer()
 		self._pendingOpenPath = None
 		gui.mainFrame.postPopup()
 		wx.CallAfter(self.Close)
+
+	def _destroyTimer(self):
+		if self.timer:
+			try:
+				self.timer.Stop()
+			except Exception:
+				pass
+			try:
+				self.Unbind(wx.EVT_TIMER, source=self.timer)
+			except Exception:
+				pass
+			try:
+				self.timer.Destroy()
+			except Exception:
+				pass
+			self.timer = None
 
 	def _reset_timer(self):
 		if self.timer and not self._contextMenuOpen:
@@ -291,6 +342,11 @@ class AbsoluteFilesDialog(wx.Dialog):
 		mainSizer.Add(self.tabs, 1, wx.EXPAND | wx.ALL, 5)
 
 		savedSizer = wx.BoxSizer(wx.VERTICAL)
+		savedSearchSizer = wx.BoxSizer(wx.HORIZONTAL)
+		savedSearchSizer.Add(wx.StaticText(self.panelSaved, label=_("Search:")), 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
+		self.searchSaved = wx.TextCtrl(self.panelSaved)
+		savedSearchSizer.Add(self.searchSaved, 1, wx.EXPAND)
+		savedSizer.Add(savedSearchSizer, 0, wx.EXPAND | wx.ALL, 5)
 		self.listSaved = wx.ListCtrl(self.panelSaved, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.BORDER_SUNKEN)
 		self.listSaved.InsertColumn(0, _("Name"), width=250)
 		self.listSaved.InsertColumn(1, _("Path"), width=400)
@@ -307,6 +363,11 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self.panelSaved.SetSizer(savedSizer)
 
 		recentSizer = wx.BoxSizer(wx.VERTICAL)
+		recentSearchSizer = wx.BoxSizer(wx.HORIZONTAL)
+		recentSearchSizer.Add(wx.StaticText(self.panelRecent, label=_("Search:")), 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
+		self.searchRecent = wx.TextCtrl(self.panelRecent)
+		recentSearchSizer.Add(self.searchRecent, 1, wx.EXPAND)
+		recentSizer.Add(recentSearchSizer, 0, wx.EXPAND | wx.ALL, 5)
 		self.listRecent = wx.ListCtrl(self.panelRecent, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.BORDER_SUNKEN)
 		self.listRecent.InsertColumn(0, _("File Name"), width=250)
 		self.listRecent.InsertColumn(1, _("Path"), width=400)
@@ -336,6 +397,8 @@ class AbsoluteFilesDialog(wx.Dialog):
 
 	def _bindEvents(self):
 		self.filterCombo.Bind(wx.EVT_COMBOBOX, lambda e: self.updateFiles() or self._reset_timer())
+		self.searchSaved.Bind(wx.EVT_TEXT, self.onSearchTextChanged)
+		self.searchRecent.Bind(wx.EVT_TEXT, self.onSearchTextChanged)
 		self.sortCombo.Bind(wx.EVT_COMBOBOX, self.onSortChanged)
 		self.tabs.Bind(wx.EVT_NOTEBOOK_PAGE_CHANGED, self.onTabChanged)
 		self.btnOpen.Bind(wx.EVT_BUTTON, self.onOpen)
@@ -354,7 +417,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self.Bind(wx.EVT_CLOSE, self.on_close)
 
 	def on_close(self, event):
-		self._stop_timer()
+		self._destroyTimer()
 		if AbsoluteFilesDialog._activeInstance == self:
 			AbsoluteFilesDialog._activeInstance = None
 		pendingPath = self._pendingOpenPath
@@ -386,6 +449,31 @@ class AbsoluteFilesDialog(wx.Dialog):
 		else:
 			evt.Skip()
 		self._reset_timer()
+
+	def onSearchTextChanged(self, evt):
+		self._reset_timer()
+		self._filterGeneration += 1
+		currentGeneration = self._filterGeneration
+		currentText = self.searchSaved.GetValue() if self.tabs.GetSelection() == 0 else self.searchRecent.GetValue()
+		self.updateFiles()
+		core.callLater(500, self._announceSearchResultIfCurrent, currentGeneration, currentText)
+		evt.Skip()
+
+	def _announceSearchResultIfCurrent(self, generation, filterText):
+		if generation != self._filterGeneration:
+			return
+		try:
+			if self.tabs.GetSelection() == 0:
+				count = self.listSaved.GetItemCount()
+			else:
+				count = self.listRecent.GetItemCount()
+
+			if filterText:
+				ui.message(_("{0} matches found").format(count))
+			else:
+				ui.message(_("{0} files found").format(count))
+		except RuntimeError:
+			pass
 
 	def onKeyDown(self, evt):
 		if evt.GetKeyCode() == wx.WXK_DELETE:
@@ -621,6 +709,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self.listRecent.DeleteAllItems()
 		self._displayedRecentPaths = []
 		f_type = self.filterCombo.GetValue().lower()
+		searchText = (self.searchSaved.GetValue() if self.tabs.GetSelection() == 0 else self.searchRecent.GetValue()).strip().lower()
 		exts = {
 			"audio": ('.mp3', '.wav', '.flac', '.m4a', '.ogg'),
 			"video": ('.mp4', '.mkv', '.avi', '.mov'),
@@ -638,6 +727,8 @@ class AbsoluteFilesDialog(wx.Dialog):
 			items = pinned + unpinned
 			count = 0
 			for name in items:
+				if searchText and searchText not in name.lower():
+					continue
 				path = self.manager._files[name]
 				if f_type == "all" or path.lower().endswith(exts.get(f_type, ())):
 					idx = self.listSaved.InsertItem(count, name)
@@ -654,8 +745,14 @@ class AbsoluteFilesDialog(wx.Dialog):
 		else:
 			count = 0
 			for p in self.manager._recentFiles:
+				name = os.path.basename(p)
+				if searchText and searchText not in name.lower():
+					continue
 				if f_type == "all" or p.lower().endswith(exts.get(f_type, ())):
-					idx = self.listRecent.InsertItem(count, os.path.basename(p))
+					idx = self.listRecent.InsertItem(count, name)
 					self.listRecent.SetItem(idx, 1, p)
 					self._displayedRecentPaths.append(p)
 					count += 1
+
+
+

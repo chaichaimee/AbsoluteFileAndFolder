@@ -1,91 +1,225 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AbsoluteFileAndFolder 2026.4.4\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ru\n"
+"Project-Id-Version: AbsoluteFileAndFolder 2026.9.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-08-22 09:01+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Russian\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
-"Last-Translator: chaiBot and Malee Yamazaki\n"
 
-#: AbsoluteFile.py:210
+#: AbsoluteFile.py:322
+#: AbsoluteFolder.py:370
 msgid "&Add"
 msgstr "&Добавить"
 
-#: AbsoluteFile.py:211
+#: AbsoluteFile.py:323
+#: AbsoluteFolder.py:372
 msgid "&Edit"
-msgstr "&Изменить"
+msgstr "&Правка"
 
-#: AbsoluteFile.py:241
+#: AbsoluteFile.py:354
+#: AbsoluteFolder.py:371
 msgid "&Open"
 msgstr "&Открыть"
 
-#: AbsoluteFile.py:212
+#: AbsoluteFile.py:324
+#: AbsoluteFolder.py:373
 msgid "&Remove"
 msgstr "&Удалить"
 
-#: AbsoluteFolder.py:273
+#: AbsoluteFolder.py:381
 msgid "&Show paths"
 msgstr "&Показать пути"
 
-#: AbsoluteFile.py:227
+#: AbsoluteFolder.py:832
+#: AbsoluteFolder.py:873
+#: __init__.py:46
+#: __init__.py:87
+msgid "Absolute File and Folder"
+msgstr "Absolute File and Folder"
+
+#: AbsoluteFile.py:23
+msgid "Absolute Files"
+msgstr "Абсолютные файлы"
+
+#: AbsoluteFolder.py:22
+msgid "Absolute Folders"
+msgstr "Абсолютные папки"
+
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
+msgid "Ascending, a-z"
+msgstr "По возрастанию, a-z"
+
+#: AbsoluteFile.py:341
+#: AbsoluteFolder.py:365
 msgid "Clear History"
 msgstr "Очистить историю"
 
-#: AbsoluteFile.py:390
+#: AbsoluteFile.py:542
+#: AbsoluteFolder.py:737
 msgid "Clear history?"
 msgstr "Очистить историю?"
 
-#: AbsoluteFile.py:428
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
+msgid "Custom order"
+msgstr "Пользовательский порядок"
+
+#: AbsoluteFile.py:588
+#: AbsoluteFolder.py:469
+#: AbsoluteFolder.py:681
 msgid "Delete"
 msgstr "Удалить"
 
-#: AbsoluteFile.py:333
+#: AbsoluteFile.py:346
+#: AbsoluteFolder.py:385
+msgid "Descending z-a"
+msgstr "По убыванию, z-a"
+
+#: AbsoluteFile.py:587
+#: AbsoluteFolder.py:680
+msgid "Edit"
+msgstr "Изменить"
+
+#: AbsoluteFile.py:485
+#: AbsoluteFolder.py:566
 msgid "Enter display name"
 msgstr "Введите отображаемое имя"
 
-#: AbsoluteFile.py:223
+#: AbsoluteFile.py:338
 msgid "File Name"
 msgstr "Имя файла"
 
-#: AbsoluteFile.py:188
+#: AbsoluteFile.py:297
 msgid "Filter Type:"
 msgstr "Тип фильтра:"
 
-#: AbsoluteFolder.py:253
+#: AbsoluteFolder.py:362
+#: AbsoluteFolder.py:401
 msgid "Folder Name"
 msgstr "Имя папки"
 
-#: AbsoluteFile.py:433
+#: AbsoluteFile.py:593
+#: AbsoluteFolder.py:686
 msgid "Move Down"
 msgstr "Переместить вниз"
 
-#: AbsoluteFile.py:432
+#: AbsoluteFile.py:592
+#: AbsoluteFolder.py:685
 msgid "Move Up"
 msgstr "Переместить вверх"
 
-#: AbsoluteFile.py:204
+#: AbsoluteFile.py:317
+#: AbsoluteFolder.py:350
 msgid "Name"
 msgstr "Имя"
 
-#: AbsoluteFile.py:422
-msgid "Pin to top"
-msgstr "Закрепить сверху"
+#: AbsoluteFile.py:482
+msgid "No file selected in Explorer to add."
+msgstr "В Проводнике не выбран файл для добавления."
 
-#: AbsoluteFile.py:355
+#: AbsoluteFolder.py:563
+msgid "No folder selected in Explorer to add."
+msgstr "В Проводнике не выбрана папка для добавления."
+
+#: AbsoluteFolder.py:872
+#: __init__.py:86
+msgid "Open Absolute Folders (single tap) or Absolute Files (double tap). If the target dialog is already open, brings it to the front instead of reopening it."
+msgstr "Открытие абсолютных папок (одиночное нажатие) или абсолютных файлов (двойное нажатие). Если целевое окно уже открыто, оно выводится на передний план вместо повторного открытия."
+
+#: AbsoluteFile.py:318
+#: AbsoluteFile.py:339
+#: AbsoluteFolder.py:351
+#: AbsoluteFolder.py:363
+#: AbsoluteFolder.py:402
+msgid "Path"
+msgstr "Путь"
+
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
+msgid "Pin to top"
+msgstr "Закрепить вверху"
+
+#: AbsoluteFile.py:307
+msgid "Recent Files"
+msgstr "Недавние файлы"
+
+#: AbsoluteFolder.py:340
+msgid "Recent Folders"
+msgstr "Недавние папки"
+
+#: AbsoluteFolder.py:393
+msgid "Remember and open folders automatically on restart"
+msgstr "Запоминать и автоматически открывать папки при перезапуске"
+
+#: AbsoluteFile.py:600
+msgid "Remove from Recent"
+msgstr "Удалить из недавних"
+
+#: AbsoluteFolder.py:488
+msgid "Remove {} from auto-open list?"
+msgstr "Удалить {} из списка автооткрытия?"
+
+#: AbsoluteFile.py:615
+msgid "Remove {} from recent list?"
+msgstr "Удалить {} из списка недавних?"
+
+#: AbsoluteFile.py:532
+#: AbsoluteFolder.py:647
+msgid "Remove {}?"
+msgstr "Удалить {}?"
+
+#: AbsoluteFile.py:507
+#: AbsoluteFolder.py:622
 msgid "Rename"
 msgstr "Переименовать"
 
-#: AbsoluteFile.py:417
+#: AbsoluteFile.py:578
 msgid "Run as Administrator"
 msgstr "Запуск от имени администратора"
 
-#: AbsoluteFile.py:338
+#: AbsoluteFile.py:306
+msgid "Saved Files"
+msgstr "Сохраненные файлы"
+
+#: AbsoluteFolder.py:339
+msgid "Saved Folders"
+msgstr "Сохраненные папки"
+
+#: AbsoluteFile.py:312
+#: AbsoluteFile.py:333
+#: AbsoluteFolder.py:345
+#: AbsoluteFolder.py:357
+msgid "Search:"
+msgstr "Поиск:"
+
+#: AbsoluteFile.py:490
+#: AbsoluteFile.py:512
+#: AbsoluteFolder.py:571
+#: AbsoluteFolder.py:627
 msgid "This name already exists."
 msgstr "Это имя уже существует."
 
-#: AbsoluteFile.py:422
+#: AbsoluteFile.py:583
+#: AbsoluteFolder.py:677
 msgid "Unpin"
 msgstr "Открепить"
+
+#: AbsoluteFile.py:440
+msgid "{0} files found"
+msgstr "Найдено файлов: {0}"
+
+#: AbsoluteFolder.py:535
+msgid "{0} folders found"
+msgstr "Найдено папок: {0}"
+
+#: AbsoluteFile.py:438
+#: AbsoluteFolder.py:533
+msgid "{0} matches found"
+msgstr "Найдено совпадений: {0}"
