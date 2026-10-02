@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AbsoluteFileAndFolder 2026.9.0\n"
+"Project-Id-Version: AbsoluteFileAndFolder 2026.10.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-08-22 09:01+0700\n"
+"POT-Creation-Date: 2026-10-01 10:31+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Japanese\n"
@@ -10,36 +10,54 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: DevOn Addon\n"
+"X-Generator: ChaiBot Addon\n"
 
-#: AbsoluteFile.py:322
-#: AbsoluteFolder.py:370
+#: AbsoluteFile.py:474
+#: AbsoluteFolder.py:524
 msgid "&Add"
 msgstr "&追加"
 
-#: AbsoluteFile.py:323
-#: AbsoluteFolder.py:372
+#: AbsoluteFile.py:584
+#: AbsoluteFolder.py:736
+msgid "&Add Category"
+msgstr "カテゴリの追加(&A)"
+
+#: AbsoluteFile.py:586
+#: AbsoluteFolder.py:738
+msgid "&Delete Category"
+msgstr "カテゴリの削除(&D)"
+
+#: AbsoluteFile.py:475
+#: AbsoluteFolder.py:526
 msgid "&Edit"
 msgstr "&編集"
 
-#: AbsoluteFile.py:354
-#: AbsoluteFolder.py:371
+#: AbsoluteFile.py:585
+#: AbsoluteFolder.py:737
+msgid "&Edit Category"
+msgstr "カテゴリの編集(&E)"
+
+#: AbsoluteFile.py:913
+#: AbsoluteFolder.py:1012
+msgid "&Move to category"
+msgstr "カテゴリへ移動(&M)"
+
+#: AbsoluteFile.py:506
+#: AbsoluteFolder.py:525
 msgid "&Open"
 msgstr "&開く"
 
-#: AbsoluteFile.py:324
-#: AbsoluteFolder.py:373
+#: AbsoluteFile.py:476
+#: AbsoluteFolder.py:527
 msgid "&Remove"
 msgstr "&削除"
 
-#: AbsoluteFolder.py:381
+#: AbsoluteFolder.py:535
 msgid "&Show paths"
 msgstr "パスを&表示"
 
-#: AbsoluteFolder.py:832
-#: AbsoluteFolder.py:873
-#: __init__.py:46
-#: __init__.py:87
+#: __init__.py:79
+#: __init__.py:146
 msgid "Absolute File and Folder"
 msgstr "Absolute File and Folder"
 
@@ -47,179 +65,275 @@ msgstr "Absolute File and Folder"
 msgid "Absolute Files"
 msgstr "絶対ファイル"
 
-#: AbsoluteFolder.py:22
+#: AbsoluteFolder.py:24
 msgid "Absolute Folders"
 msgstr "絶対フォルダー"
 
-#: AbsoluteFile.py:346
-#: AbsoluteFolder.py:385
+#: AbsoluteFile.py:677
+msgid "Are you sure you want to delete category '{}' and all its files?"
+msgstr "カテゴリ '{}' とその中のすべてのファイルを削除してもよろしいですか？"
+
+#: AbsoluteFolder.py:833
+msgid "Are you sure you want to delete category '{}' and all its folders?"
+msgstr "カテゴリ '{}' とその中のすべてのフォルダを削除してもよろしいですか？"
+
+#: AbsoluteFile.py:498
+#: AbsoluteFolder.py:539
 msgid "Ascending, a-z"
 msgstr "昇順 (A-Z)"
 
-#: AbsoluteFile.py:341
-#: AbsoluteFolder.py:365
+#: AbsoluteFile.py:663
+#: AbsoluteFolder.py:819
+msgid "Category '{}' already exists or invalid."
+msgstr "カテゴリ '{}' は既に存在するか無効です。"
+
+#: AbsoluteFile.py:636
+#: AbsoluteFolder.py:792
+msgid "Category already exists or invalid."
+msgstr "カテゴリは既に存在するか無効です。"
+
+#: AbsoluteFile.py:464
+#: AbsoluteFolder.py:499
+msgid "Category:"
+msgstr "カテゴリ:"
+
+#: AbsoluteFile.py:493
+#: AbsoluteFolder.py:519
 msgid "Clear History"
 msgstr "履歴のクリア"
 
-#: AbsoluteFile.py:542
-#: AbsoluteFolder.py:737
+#: AbsoluteFile.py:849
+#: AbsoluteFolder.py:1066
 msgid "Clear history?"
 msgstr "履歴をクリアしますか？"
 
-#: AbsoluteFile.py:346
-#: AbsoluteFolder.py:385
+#: AbsoluteFile.py:498
+#: AbsoluteFolder.py:539
 msgid "Custom order"
 msgstr "カスタム順"
 
-#: AbsoluteFile.py:588
-#: AbsoluteFolder.py:469
-#: AbsoluteFolder.py:681
+#: AbsoluteFile.py:895
+#: AbsoluteFolder.py:631
+#: AbsoluteFolder.py:994
 msgid "Delete"
 msgstr "削除"
 
-#: AbsoluteFile.py:346
-#: AbsoluteFolder.py:385
+#: AbsoluteFile.py:498
+#: AbsoluteFolder.py:539
 msgid "Descending z-a"
 msgstr "降順 (Z-A)"
 
-#: AbsoluteFile.py:587
-#: AbsoluteFolder.py:680
+#: AbsoluteFile.py:894
+#: AbsoluteFolder.py:993
 msgid "Edit"
 msgstr "編集"
 
-#: AbsoluteFile.py:485
-#: AbsoluteFolder.py:566
+#: AbsoluteFile.py:790
+#: AbsoluteFolder.py:876
 msgid "Enter display name"
 msgstr "表示名を入力"
 
-#: AbsoluteFile.py:338
+#: AbsoluteFile.py:625
+#: AbsoluteFolder.py:781
+msgid "Enter new category name:"
+msgstr "新しいカテゴリ名を入力してください:"
+
+#: AbsoluteFile.py:650
+#: AbsoluteFolder.py:806
+msgid "Enter new name for category '{}':"
+msgstr "カテゴリ '{}' の新しい名前を入力してください:"
+
+#: AbsoluteFile.py:685
+#: AbsoluteFolder.py:841
+msgid "Failed to delete category."
+msgstr "カテゴリの削除に失敗しました。"
+
+#: AbsoluteFile.py:702
+msgid "Failed to move file. It may already exist in the target category."
+msgstr "ファイルの移動に失敗しました。移動先のカテゴリにすでに存在している可能性があります。"
+
+#: AbsoluteFolder.py:857
+msgid "Failed to move folder. It may already exist in the target category."
+msgstr "フォルダの移動に失敗しました。移動先のカテゴリにすでに存在している可能性があります。"
+
+#: AbsoluteFile.py:490
 msgid "File Name"
 msgstr "ファイル名"
 
-#: AbsoluteFile.py:297
+#: AbsoluteFile.py:444
 msgid "Filter Type:"
 msgstr "フィルターの種類:"
 
-#: AbsoluteFolder.py:362
-#: AbsoluteFolder.py:401
+#: AbsoluteFolder.py:516
+#: AbsoluteFolder.py:555
 msgid "Folder Name"
 msgstr "フォルダー名"
 
-#: AbsoluteFile.py:593
-#: AbsoluteFolder.py:686
+#: AbsoluteFile.py:900
+#: AbsoluteFolder.py:999
 msgid "Move Down"
 msgstr "下に移動"
 
-#: AbsoluteFile.py:592
-#: AbsoluteFolder.py:685
+#: AbsoluteFile.py:899
+#: AbsoluteFolder.py:998
 msgid "Move Up"
 msgstr "上に移動"
 
-#: AbsoluteFile.py:317
-#: AbsoluteFolder.py:350
+#: AbsoluteFile.py:469
+#: AbsoluteFolder.py:504
 msgid "Name"
 msgstr "名前"
 
-#: AbsoluteFile.py:482
+#: AbsoluteFile.py:644
+#: AbsoluteFile.py:671
+#: AbsoluteFolder.py:800
+#: AbsoluteFolder.py:827
+msgid "No category selected."
+msgstr "カテゴリが選択されていません。"
+
+#: AbsoluteFile.py:783
 msgid "No file selected in Explorer to add."
 msgstr "追加するファイルがエクスプローラーで選択されていません。"
 
-#: AbsoluteFolder.py:563
+#: AbsoluteFile.py:602
+msgid "No files to open in this category."
+msgstr "このカテゴリに開くファイルはありません。"
+
+#: AbsoluteFolder.py:869
 msgid "No folder selected in Explorer to add."
 msgstr "追加するフォルダーがエクスプローラーで選択されていません。"
 
-#: AbsoluteFolder.py:872
-#: __init__.py:86
+#: AbsoluteFolder.py:754
+msgid "No folders to open in this category."
+msgstr "このカテゴリに開くフォルダーはありません。"
+
+#: AbsoluteFile.py:911
+#: AbsoluteFolder.py:1010
+msgid "No other categories"
+msgstr "他のカテゴリはありません"
+
+#: AbsoluteFile.py:588
+msgid "Open &All Files in Category"
+msgstr "カテゴリ内のすべてのファイルを開く(&A)"
+
+#: AbsoluteFolder.py:740
+msgid "Open &All Folders in Category"
+msgstr "カテゴリ内のすべてのフォルダーを開く(&A)"
+
+#: __init__.py:145
 msgid "Open Absolute Folders (single tap) or Absolute Files (double tap). If the target dialog is already open, brings it to the front instead of reopening it."
 msgstr "絶対フォルダーを開く (シングルタップ) または絶対ファイル (ダブルタップ)。ターゲットのダイアログが既に開いている場合は、開き直す代わりに前面に表示します。"
 
-#: AbsoluteFile.py:318
-#: AbsoluteFile.py:339
-#: AbsoluteFolder.py:351
-#: AbsoluteFolder.py:363
-#: AbsoluteFolder.py:402
+#: AbsoluteFile.py:605
+msgid "Open all {count} files in category '{category}'?"
+msgstr "カテゴリ '{category}' 内のすべてのファイル ({count}個) を開きますか？"
+
+#: AbsoluteFolder.py:757
+msgid "Open all {count} folders in category '{category}'?"
+msgstr "カテゴリ '{category}' 内のすべてのフォルダー ({count}個) を開きますか？"
+
+#: AbsoluteFile.py:470
+#: AbsoluteFile.py:491
+#: AbsoluteFolder.py:505
+#: AbsoluteFolder.py:517
+#: AbsoluteFolder.py:556
 msgid "Path"
 msgstr "パス"
 
-#: AbsoluteFile.py:583
-#: AbsoluteFolder.py:677
+#: AbsoluteFile.py:890
+#: AbsoluteFolder.py:990
 msgid "Pin to top"
 msgstr "上部に固定"
 
-#: AbsoluteFile.py:307
+#: AbsoluteFile.py:787
+#: AbsoluteFolder.py:873
+msgid "Please select a category first."
+msgstr "最初にカテゴリを選択してください。"
+
+#: AbsoluteFile.py:454
 msgid "Recent Files"
 msgstr "最近使ったファイル"
 
-#: AbsoluteFolder.py:340
+#: AbsoluteFolder.py:489
 msgid "Recent Folders"
 msgstr "最近使ったフォルダー"
 
-#: AbsoluteFolder.py:393
+#: AbsoluteFolder.py:547
 msgid "Remember and open folders automatically on restart"
 msgstr "再起動時にフォルダーを自動的に記憶して開く"
 
-#: AbsoluteFile.py:600
+#: AbsoluteFile.py:918
 msgid "Remove from Recent"
 msgstr "最近の履歴から削除"
 
-#: AbsoluteFolder.py:488
+#: AbsoluteFolder.py:650
 msgid "Remove {} from auto-open list?"
 msgstr "自動オープンリストから {} を削除しますか？"
 
-#: AbsoluteFile.py:615
+#: AbsoluteFile.py:933
 msgid "Remove {} from recent list?"
 msgstr "最近のリストから {} を削除しますか？"
 
-#: AbsoluteFile.py:532
-#: AbsoluteFolder.py:647
+#: AbsoluteFile.py:839
+#: AbsoluteFolder.py:959
 msgid "Remove {}?"
 msgstr "{} を削除しますか？"
 
-#: AbsoluteFile.py:507
-#: AbsoluteFolder.py:622
+#: AbsoluteFile.py:813
+#: AbsoluteFolder.py:933
 msgid "Rename"
 msgstr "名前の変更"
 
-#: AbsoluteFile.py:578
+#: AbsoluteFile.py:885
 msgid "Run as Administrator"
 msgstr "管理者として実行"
 
-#: AbsoluteFile.py:306
+#: AbsoluteFile.py:453
 msgid "Saved Files"
 msgstr "保存されたファイル"
 
-#: AbsoluteFolder.py:339
+#: AbsoluteFolder.py:488
 msgid "Saved Folders"
 msgstr "保存されたフォルダー"
 
-#: AbsoluteFile.py:312
-#: AbsoluteFile.py:333
-#: AbsoluteFolder.py:345
-#: AbsoluteFolder.py:357
+#: AbsoluteFile.py:459
+#: AbsoluteFile.py:485
+#: AbsoluteFolder.py:494
+#: AbsoluteFolder.py:511
 msgid "Search:"
 msgstr "検索:"
 
-#: AbsoluteFile.py:490
-#: AbsoluteFile.py:512
-#: AbsoluteFolder.py:571
-#: AbsoluteFolder.py:627
-msgid "This name already exists."
-msgstr "この名前はすでに存在します。"
+#: AbsoluteFile.py:674
+#: AbsoluteFolder.py:830
+msgid "The 'All' category cannot be deleted."
+msgstr "「すべて」カテゴリは削除できません。"
 
-#: AbsoluteFile.py:583
-#: AbsoluteFolder.py:677
+#: AbsoluteFile.py:647
+#: AbsoluteFolder.py:803
+msgid "The 'All' category cannot be renamed."
+msgstr "「すべて」カテゴリの名前は変更できません。"
+
+#: AbsoluteFile.py:795
+#: AbsoluteFile.py:818
+#: AbsoluteFolder.py:881
+#: AbsoluteFolder.py:938
+msgid "This name already exists in this category."
+msgstr "この名前は、このカテゴリにすでに存在しています。"
+
+#: AbsoluteFile.py:890
+#: AbsoluteFolder.py:990
 msgid "Unpin"
 msgstr "固定解除"
 
-#: AbsoluteFile.py:440
+#: AbsoluteFile.py:741
 msgid "{0} files found"
 msgstr "{0} 件のファイルが見つかりました"
 
-#: AbsoluteFolder.py:535
+#: AbsoluteFolder.py:697
 msgid "{0} folders found"
 msgstr "{0} 件のフォルダーが見つかりました"
 
-#: AbsoluteFile.py:438
-#: AbsoluteFolder.py:533
+#: AbsoluteFile.py:739
+#: AbsoluteFolder.py:695
 msgid "{0} matches found"
 msgstr "{0} 件の一致が見つかりました"

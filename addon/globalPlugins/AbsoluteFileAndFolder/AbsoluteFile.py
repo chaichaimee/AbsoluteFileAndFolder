@@ -54,11 +54,15 @@ def _openFilePath(path):
 	threading.Thread(target=worker, daemon=True).start()
 
 
+DEFAULT_CATEGORY = "All"
+
+
 class AbsoluteFileManager:
 	def __init__(self):
-		self._files = {}
-		self._order = []
-		self._pinned = set()
+		self._categories = {}
+		self._order = {}
+		self._pinned = {}
+		self._lastCategory = DEFAULT_CATEGORY
 		self._recentFiles = []
 		self._showPath = False
 		self._sortMode = "UPPERCASE"
@@ -132,24 +136,57 @@ class AbsoluteFileManager:
 
 	def loadConfig(self):
 		config_path = self._get_config_path()
-		if os.path.isfile(config_path):
-			try:
-				with open(config_path, 'r', encoding='utf-8') as f:
-					data = json.load(f)
-				self._files = data.get("files", {})
-				self._order = data.get("order", list(self._files.keys()))
-				self._pinned = set(data.get("pinned", []))
-				self._recentFiles = data.get("recentFiles", [])
-				self._showPath = data.get("showPath", False)
-				self._sortMode = data.get("sortMode", "UPPERCASE")
-			except Exception as e:
-				logHandler.log.warning(f"Failed to load file config: {e}", exc_info=True)
+		if not os.path.isfile(config_path):
+			self._ensureDefaultCategory()
+			return
+		try:
+			with open(config_path, 'r', encoding='utf-8') as f:
+				data = json.load(f)
+		except Exception as e:
+			logHandler.log.warning(f"Failed to load file config: {e}", exc_info=True)
+			self._ensureDefaultCategory()
+			return
+		isLegacyLayout = "categories" not in data
+		if isLegacyLayout:
+			# Pre-category layout (Section 13): a single flat name->path map.
+			# Migrate the whole thing into the default category in memory;
+			# the on-disk file itself is only overwritten once this has been
+			# loaded successfully, so a read failure above never costs data.
+			legacyFiles = data.get("files", {})
+			legacyOrder = data.get("order", list(legacyFiles.keys()))
+			legacyPinned = data.get("pinned", [])
+			self._categories = {DEFAULT_CATEGORY: legacyFiles}
+			self._order = {DEFAULT_CATEGORY: legacyOrder}
+			self._pinned = {DEFAULT_CATEGORY: set(legacyPinned)}
+			self._lastCategory = DEFAULT_CATEGORY
+			logHandler.log.info("Migrated Absolute Files config from the pre-category flat layout into the 'All' category.")
+		else:
+			self._categories = data.get("categories", {})
+			self._order = data.get("order", {})
+			pinnedDict = data.get("pinned", {})
+			self._pinned = {cat: set(ids) for cat, ids in pinnedDict.items()}
+			self._lastCategory = data.get("lastCategory", DEFAULT_CATEGORY)
+		self._recentFiles = data.get("recentFiles", [])
+		self._showPath = data.get("showPath", False)
+		self._sortMode = data.get("sortMode", "UPPERCASE")
+		self._ensureDefaultCategory()
+		if isLegacyLayout:
+			self.saveConfig()
+
+	def _ensureDefaultCategory(self):
+		if DEFAULT_CATEGORY not in self._categories:
+			self._categories[DEFAULT_CATEGORY] = {}
+		if DEFAULT_CATEGORY not in self._order:
+			self._order[DEFAULT_CATEGORY] = list(self._categories[DEFAULT_CATEGORY].keys())
+		if DEFAULT_CATEGORY not in self._pinned:
+			self._pinned[DEFAULT_CATEGORY] = set()
 
 	def saveConfig(self):
 		data = {
-			"files": self._files,
+			"categories": self._categories,
 			"order": self._order,
-			"pinned": list(self._pinned),
+			"pinned": {cat: list(ids) for cat, ids in self._pinned.items()},
+			"lastCategory": self._lastCategory,
 			"recentFiles": self._recentFiles,
 			"showPath": self._showPath,
 			"sortMode": self._sortMode
@@ -161,6 +198,73 @@ class AbsoluteFileManager:
 				json.dump(data, f, ensure_ascii=False, indent=2)
 		except Exception as e:
 			logHandler.log.error(f"Failed to save file config: {e}", exc_info=True)
+
+	def get_all_categories(self):
+		return sorted(self._categories.keys(), key=str.lower)
+
+	def get_last_category(self):
+		return self._lastCategory if self._lastCategory in self._categories else DEFAULT_CATEGORY
+
+	def set_last_category(self, category):
+		if category and category in self._categories:
+			self._lastCategory = category
+			self.saveConfig()
+
+	def add_category(self, category_name):
+		if category_name and category_name not in self._categories:
+			self._categories[category_name] = {}
+			self._order[category_name] = []
+			self._pinned[category_name] = set()
+			self.saveConfig()
+			return True
+		return False
+
+	def delete_category(self, category):
+		if category not in self._categories or category == DEFAULT_CATEGORY:
+			return False
+		del self._categories[category]
+		self._order.pop(category, None)
+		self._pinned.pop(category, None)
+		if self._lastCategory == category:
+			self._lastCategory = DEFAULT_CATEGORY
+		self.saveConfig()
+		return True
+
+	def rename_category(self, old_name, new_name):
+		if old_name not in self._categories or old_name == DEFAULT_CATEGORY:
+			return False
+		if not new_name or new_name in self._categories:
+			return False
+		self._categories[new_name] = self._categories.pop(old_name)
+		if old_name in self._order:
+			self._order[new_name] = self._order.pop(old_name)
+		if old_name in self._pinned:
+			self._pinned[new_name] = self._pinned.pop(old_name)
+		if self._lastCategory == old_name:
+			self._lastCategory = new_name
+		self.saveConfig()
+		return True
+
+	def move_item_to_category(self, old_category, name, new_category):
+		if old_category not in self._categories or new_category not in self._categories:
+			return False
+		if old_category == new_category:
+			return False
+		if name not in self._categories[old_category]:
+			return False
+		if name in self._categories[new_category]:
+			return False
+		path = self._categories[old_category].pop(name)
+		if name in self._order.get(old_category, []):
+			self._order[old_category].remove(name)
+		wasPinned = name in self._pinned.get(old_category, set())
+		self._pinned.get(old_category, set()).discard(name)
+		self._categories[new_category][name] = path
+		self._order.setdefault(new_category, []).append(name)
+		if wasPinned:
+			self._pinned.setdefault(new_category, set()).add(name)
+		self.saveConfig()
+		return True
 
 	def addToRecent(self, path):
 		if path and os.path.isfile(path):
@@ -224,9 +328,18 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self._displayedRecentPaths = []
 		self._contextMenuOpen = False
 		self._pendingOpenPath = None
+		self._pendingOpenPaths = []
 		self._filterGeneration = 0
 		self._initUI()
 		self._bindEvents()
+		self._populateCategories()
+		lastCategory = self.manager.get_last_category()
+		categories = self.manager.get_all_categories()
+		if lastCategory in categories:
+			self.categoryCombo.SetStringSelection(lastCategory)
+		elif categories:
+			self.categoryCombo.SetSelection(0)
+		self.currentCategory = self.categoryCombo.GetStringSelection() or DEFAULT_CATEGORY
 		self.updateFiles()
 		self.timer = wx.Timer(self)
 		self.Bind(wx.EVT_TIMER, self.on_timeout, self.timer)
@@ -347,6 +460,11 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self.searchSaved = wx.TextCtrl(self.panelSaved)
 		savedSearchSizer.Add(self.searchSaved, 1, wx.EXPAND)
 		savedSizer.Add(savedSearchSizer, 0, wx.EXPAND | wx.ALL, 5)
+		savedCatSizer = wx.BoxSizer(wx.HORIZONTAL)
+		savedCatSizer.Add(wx.StaticText(self.panelSaved, label=_("Category:")), 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
+		self.categoryCombo = wx.ComboBox(self.panelSaved, choices=[], style=wx.CB_READONLY)
+		savedCatSizer.Add(self.categoryCombo, 1, wx.EXPAND)
+		savedSizer.Add(savedCatSizer, 0, wx.EXPAND | wx.ALL, 5)
 		self.listSaved = wx.ListCtrl(self.panelSaved, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.BORDER_SUNKEN)
 		self.listSaved.InsertColumn(0, _("Name"), width=250)
 		self.listSaved.InsertColumn(1, _("Path"), width=400)
@@ -397,6 +515,9 @@ class AbsoluteFilesDialog(wx.Dialog):
 
 	def _bindEvents(self):
 		self.filterCombo.Bind(wx.EVT_COMBOBOX, lambda e: self.updateFiles() or self._reset_timer())
+		self.categoryCombo.Bind(wx.EVT_COMBOBOX, self.onCategoryChange)
+		self.categoryCombo.Bind(wx.EVT_CONTEXT_MENU, self.onCategoryContextMenu)
+		self.categoryCombo.Bind(wx.EVT_KEY_DOWN, self.onCategoryKeyDown)
 		self.searchSaved.Bind(wx.EVT_TEXT, self.onSearchTextChanged)
 		self.searchRecent.Bind(wx.EVT_TEXT, self.onSearchTextChanged)
 		self.sortCombo.Bind(wx.EVT_COMBOBOX, self.onSortChanged)
@@ -422,9 +543,14 @@ class AbsoluteFilesDialog(wx.Dialog):
 			AbsoluteFilesDialog._activeInstance = None
 		pendingPath = self._pendingOpenPath
 		self._pendingOpenPath = None
+		pendingPaths = self._pendingOpenPaths
+		self._pendingOpenPaths = []
 		event.Skip()
 		if pendingPath and os.path.isfile(pendingPath):
 			core.callLater(300, lambda p=pendingPath: _openFilePath(p))
+		for offset, path in enumerate(pendingPaths):
+			if path and os.path.isfile(path):
+				core.callLater(300 + offset * 150, lambda p=path: _openFilePath(p))
 
 	def onTabChanged(self, evt):
 		self.updateFiles()
@@ -440,6 +566,147 @@ class AbsoluteFilesDialog(wx.Dialog):
 		self.manager.saveConfig()
 		self.updateFiles()
 		self._reset_timer()
+
+	def _populateCategories(self):
+		cats = self.manager.get_all_categories()
+		self.categoryCombo.Clear()
+		self.categoryCombo.AppendItems(cats)
+
+	def onCategoryChange(self, evt):
+		self._reset_timer()
+		self.currentCategory = self.categoryCombo.GetStringSelection()
+		self.manager.set_last_category(self.currentCategory)
+		self.updateFiles()
+
+	def onCategoryContextMenu(self, evt):
+		self._reset_timer()
+		menu = wx.Menu()
+		addItem = menu.Append(wx.ID_ANY, _("&Add Category"))
+		editItem = menu.Append(wx.ID_ANY, _("&Edit Category"))
+		deleteItem = menu.Append(wx.ID_ANY, _("&Delete Category"))
+		menu.AppendSeparator()
+		openAllItem = menu.Append(wx.ID_ANY, _("Open &All Files in Category"))
+		self.Bind(wx.EVT_MENU, self.onAddCategory, addItem)
+		self.Bind(wx.EVT_MENU, self.onEditCategory, editItem)
+		self.Bind(wx.EVT_MENU, self.onDeleteCategory, deleteItem)
+		self.Bind(wx.EVT_MENU, self.onOpenAllInCategory, openAllItem)
+		self.categoryCombo.PopupMenu(menu)
+		menu.Destroy()
+
+	def onOpenAllInCategory(self, evt):
+		self._reset_timer()
+		category = self.currentCategory
+		files = self.manager._categories.get(category, {})
+		paths = [p for p in files.values() if p and os.path.isfile(p)]
+		if not paths:
+			gui.messageBox(_("No files to open in this category."), TITLE, wx.OK | wx.ICON_INFORMATION)
+			return
+		self._stop_timer()
+		if gui.messageBox(_("Open all {count} files in category '{category}'?").format(count=len(paths), category=category),
+						 TITLE, wx.YES_NO | wx.ICON_QUESTION) != wx.YES:
+			self._reset_timer()
+			return
+		for path in paths:
+			self.manager.addToRecent(path)
+		self._pendingOpenPaths = paths
+		gui.mainFrame.postPopup()
+		self.Close()
+
+	def onCategoryKeyDown(self, evt):
+		self._reset_timer()
+		if evt.GetKeyCode() == wx.WXK_DELETE:
+			self.onDeleteCategory(None)
+		else:
+			evt.Skip()
+
+	def onAddCategory(self, evt):
+		self._reset_timer()
+		self._stop_timer()
+		dlg = wx.TextEntryDialog(self, _("Enter new category name:"), TITLE)
+		if dlg.ShowModal() == wx.ID_OK:
+			newCat = dlg.GetValue().strip()
+			if newCat:
+				if self.manager.add_category(newCat):
+					self._populateCategories()
+					self.categoryCombo.SetStringSelection(newCat)
+					self.currentCategory = newCat
+					self.manager.set_last_category(newCat)
+					self.updateFiles()
+				else:
+					gui.messageBox(_("Category already exists or invalid."), TITLE, wx.OK | wx.ICON_ERROR)
+		dlg.Destroy()
+		self._reset_timer()
+
+	def onEditCategory(self, evt):
+		self._reset_timer()
+		currentCat = self.categoryCombo.GetStringSelection()
+		if not currentCat:
+			gui.messageBox(_("No category selected."), TITLE, wx.OK | wx.ICON_ERROR)
+			return
+		if currentCat == DEFAULT_CATEGORY:
+			gui.messageBox(_("The 'All' category cannot be renamed."), TITLE, wx.OK | wx.ICON_ERROR)
+			return
+		self._stop_timer()
+		dlg = wx.TextEntryDialog(self, _("Enter new name for category '{}':").format(currentCat), TITLE)
+		if dlg.ShowModal() == wx.ID_OK:
+			newCat = dlg.GetValue().strip()
+			if not newCat or newCat == currentCat:
+				dlg.Destroy()
+				self._reset_timer()
+				return
+			if self.manager.rename_category(currentCat, newCat):
+				self._populateCategories()
+				self.categoryCombo.SetStringSelection(newCat)
+				self.currentCategory = newCat
+				self.updateFiles()
+			else:
+				gui.messageBox(_("Category '{}' already exists or invalid.").format(newCat), TITLE, wx.OK | wx.ICON_ERROR)
+		dlg.Destroy()
+		self._reset_timer()
+
+	def onDeleteCategory(self, evt):
+		self._reset_timer()
+		currentCat = self.categoryCombo.GetStringSelection()
+		if not currentCat:
+			gui.messageBox(_("No category selected."), TITLE, wx.OK | wx.ICON_ERROR)
+			return
+		if currentCat == DEFAULT_CATEGORY:
+			gui.messageBox(_("The 'All' category cannot be deleted."), TITLE, wx.OK | wx.ICON_ERROR)
+			return
+		self._stop_timer()
+		if gui.messageBox(_("Are you sure you want to delete category '{}' and all its files?").format(currentCat),
+						 TITLE, wx.YES_NO | wx.ICON_QUESTION) == wx.YES:
+			if self.manager.delete_category(currentCat):
+				self._populateCategories()
+				self.categoryCombo.SetStringSelection(self.manager.get_last_category())
+				self.currentCategory = self.categoryCombo.GetStringSelection()
+				self.updateFiles()
+			else:
+				gui.messageBox(_("Failed to delete category."), TITLE, wx.OK | wx.ICON_ERROR)
+		self._reset_timer()
+
+	def onMoveToCategory(self, new_category):
+		self._reset_timer()
+		idx = self.listSaved.GetFirstSelected()
+		if idx == -1:
+			return
+		name = self.listSaved.GetItemText(idx, 0)
+		oldCategory = self.currentCategory
+		if self.manager.move_item_to_category(oldCategory, name, new_category):
+			self.categoryCombo.SetStringSelection(new_category)
+			self.currentCategory = new_category
+			self.manager.set_last_category(new_category)
+			self.updateFiles()
+			self._select_by_name(name)
+		else:
+			gui.messageBox(_("Failed to move file. It may already exist in the target category."), TITLE, wx.OK | wx.ICON_ERROR)
+
+	def _select_by_name(self, name):
+		for i in range(self.listSaved.GetItemCount()):
+			if self.listSaved.GetItemText(i, 0) == name:
+				self.listSaved.Select(i)
+				self.listSaved.Focus(i)
+				return
 
 	def onCharHook(self, evt):
 		if evt.GetKeyCode() == wx.WXK_ESCAPE:
@@ -491,7 +758,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 			if idx == -1:
 				return
 			name = lst.GetItemText(idx, 0)
-			path = self.manager._files.get(name)
+			path = self.manager._categories.get(self.currentCategory, {}).get(name)
 		else:
 			lst = self.listRecent
 			idx = lst.GetFirstSelected()
@@ -515,17 +782,21 @@ class AbsoluteFilesDialog(wx.Dialog):
 		if not self.manager._newFile:
 			ui.message(_("No file selected in Explorer to add."))
 			return
+		category = self.currentCategory
+		if not category:
+			gui.messageBox(_("Please select a category first."), TITLE, wx.OK | wx.ICON_ERROR)
+			return
 		default = os.path.basename(self.manager._newFile)
 		dlg = wx.TextEntryDialog(self, _("Enter display name"), TITLE, default)
 		if dlg.ShowModal() == wx.ID_OK:
 			name = dlg.GetValue().strip()
 			if name:
-				if name in self.manager._files:
-					gui.messageBox(_("This name already exists."), TITLE, wx.OK | wx.ICON_WARNING)
+				if name in self.manager._categories[category]:
+					gui.messageBox(_("This name already exists in this category."), TITLE, wx.OK | wx.ICON_WARNING)
 				else:
-					self.manager._files[name] = self.manager._newFile
-					if name not in self.manager._order:
-						self.manager._order.append(name)
+					self.manager._categories[category][name] = self.manager._newFile
+					if name not in self.manager._order[category]:
+						self.manager._order[category].append(name)
 					self.manager.saveConfig()
 					self.updateFiles()
 		dlg.Destroy()
@@ -538,19 +809,20 @@ class AbsoluteFilesDialog(wx.Dialog):
 		if idx == -1:
 			return
 		oldName = self.listSaved.GetItemText(idx, 0)
+		category = self.currentCategory
 		dlg = wx.TextEntryDialog(self, _("Rename"), TITLE, oldName)
 		if dlg.ShowModal() == wx.ID_OK:
 			newName = dlg.GetValue().strip()
 			if newName and newName != oldName:
-				if newName in self.manager._files:
-					gui.messageBox(_("This name already exists."), TITLE, wx.OK | wx.ICON_WARNING)
+				if newName in self.manager._categories[category]:
+					gui.messageBox(_("This name already exists in this category."), TITLE, wx.OK | wx.ICON_WARNING)
 				else:
-					path = self.manager._files.pop(oldName)
-					self.manager._files[newName] = path
-					self.manager._order = [newName if x == oldName else x for x in self.manager._order]
-					if oldName in self.manager._pinned:
-						self.manager._pinned.remove(oldName)
-						self.manager._pinned.add(newName)
+					path = self.manager._categories[category].pop(oldName)
+					self.manager._categories[category][newName] = path
+					self.manager._order[category] = [newName if x == oldName else x for x in self.manager._order[category]]
+					if oldName in self.manager._pinned[category]:
+						self.manager._pinned[category].remove(oldName)
+						self.manager._pinned[category].add(newName)
 					self.manager.saveConfig()
 					self.updateFiles()
 		dlg.Destroy()
@@ -563,11 +835,12 @@ class AbsoluteFilesDialog(wx.Dialog):
 		if idx == -1:
 			return
 		name = self.listSaved.GetItemText(idx, 0)
+		category = self.currentCategory
 		if gui.messageBox(_("Remove {}?").format(name), TITLE, wx.YES_NO) == wx.YES:
-			self.manager._files.pop(name, None)
-			if name in self.manager._order:
-				self.manager._order.remove(name)
-			self.manager._pinned.discard(name)
+			self.manager._categories[category].pop(name, None)
+			if name in self.manager._order[category]:
+				self.manager._order[category].remove(name)
+			self.manager._pinned[category].discard(name)
 			self.manager.saveConfig()
 			self.updateFiles()
 
@@ -590,7 +863,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 				self._reset_timer()
 				return
 			name = lst.GetItemText(idx, 0)
-			path = self.manager._files.get(name)
+			path = self.manager._categories.get(self.currentCategory, {}).get(name)
 		else:
 			lst = self.listRecent
 			idx = lst.GetFirstSelected()
@@ -614,7 +887,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 				menu.AppendSeparator()
 
 		if self.tabs.GetSelection() == 0:
-			pin_label = _("Unpin") if name in self.manager._pinned else _("Pin to top")
+			pin_label = _("Unpin") if name in self.manager._pinned[self.currentCategory] else _("Pin to top")
 			itemPin = menu.Append(wx.ID_ANY, pin_label)
 			self.Bind(wx.EVT_MENU, lambda e: self.onTogglePin(name), itemPin)
 			menu.AppendSeparator()
@@ -627,6 +900,17 @@ class AbsoluteFilesDialog(wx.Dialog):
 				itemDown = menu.Append(wx.ID_ANY, _("Move Down"))
 				self.Bind(wx.EVT_MENU, lambda e: self.moveItem(name, -1), itemUp)
 				self.Bind(wx.EVT_MENU, lambda e: self.moveItem(name, 1), itemDown)
+
+			menu.AppendSeparator()
+			moveMenu = wx.Menu()
+			for cat in self.manager.get_all_categories():
+				if cat != self.currentCategory:
+					catItem = moveMenu.Append(wx.ID_ANY, cat)
+					self.Bind(wx.EVT_MENU, lambda e, c=cat: self.onMoveToCategory(c), catItem)
+			if moveMenu.GetMenuItemCount() == 0:
+				noTargetItem = moveMenu.Append(wx.ID_ANY, _("No other categories"))
+				noTargetItem.Enable(False)
+			menu.AppendSubMenu(moveMenu, _("&Move to category"))
 
 			self.Bind(wx.EVT_MENU, self.onEdit, itemEdit)
 			self.Bind(wx.EVT_MENU, self.onRemove, itemDelete)
@@ -653,10 +937,11 @@ class AbsoluteFilesDialog(wx.Dialog):
 
 	def onTogglePin(self, name):
 		self._reset_timer()
-		if name in self.manager._pinned:
-			self.manager._pinned.remove(name)
+		category = self.currentCategory
+		if name in self.manager._pinned[category]:
+			self.manager._pinned[category].remove(name)
 		else:
-			self.manager._pinned.add(name)
+			self.manager._pinned[category].add(name)
 		self.manager.saveConfig()
 		self.updateFiles()
 
@@ -665,15 +950,19 @@ class AbsoluteFilesDialog(wx.Dialog):
 		if self.tabs.GetSelection() != 0:
 			return
 
-		pinnedList = [x for x in self.manager._order if x in self.manager._pinned]
-		unpinnedList = [x for x in self.manager._order if x not in self.manager._pinned and x in self.manager._files]
+		category = self.currentCategory
+		pinnedSet = self.manager._pinned[category]
+		order = self.manager._order[category]
+		files = self.manager._categories[category]
+		pinnedList = [x for x in order if x in pinnedSet]
+		unpinnedList = [x for x in order if x not in pinnedSet and x in files]
 
 		if targetName in pinnedList:
 			currentIndex = pinnedList.index(targetName)
 			newIndex = currentIndex + direction
 			if 0 <= newIndex < len(pinnedList):
 				pinnedList[currentIndex], pinnedList[newIndex] = pinnedList[newIndex], pinnedList[currentIndex]
-				self.manager._order = pinnedList + unpinnedList
+				self.manager._order[category] = pinnedList + unpinnedList
 				self.manager.saveConfig()
 				self.updateFiles(newIndex)
 		else:
@@ -681,7 +970,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 			newIndex = currentIndex + direction
 			if 0 <= newIndex < len(unpinnedList):
 				unpinnedList[currentIndex], unpinnedList[newIndex] = unpinnedList[newIndex], unpinnedList[currentIndex]
-				self.manager._order = pinnedList + unpinnedList
+				self.manager._order[category] = pinnedList + unpinnedList
 				self.manager.saveConfig()
 				self.updateFiles(len(pinnedList) + newIndex)
 
@@ -718,8 +1007,12 @@ class AbsoluteFilesDialog(wx.Dialog):
 			"exe": ('.exe', '.bat', '.cmd', '.msi')
 		}
 		if self.tabs.GetSelection() == 0:
-			pinned = [x for x in self.manager._order if x in self.manager._pinned]
-			unpinned = [x for x in self.manager._order if x not in self.manager._pinned and x in self.manager._files]
+			category = self.currentCategory
+			files = self.manager._categories.get(category, {})
+			order = self.manager._order.get(category, [])
+			pinnedSet = self.manager._pinned.get(category, set())
+			pinned = [x for x in order if x in pinnedSet]
+			unpinned = [x for x in order if x not in pinnedSet and x in files]
 			if self.manager._sortMode == "UPPERCASE":
 				unpinned.sort(key=lambda x: x.upper())
 			elif self.manager._sortMode == "LOWERCASE":
@@ -729,7 +1022,7 @@ class AbsoluteFilesDialog(wx.Dialog):
 			for name in items:
 				if searchText and searchText not in name.lower():
 					continue
-				path = self.manager._files[name]
+				path = files[name]
 				if f_type == "all" or path.lower().endswith(exts.get(f_type, ())):
 					idx = self.listSaved.InsertItem(count, name)
 					if self.manager._showPath:
@@ -753,6 +1046,8 @@ class AbsoluteFilesDialog(wx.Dialog):
 					self.listRecent.SetItem(idx, 1, p)
 					self._displayedRecentPaths.append(p)
 					count += 1
+
+
 
 
 
