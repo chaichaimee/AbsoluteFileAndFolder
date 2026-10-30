@@ -18,6 +18,7 @@ from comtypes.client import CreateObject as COMCreate
 import addonHandler
 import core
 import logHandler
+from . import explorerLaunch
 
 addonHandler.initTranslation()
 
@@ -54,7 +55,7 @@ def _openFolderPath(path):
 			pass
 		try:
 			if path and os.path.isdir(path):
-				os.startfile(path)
+				explorerLaunch.openFolder(path)
 		except OSError as e:
 			logHandler.log.warning(f"Failed to open folder from Absolute Folders: {e}", exc_info=True)
 		finally:
@@ -79,6 +80,7 @@ class AbsoluteFolderManager:
 		self._sortMode = "UPPERCASE"
 		self._newFolder = ""
 		self._autoLoadLastFolder = False
+		self._openMaximized = True
 		self._lastOpenedFolders = []
 		self._recentFolders = []
 		self._lastSystemUptime = 0
@@ -185,6 +187,7 @@ class AbsoluteFolderManager:
 		self._sortMode = data.get("sortMode", "UPPERCASE")
 		self._showPath = data.get("showPath", False)
 		self._autoLoadLastFolder = data.get("autoLoadLastFolder", False)
+		self._openMaximized = bool(data.get("openMaximized", True))
 		self._lastOpenedFolders = data.get("lastOpenedFolders", [])
 		self._recentFolders = data.get("recentFolders", [])
 		self._lastSystemUptime = data.get("lastSystemUptime", 0)
@@ -209,6 +212,7 @@ class AbsoluteFolderManager:
 			"lastCategory": self._lastCategory,
 			"showPath": self._showPath,
 			"autoLoadLastFolder": self._autoLoadLastFolder,
+			"openMaximized": self._openMaximized,
 			"lastOpenedFolders": self._lastOpenedFolders,
 			"recentFolders": self._recentFolders,
 			"lastSystemUptime": self._lastSystemUptime
@@ -536,6 +540,10 @@ class AbsoluteFoldersDialog(wx.Dialog):
 		self.chkShowPath.SetValue(self.manager._showPath)
 		optionsSizer.Add(self.chkShowPath, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
 
+		self.chkOpenMaximized = wx.CheckBox(self, label=_("Open Explorer &maximized"))
+		self.chkOpenMaximized.SetValue(self.manager._openMaximized)
+		optionsSizer.Add(self.chkOpenMaximized, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
+
 		choices = [_("Custom order"), _("Ascending, a-z"), _("Descending z-a")]
 		self.sortCombo = wx.ComboBox(self, choices=choices, style=wx.CB_READONLY)
 		mode_map = {"CUSTOM": 0, "UPPERCASE": 1, "LOWERCASE": 2}
@@ -579,6 +587,7 @@ class AbsoluteFoldersDialog(wx.Dialog):
 		self.searchRecent.Bind(wx.EVT_TEXT, self.onSearchTextChanged)
 		self.tabs.Bind(wx.EVT_NOTEBOOK_PAGE_CHANGED, self.onTabChanged)
 		self.chkShowPath.Bind(wx.EVT_CHECKBOX, self.onShowPathChanged)
+		self.chkOpenMaximized.Bind(wx.EVT_CHECKBOX, self.onOpenMaximizedChanged)
 		self.sortCombo.Bind(wx.EVT_COMBOBOX, self.onSortChanged)
 		self.btnAdd.Bind(wx.EVT_BUTTON, self.onAdd)
 		self.btnOpen.Bind(wx.EVT_BUTTON, self.onOpen)
@@ -711,6 +720,11 @@ class AbsoluteFoldersDialog(wx.Dialog):
 		self.manager._showPath = self.chkShowPath.GetValue()
 		self.manager.saveConfig()
 		self.updateFiles()
+
+	def onOpenMaximizedChanged(self, evt):
+		self._reset_timer()
+		self.manager._openMaximized = self.chkOpenMaximized.GetValue()
+		self.manager.saveConfig()
 
 	def onSortChanged(self, evt):
 		self._reset_timer()

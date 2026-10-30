@@ -17,6 +17,7 @@ import globalVars
 import logHandler
 from . import AbsoluteFile
 from . import AbsoluteFolder
+from . import explorerLaunch
 
 addonHandler.initTranslation()
 
@@ -122,7 +123,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				pass
 			try:
 				if folder_path and os.path.isdir(folder_path):
-					os.startfile(folder_path)
+					explorerLaunch.openFolder(folder_path)
 			except OSError as e:
 				logHandler.log.warning(f"Failed to open folder on startup: {e}", exc_info=True)
 			finally:

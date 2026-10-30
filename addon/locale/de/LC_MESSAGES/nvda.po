@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AbsoluteFileAndFolder 2026.10.0\n"
+"Project-Id-Version: AbsoluteFileAndFolder 2026.11.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-10-01 10:31+0700\n"
+"POT-Creation-Date: 2026-10-30 06:42+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: German\n"
@@ -13,59 +13,59 @@ msgstr ""
 "X-Generator: ChaiBot Addon\n"
 
 #: AbsoluteFile.py:474
-#: AbsoluteFolder.py:524
+#: AbsoluteFolder.py:528
 msgid "&Add"
 msgstr "&Hinzufügen"
 
 #: AbsoluteFile.py:584
-#: AbsoluteFolder.py:736
+#: AbsoluteFolder.py:750
 msgid "&Add Category"
 msgstr "Kategorie &hinzufügen"
 
 #: AbsoluteFile.py:586
-#: AbsoluteFolder.py:738
+#: AbsoluteFolder.py:752
 msgid "&Delete Category"
 msgstr "Kategorie l&öschen"
 
 #: AbsoluteFile.py:475
-#: AbsoluteFolder.py:526
+#: AbsoluteFolder.py:530
 msgid "&Edit"
 msgstr "&Bearbeiten"
 
 #: AbsoluteFile.py:585
-#: AbsoluteFolder.py:737
+#: AbsoluteFolder.py:751
 msgid "&Edit Category"
 msgstr "Kategorie &bearbeiten"
 
 #: AbsoluteFile.py:913
-#: AbsoluteFolder.py:1012
+#: AbsoluteFolder.py:1026
 msgid "&Move to category"
 msgstr "In Kategorie &verschieben"
 
 #: AbsoluteFile.py:506
-#: AbsoluteFolder.py:525
+#: AbsoluteFolder.py:529
 msgid "&Open"
 msgstr "&Öffnen"
 
 #: AbsoluteFile.py:476
-#: AbsoluteFolder.py:527
+#: AbsoluteFolder.py:531
 msgid "&Remove"
 msgstr "&Entfernen"
 
-#: AbsoluteFolder.py:535
+#: AbsoluteFolder.py:539
 msgid "&Show paths"
 msgstr "&Pfade anzeigen"
 
-#: __init__.py:79
-#: __init__.py:146
+#: __init__.py:80
+#: __init__.py:147
 msgid "Absolute File and Folder"
-msgstr "Absolute File and Folder"
+msgstr "Absolute Datei und Ordner"
 
 #: AbsoluteFile.py:23
 msgid "Absolute Files"
 msgstr "Absolute Dateien"
 
-#: AbsoluteFolder.py:24
+#: AbsoluteFolder.py:25
 msgid "Absolute Folders"
 msgstr "Absolute Ordner"
 
@@ -73,78 +73,78 @@ msgstr "Absolute Ordner"
 msgid "Are you sure you want to delete category '{}' and all its files?"
 msgstr "Sind Sie sicher, dass Sie die Kategorie '{}' und alle dazugehörigen Dateien löschen möchten?"
 
-#: AbsoluteFolder.py:833
+#: AbsoluteFolder.py:847
 msgid "Are you sure you want to delete category '{}' and all its folders?"
 msgstr "Sind Sie sicher, dass Sie die Kategorie '{}' und alle dazugehörigen Ordner löschen möchten?"
 
 #: AbsoluteFile.py:498
-#: AbsoluteFolder.py:539
+#: AbsoluteFolder.py:547
 msgid "Ascending, a-z"
 msgstr "Aufsteigend, a-z"
 
 #: AbsoluteFile.py:663
-#: AbsoluteFolder.py:819
+#: AbsoluteFolder.py:833
 msgid "Category '{}' already exists or invalid."
 msgstr "Kategorie '{}' existiert bereits oder ist ungültig."
 
 #: AbsoluteFile.py:636
-#: AbsoluteFolder.py:792
+#: AbsoluteFolder.py:806
 msgid "Category already exists or invalid."
 msgstr "Kategorie existiert bereits oder ist ungültig."
 
 #: AbsoluteFile.py:464
-#: AbsoluteFolder.py:499
+#: AbsoluteFolder.py:503
 msgid "Category:"
 msgstr "Kategorie:"
 
 #: AbsoluteFile.py:493
-#: AbsoluteFolder.py:519
+#: AbsoluteFolder.py:523
 msgid "Clear History"
 msgstr "Verlauf löschen"
 
 #: AbsoluteFile.py:849
-#: AbsoluteFolder.py:1066
+#: AbsoluteFolder.py:1080
 msgid "Clear history?"
 msgstr "Verlauf löschen?"
 
 #: AbsoluteFile.py:498
-#: AbsoluteFolder.py:539
+#: AbsoluteFolder.py:547
 msgid "Custom order"
 msgstr "Benutzerdefinierte Reihenfolge"
 
 #: AbsoluteFile.py:895
-#: AbsoluteFolder.py:631
-#: AbsoluteFolder.py:994
+#: AbsoluteFolder.py:640
+#: AbsoluteFolder.py:1008
 msgid "Delete"
 msgstr "Löschen"
 
 #: AbsoluteFile.py:498
-#: AbsoluteFolder.py:539
+#: AbsoluteFolder.py:547
 msgid "Descending z-a"
 msgstr "Absteigend, z-a"
 
 #: AbsoluteFile.py:894
-#: AbsoluteFolder.py:993
+#: AbsoluteFolder.py:1007
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: AbsoluteFile.py:790
-#: AbsoluteFolder.py:876
+#: AbsoluteFolder.py:890
 msgid "Enter display name"
 msgstr "Anzeigenamen eingeben"
 
 #: AbsoluteFile.py:625
-#: AbsoluteFolder.py:781
+#: AbsoluteFolder.py:795
 msgid "Enter new category name:"
 msgstr "Neuen Kategorienamen eingeben:"
 
 #: AbsoluteFile.py:650
-#: AbsoluteFolder.py:806
+#: AbsoluteFolder.py:820
 msgid "Enter new name for category '{}':"
 msgstr "Neuen Namen für Kategorie '{}' eingeben:"
 
 #: AbsoluteFile.py:685
-#: AbsoluteFolder.py:841
+#: AbsoluteFolder.py:855
 msgid "Failed to delete category."
 msgstr "Kategorie konnte nicht gelöscht werden."
 
@@ -152,7 +152,7 @@ msgstr "Kategorie konnte nicht gelöscht werden."
 msgid "Failed to move file. It may already exist in the target category."
 msgstr "Datei konnte nicht verschoben werden. Möglicherweise ist sie in der Zielkategorie bereits vorhanden."
 
-#: AbsoluteFolder.py:857
+#: AbsoluteFolder.py:871
 msgid "Failed to move folder. It may already exist in the target category."
 msgstr "Ordner konnte nicht verschoben werden. Möglicherweise ist er in der Zielkategorie bereits vorhanden."
 
@@ -164,30 +164,30 @@ msgstr "Dateiname"
 msgid "Filter Type:"
 msgstr "Filtertyp:"
 
-#: AbsoluteFolder.py:516
-#: AbsoluteFolder.py:555
+#: AbsoluteFolder.py:520
+#: AbsoluteFolder.py:563
 msgid "Folder Name"
 msgstr "Ordnername"
 
 #: AbsoluteFile.py:900
-#: AbsoluteFolder.py:999
+#: AbsoluteFolder.py:1013
 msgid "Move Down"
 msgstr "Nach unten verschieben"
 
 #: AbsoluteFile.py:899
-#: AbsoluteFolder.py:998
+#: AbsoluteFolder.py:1012
 msgid "Move Up"
 msgstr "Nach oben verschieben"
 
 #: AbsoluteFile.py:469
-#: AbsoluteFolder.py:504
+#: AbsoluteFolder.py:508
 msgid "Name"
-msgstr "Name"
+msgstr "&Name"
 
 #: AbsoluteFile.py:644
 #: AbsoluteFile.py:671
-#: AbsoluteFolder.py:800
-#: AbsoluteFolder.py:827
+#: AbsoluteFolder.py:814
+#: AbsoluteFolder.py:841
 msgid "No category selected."
 msgstr "Keine Kategorie ausgewählt."
 
@@ -199,16 +199,16 @@ msgstr "Keine Datei im Explorer zum Hinzufügen ausgewählt."
 msgid "No files to open in this category."
 msgstr "Keine Dateien zum Öffnen in dieser Kategorie."
 
-#: AbsoluteFolder.py:869
+#: AbsoluteFolder.py:883
 msgid "No folder selected in Explorer to add."
 msgstr "Kein Ordner im Explorer zum Hinzufügen ausgewählt."
 
-#: AbsoluteFolder.py:754
+#: AbsoluteFolder.py:768
 msgid "No folders to open in this category."
 msgstr "Keine Ordner zum Öffnen in dieser Kategorie."
 
 #: AbsoluteFile.py:911
-#: AbsoluteFolder.py:1010
+#: AbsoluteFolder.py:1024
 msgid "No other categories"
 msgstr "Keine anderen Kategorien"
 
@@ -216,37 +216,41 @@ msgstr "Keine anderen Kategorien"
 msgid "Open &All Files in Category"
 msgstr "&Alle Dateien in Kategorie öffnen"
 
-#: AbsoluteFolder.py:740
+#: AbsoluteFolder.py:754
 msgid "Open &All Folders in Category"
 msgstr "&Alle Ordner in Kategorie öffnen"
 
-#: __init__.py:145
+#: __init__.py:146
 msgid "Open Absolute Folders (single tap) or Absolute Files (double tap). If the target dialog is already open, brings it to the front instead of reopening it."
 msgstr "Absolute Ordner (einfacher Klick) oder absolute Dateien (doppelter Klick) öffnen. Wenn der Zieldialog bereits geöffnet ist, wird er in den Vordergrund gebracht, anstatt ihn erneut zu öffnen."
+
+#: AbsoluteFolder.py:543
+msgid "Open Explorer &maximized"
+msgstr "Im Explorer &maximiert öffnen"
 
 #: AbsoluteFile.py:605
 msgid "Open all {count} files in category '{category}'?"
 msgstr "Alle {count} Dateien in der Kategorie „{category}“ öffnen?"
 
-#: AbsoluteFolder.py:757
+#: AbsoluteFolder.py:771
 msgid "Open all {count} folders in category '{category}'?"
 msgstr "Alle {count} Ordner in der Kategorie „{category}“ öffnen?"
 
 #: AbsoluteFile.py:470
 #: AbsoluteFile.py:491
-#: AbsoluteFolder.py:505
-#: AbsoluteFolder.py:517
-#: AbsoluteFolder.py:556
+#: AbsoluteFolder.py:509
+#: AbsoluteFolder.py:521
+#: AbsoluteFolder.py:564
 msgid "Path"
 msgstr "Pfad"
 
 #: AbsoluteFile.py:890
-#: AbsoluteFolder.py:990
+#: AbsoluteFolder.py:1004
 msgid "Pin to top"
 msgstr "Oben anheften"
 
 #: AbsoluteFile.py:787
-#: AbsoluteFolder.py:873
+#: AbsoluteFolder.py:887
 msgid "Please select a category first."
 msgstr "Bitte wählen Sie zuerst eine Kategorie aus."
 
@@ -254,11 +258,11 @@ msgstr "Bitte wählen Sie zuerst eine Kategorie aus."
 msgid "Recent Files"
 msgstr "Zuletzt verwendete Dateien"
 
-#: AbsoluteFolder.py:489
+#: AbsoluteFolder.py:493
 msgid "Recent Folders"
 msgstr "Zuletzt verwendete Ordner"
 
-#: AbsoluteFolder.py:547
+#: AbsoluteFolder.py:555
 msgid "Remember and open folders automatically on restart"
 msgstr "Ordner beim Neustart automatisch merken und öffnen"
 
@@ -266,7 +270,7 @@ msgstr "Ordner beim Neustart automatisch merken und öffnen"
 msgid "Remove from Recent"
 msgstr "Aus Verlauf entfernen"
 
-#: AbsoluteFolder.py:650
+#: AbsoluteFolder.py:659
 msgid "Remove {} from auto-open list?"
 msgstr "{} aus der Liste zum automatischen Öffnen entfernen?"
 
@@ -275,12 +279,12 @@ msgid "Remove {} from recent list?"
 msgstr "{} aus der Liste der zuletzt verwendeten Elemente entfernen?"
 
 #: AbsoluteFile.py:839
-#: AbsoluteFolder.py:959
+#: AbsoluteFolder.py:973
 msgid "Remove {}?"
 msgstr "{} entfernen?"
 
 #: AbsoluteFile.py:813
-#: AbsoluteFolder.py:933
+#: AbsoluteFolder.py:947
 msgid "Rename"
 msgstr "Umbenennen"
 
@@ -292,48 +296,52 @@ msgstr "Als Administrator ausführen"
 msgid "Saved Files"
 msgstr "Gespeicherte Dateien"
 
-#: AbsoluteFolder.py:488
+#: AbsoluteFolder.py:492
 msgid "Saved Folders"
 msgstr "Gespeicherte Ordner"
 
 #: AbsoluteFile.py:459
 #: AbsoluteFile.py:485
-#: AbsoluteFolder.py:494
-#: AbsoluteFolder.py:511
+#: AbsoluteFolder.py:498
+#: AbsoluteFolder.py:515
 msgid "Search:"
 msgstr "Suchen:"
 
 #: AbsoluteFile.py:674
-#: AbsoluteFolder.py:830
+#: AbsoluteFolder.py:844
 msgid "The 'All' category cannot be deleted."
 msgstr "Die Kategorie „Alle“ kann nicht gelöscht werden."
 
 #: AbsoluteFile.py:647
-#: AbsoluteFolder.py:803
+#: AbsoluteFolder.py:817
 msgid "The 'All' category cannot be renamed."
 msgstr "Die Kategorie „Alle“ kann nicht umbenannt werden."
 
 #: AbsoluteFile.py:795
 #: AbsoluteFile.py:818
-#: AbsoluteFolder.py:881
-#: AbsoluteFolder.py:938
+#: AbsoluteFolder.py:895
+#: AbsoluteFolder.py:952
 msgid "This name already exists in this category."
 msgstr "Dieser Name ist in dieser Kategorie bereits vorhanden."
 
 #: AbsoluteFile.py:890
-#: AbsoluteFolder.py:990
+#: AbsoluteFolder.py:1004
 msgid "Unpin"
 msgstr "Anheften aufheben"
+
+#: explorerLaunch.py:68
+msgid "maximized"
+msgstr "maximiert"
 
 #: AbsoluteFile.py:741
 msgid "{0} files found"
 msgstr "{0} Dateien gefunden"
 
-#: AbsoluteFolder.py:697
+#: AbsoluteFolder.py:706
 msgid "{0} folders found"
 msgstr "{0} Ordner gefunden"
 
 #: AbsoluteFile.py:739
-#: AbsoluteFolder.py:695
+#: AbsoluteFolder.py:704
 msgid "{0} matches found"
 msgstr "{0} Treffer gefunden"
